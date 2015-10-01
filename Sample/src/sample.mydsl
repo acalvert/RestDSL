@@ -1,0 +1,75 @@
+primitiveType String
+primitiveType Integer
+
+restModel AccountRestModel {
+	id : Integer
+	name : String
+}
+
+dataModel TransactionModel {
+	id : Integer
+	name : String
+}
+
+dataModel AccountModel {
+	id : Integer
+	name : String
+	dm : TransactionModel
+}
+
+mappingModel AccountMappingModel {
+	(AccountModel <=> AccountRestModel)
+}
+
+Resource AccountResource 
+	create (AccountRestModel) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountRestModel
+	}
+	find (1) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountRestModel
+	}
+	update (2, AccountRestModel) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountRestModel
+	}
+	delete (33) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+	}
+
+Service AccountService 
+	create (AccountModel) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountModel
+	}
+	find (44) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountModel
+	}
+	update (55, AccountModel) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountModel
+	}
+	delete (66) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+	}
+
+
+DAO AccountDao 
+	create (AccountModel) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountModel
+	}
+	find (44) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountModel
+	}
+	update (55, AccountModel) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+		return AccountModel
+	}
+	delete (66) throws SERVER_ERROR {
+		"use-case-specific java code goes here"
+	}
+
