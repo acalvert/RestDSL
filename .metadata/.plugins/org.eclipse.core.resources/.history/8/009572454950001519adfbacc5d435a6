@@ -1,0 +1,4 @@
+n construction, take in a translation unit, set up a string builder from 
+	keep a set of edits to be made and then decide what to replace at runtime?
+		- check for overlapping when a new edit is added and combine edits when needed
+		- how to handle offsets (offset into old version or just-changed version?)

@@ -1,0 +1,100 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class CacheSim2 {
+
+	static ArrayList<SimResults> results = new ArrayList<SimResults>();
+	static String FIFO = "FIFO";
+	static String LRU = "LRU";
+	
+	public static void main(String[] args) {
+		
+		int[] cacheSizes = new int[] {16*1024, 64*1024, 256*1024, 512*1024};
+		int[] blockSizes = new int[] {64, 128, 256, 1024, 4*1024};
+		
+		if(args.length != 1) {
+			System.err.println("Usage: MassCacheSim <address-distr>");
+			return;
+		}
+		if(!args[0].equals("gaussian") && !args[0].equals("uniform") && !args[0].equals("none")) {
+			System.err.println("Please use either \"gaussian\", \"uniform\", or \"none\" as the address distribution");
+			return;
+		}
+		
+		long start = System.currentTimeMillis();
+		for(int cacheSize : cacheSizes) {
+			for(int blockSize : blockSizes) {
+				System.out.println("Using cache size " + cacheSize + " and block size " + blockSize);
+				System.out.println("Running direct, FIFO");
+				//direct cache, FIFO
+				results.add(runSimulation(args[1], 1, cacheSize, blockSize, 32, new Cache<FIFOReplacementPolicy>(1, cacheSize/blockSize, blockSize, new FIFOReplacementPolicy()), FIFO));
+
+				System.out.println("Running fully associative, FIFO");
+				//fully associative cache, FIFO
+				results.add(runSimulation(args[1], cacheSize/blockSize, cacheSize, blockSize, 32, new Cache<FIFOReplacementPolicy>(cacheSize/blockSize, 1, blockSize, new FIFOReplacementPolicy()), FIFO));
+		
+				System.out.println("Running direct, LRU");
+				//direct cache, LRU
+				results.add(runSimulation(args[1], 1, cacheSize, blockSize, 32, new Cache<LRUReplacementPolicy>(1, cacheSize/blockSize, blockSize, new LRUReplacementPolicy()), LRU));
+				
+				System.out.println("Running fully associative, LRU");
+				//fully associative cache, LRU
+				results.add(runSimulation(args[1], cacheSize/blockSize, cacheSize, blockSize, 32, new Cache<LRUReplacementPolicy>(cacheSize/blockSize, 1, blockSize, new LRUReplacementPolicy()), LRU));
+				
+			}
+		}
+		double totalTime = (double) (System.currentTimeMillis() - start);
+		
+		for(SimResults res : results) {
+			System.out.println(res);
+		}
+		System.out.println((totalTime/1000.0)/60.0);
+		
+	}
+	
+	public static <T extends ReplacementPolicy> SimResults runSimulation(String distr, int associativity, int cacheSize, int blockSize, int addressSpace, Cache<T> cache, String policy) {
+		
+		Random rng = new Random();
+		
+		int accesses = 0;
+		int misses = 0;
+		int totalTime = 0;
+		double missRate;
+		double ema;
+		
+		//write a dummy array rather than use actual simulated memory for performance
+		byte[] dummy = new byte[blockSize];
+		for(accesses = 0; accesses < 1000000; accesses++) {
+			int timeThisAccess = 0;
+			
+			if(distr.equals("gaussian")) {
+				int address = (int) (rng.nextGaussian() * ((int) Math.pow(2, addressSpace)))/4*4;
+			}
+			else if(distr.equals("uniform")) {
+				int address = rng.nextInt((int) Math.pow(2, addressSpace)/4) * 4;
+			}
+			else {
+				int address = 4096;
+			}
+			
+			try {
+				timeThisAccess += 1;
+				cache.read(address);
+			}
+			catch(CacheMissException e) {
+				timeThisAccess += blockSize/4;
+				misses++;
+				cache.write(address, dummy);
+			}
+			
+			totalTime += timeThisAccess;
+		}
+		
+		missRate = ((double) misses)/((double) accesses);
+		ema = ((double) totalTime)/((double) accesses);
+		
+		return new SimResults(associativity, cacheSize, blockSize, policy, missRate, ema);
+		
+	}
+	
+}

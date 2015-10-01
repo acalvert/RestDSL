@@ -1,0 +1,2 @@
+ - change matrix unit tests to be accurate (apparently i was confused when i first made them, so they matched the incorrect output from th FMTester)
+ - look into how code/comments are formatted, continue writing unit tests

@@ -1,0 +1,51 @@
+
+public class SimResults {
+
+	private int associativity;
+	private int cacheSize;
+	private int blockSize;
+	private String policy;
+	private double missRate;
+	private double ema;
+	
+	public SimResults(int associativity, int cacheSize, int blockSize, String policy, double missRate, double ema) {
+		this.cacheSize = cacheSize;
+		this.blockSize = blockSize;
+		this.policy = policy;
+		this.missRate = missRate;
+		this.ema = ema;
+	}
+
+	public int getCacheSize() {
+		return cacheSize;
+	}
+
+	public int getBlockSize() {
+		return blockSize;
+	}
+
+	public String getPolicy() {
+		return policy;
+	}
+
+	public double getMissRate() {
+		return missRate;
+	}
+
+	public double getEMA() {
+		return ema;
+	}
+	
+	public int getAssociativity() {
+		return associativity;
+	}
+
+	@Override
+	public String toString() {
+		return "SimResults [associativity=" + associativity + ", cacheSize=" + cacheSize + ", blockSize=" + blockSize + ", policy=" + policy + ", missRate="
+				+ missRate + ", ema=" + ema + "]";
+	}
+	
+	
+	
+}

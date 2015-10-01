@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config date="1440864340480" transient="false" version="3.0">
+<site enabled="true" policy="USER-EXCLUDE" updateable="true" url="platform:/base/">
+<feature id="org.eclipse.cdt" url="features/org.eclipse.cdt_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.httpclient4.feature" url="features/org.eclipse.ecf.filetransfer.httpclient4.feature_3.10.0.v20150512-1727/" version="3.10.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.help" plugin-identifier="org.eclipse.help.base" url="features/org.eclipse.help_2.1.0.v20150603-2000/" version="2.1.0.v20150603-2000">
+</feature>
+<feature id="org.eclipse.help.source" url="features/org.eclipse.help.source_2.1.0.v20150603-2000/" version="2.1.0.v20150603-2000">
+</feature>
+<feature id="org.eclipse.mylyn.bugzilla_feature" plugin-identifier="org.eclipse.mylyn.tasks.core" url="features/org.eclipse.mylyn.bugzilla_feature_3.16.0.v20150525-2001/" version="3.16.0.v20150525-2001">
+</feature>
+<feature id="org.eclipse.sdk.examples.source" url="features/org.eclipse.sdk.examples.source_3.5.500.v20150603-2000/" version="3.5.500.v20150603-2000">
+</feature>
+<feature id="org.eclipse.sdk" url="features/org.eclipse.sdk_4.5.0.v20150603-2358/" version="4.5.0.v20150603-2358">
+</feature>
+<feature id="org.eclipse.cdt.gnu.build" url="features/org.eclipse.cdt.gnu.build_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.egit" url="features/org.eclipse.egit_4.0.0.201506090130-r/" version="4.0.0.201506090130-r">
+</feature>
+<feature id="org.eclipse.cvs.source" url="features/org.eclipse.cvs.source_1.4.200.v20150603-2000/" version="1.4.200.v20150603-2000">
+</feature>
+<feature id="org.eclipse.mylyn_feature" plugin-identifier="org.eclipse.mylyn.tasks.core" url="features/org.eclipse.mylyn_feature_3.16.0.v20150609-0543/" version="3.16.0.v20150609-0543">
+</feature>
+<feature id="org.eclipse.ecf.core.ssl.feature" url="features/org.eclipse.ecf.core.ssl.feature_1.0.0.v20150512-1727/" version="1.0.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.aether.maven.feature" plugin-identifier="org.eclipse.aether.maven" url="features/org.eclipse.aether.maven.feature_3.1.0.20140706-2237/" version="3.1.0.20140706-2237">
+</feature>
+<feature id="org.eclipse.cdt.platform" url="features/org.eclipse.cdt.platform_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.mylyn.commons.identity" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.commons.identity_1.8.0.v20150526-1951/" version="1.8.0.v20150526-1951">
+</feature>
+<feature id="org.eclipse.cdt.gdb.source" url="features/org.eclipse.cdt.gdb.source_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.cdt.gnu.debug.source" url="features/org.eclipse.cdt.gnu.debug.source_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.ecf.core.ssl.source.feature" url="features/org.eclipse.ecf.core.ssl.source.feature_1.0.0.v20150512-1727/" version="1.0.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.equinox.p2.user.ui.source" url="features/org.eclipse.equinox.p2.user.ui.source_2.2.100.v20150601-1708/" version="2.2.100.v20150601-1708">
+</feature>
+<feature id="org.eclipse.oomph.p2" url="features/org.eclipse.oomph.p2_1.1.0.v20150610-1534/" version="1.1.0.v20150610-1534">
+</feature>
+<feature id="org.eclipse.ecf.core.source.feature" url="features/org.eclipse.ecf.core.source.feature_1.1.0.v20150512-1727/" version="1.1.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.jgit.http.apache" url="features/org.eclipse.jgit.http.apache_4.0.0.201506090130-r/" version="4.0.0.201506090130-r">
+</feature>
+<feature id="org.eclipse.emf.common.source" url="features/org.eclipse.emf.common.source_2.11.0.v20150512-0501/" version="2.11.0.v20150512-0501">
+</feature>
+<feature id="org.eclipse.mylyn.commons.notifications" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.commons.notifications_1.8.0.v20150602-2344/" version="1.8.0.v20150602-2344">
+</feature>
+<feature id="org.eclipse.equinox.serverside.sdk" url="features/org.eclipse.equinox.serverside.sdk_3.11.0.v20150529-1857/" version="3.11.0.v20150529-1857">
+</feature>
+<feature id="org.eclipse.rcp" url="features/org.eclipse.rcp_4.5.0.v20150603-2331/" version="4.5.0.v20150603-2331">
+</feature>
+<feature id="org.eclipse.cvs" url="features/org.eclipse.cvs_1.4.200.v20150603-2000/" version="1.4.200.v20150603-2000">
+</feature>
+<feature id="org.eclipse.recommenders.rcp.feature" plugin-identifier="org.eclipse.recommenders.rcp" url="features/org.eclipse.recommenders.rcp.feature_2.2.0.v20150609-1848/" version="2.2.0.v20150609-1848">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.feature" url="features/org.eclipse.ecf.filetransfer.feature_3.10.0.v20150512-1727/" version="3.10.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.swt.tools.feature" url="features/org.eclipse.swt.tools.feature_3.104.0.v20150410-1225/" version="3.104.0.v20150410-1225">
+</feature>
+<feature id="org.eclipse.mylyn.commons.repositories.http" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.commons.repositories.http_1.8.0.v20150526-1951/" version="1.8.0.v20150526-1951">
+</feature>
+<feature id="org.eclipse.core.runtime.feature" url="features/org.eclipse.core.runtime.feature_1.1.100.v20150529-1857/" version="1.1.100.v20150529-1857">
+</feature>
+<feature id="org.eclipse.aether.feature" url="features/org.eclipse.aether.feature_1.0.1.v20141111/" version="1.0.1.v20141111">
+</feature>
+<feature id="org.eclipse.equinox.server.p2" url="features/org.eclipse.equinox.server.p2_1.2.200.v20150527-1706/" version="1.2.200.v20150527-1706">
+</feature>
+<feature id="org.eclipse.emf.ecore.source" url="features/org.eclipse.emf.ecore.source_2.11.0.v20150512-0501/" version="2.11.0.v20150512-0501">
+</feature>
+<feature id="org.eclipse.aether.transport.file.feature" url="features/org.eclipse.aether.transport.file.feature_1.0.1.v20141111/" version="1.0.1.v20141111">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.source.feature" url="features/org.eclipse.ecf.filetransfer.source.feature_3.10.0.v20150512-1727/" version="3.10.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.equinox.p2.core.feature.source" url="features/org.eclipse.equinox.p2.core.feature.source_1.3.100.v20150527-1706/" version="1.3.100.v20150527-1706">
+</feature>
+<feature id="org.eclipse.jdt" url="features/org.eclipse.jdt_3.11.0.v20150603-2000/" version="3.11.0.v20150603-2000">
+</feature>
+<feature id="org.eclipse.emf.common" url="features/org.eclipse.emf.common_2.11.0.v20150512-0501/" version="2.11.0.v20150512-0501">
+</feature>
+<feature id="org.eclipse.equinox.compendium.sdk" url="features/org.eclipse.equinox.compendium.sdk_3.11.0.v20150430-1834/" version="3.11.0.v20150430-1834">
+</feature>
+<feature id="org.eclipse.egit.mylyn" plugin-identifier="org.eclipse.egit" url="features/org.eclipse.egit.mylyn_4.0.0.201506090130-r/" version="4.0.0.201506090130-r">
+</feature>
+<feature id="org.eclipse.platform.source" url="features/org.eclipse.platform.source_4.5.0.v20150603-2358/" version="4.5.0.v20150603-2358">
+</feature>
+<feature id="org.eclipse.sdk.tests" url="features/org.eclipse.sdk.tests_4.5.0.v20150604-0110/" version="4.5.0.v20150604-0110">
+</feature>
+<feature id="org.eclipse.releng.tools" url="features/org.eclipse.releng.tools_3.6.0.v20150527-0145/" version="3.6.0.v20150527-0145">
+</feature>
+<feature id="org.eclipse.pde.source" url="features/org.eclipse.pde.source_3.11.0.v20150603-2000/" version="3.11.0.v20150603-2000">
+</feature>
+<feature id="org.eclipse.equinox.executable" url="features/org.eclipse.equinox.executable_3.6.200.v20150602-1417/" version="3.6.200.v20150602-1417">
+</feature>
+<feature id="org.eclipse.oomph.setup" url="features/org.eclipse.oomph.setup_1.1.0.v20150610-1559/" version="1.1.0.v20150610-1559">
+</feature>
+<feature id="org.eclipse.equinox.p2.user.ui" url="features/org.eclipse.equinox.p2.user.ui_2.2.100.v20150601-1708/" version="2.2.100.v20150601-1708">
+</feature>
+<feature id="org.eclipse.emf.ecore" url="features/org.eclipse.emf.ecore_2.11.0.v20150512-0501/" version="2.11.0.v20150512-0501">
+</feature>
+<feature id="org.eclipse.cdt.native.source" url="features/org.eclipse.cdt.native.source_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.jgit" url="features/org.eclipse.jgit_4.0.0.201506090130-r/" version="4.0.0.201506090130-r">
+</feature>
+<feature id="org.eclipse.equinox.sdk" url="features/org.eclipse.equinox.sdk_3.11.0.v20150602-1417/" version="3.11.0.v20150602-1417">
+</feature>
+<feature id="org.eclipse.mylyn.wikitext_feature" plugin-identifier="org.eclipse.mylyn.wikitext.core" url="features/org.eclipse.mylyn.wikitext_feature_2.5.0.v20150522-1430/" version="2.5.0.v20150522-1430">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.httpclient4.source.feature" url="features/org.eclipse.ecf.filetransfer.httpclient4.source.feature_3.10.0.v20150512-1727/" version="3.10.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.recommenders.mylyn.rcp.feature" url="features/org.eclipse.recommenders.mylyn.rcp.feature_2.2.0.v20150609-1848/" version="2.2.0.v20150609-1848">
+</feature>
+<feature id="org.eclipse.mylyn.gerrit.feature" plugin-identifier="org.eclipse.mylyn.reviews.core" url="features/org.eclipse.mylyn.gerrit.feature_2.7.0.v20150529-1745/" version="2.7.0.v20150529-1745">
+</feature>
+<feature id="org.eclipse.platform" url="features/org.eclipse.platform_4.5.0.v20150603-2358/" version="4.5.0.v20150603-2358">
+</feature>
+<feature id="org.eclipse.epp.logging.aeri.feature" url="features/org.eclipse.epp.logging.aeri.feature_1.0.0.v20150617-0732/" version="1.0.0.v20150617-0732">
+</feature>
+<feature id="org.eclipse.cdt.gnu.dsf.source" url="features/org.eclipse.cdt.gnu.dsf.source_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.mylyn.discovery" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.discovery_3.16.0.v20150602-1735/" version="3.16.0.v20150602-1735">
+</feature>
+<feature id="org.eclipse.cdt.gnu.build.source" url="features/org.eclipse.cdt.gnu.build.source_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.aether.connector.basic.feature" url="features/org.eclipse.aether.connector.basic.feature_1.0.1.v20141111/" version="1.0.1.v20141111">
+</feature>
+<feature id="org.eclipse.equinox.core.sdk" url="features/org.eclipse.equinox.core.sdk_3.11.0.v20150529-1857/" version="3.11.0.v20150529-1857">
+</feature>
+<feature id="org.eclipse.e4.rcp.source" url="features/org.eclipse.e4.rcp.source_1.4.0.v20150603-0857/" version="1.4.0.v20150603-0857">
+</feature>
+<feature id="org.eclipse.e4.rcp" url="features/org.eclipse.e4.rcp_1.4.0.v20150603-0857/" version="1.4.0.v20150603-0857">
+</feature>
+<feature id="org.eclipse.sdk.examples" url="features/org.eclipse.sdk.examples_3.5.500.v20150603-2000/" version="3.5.500.v20150603-2000">
+</feature>
+<feature id="org.eclipse.mylyn.versions" plugin-identifier="org.eclipse.mylyn.versions.core" url="features/org.eclipse.mylyn.versions_1.8.0.v20150525-1956/" version="1.8.0.v20150525-1956">
+</feature>
+<feature id="org.eclipse.equinox.p2.core.feature" url="features/org.eclipse.equinox.p2.core.feature_1.3.100.v20150527-1706/" version="1.3.100.v20150527-1706">
+</feature>
+<feature id="org.eclipse.rcp.source" url="features/org.eclipse.rcp.source_4.5.0.v20150603-2331/" version="4.5.0.v20150603-2331">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.ssl.feature" url="features/org.eclipse.ecf.filetransfer.ssl.feature_1.0.0.v20150512-1727/" version="1.0.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.mylyn.commons" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.commons_3.16.0.v20150609-0602/" version="3.16.0.v20150609-0602">
+</feature>
+<feature id="org.eclipse.epp.package.common.feature" url="features/org.eclipse.epp.package.common.feature_4.5.0.20150621-1200/" version="4.5.0.20150621-1200">
+</feature>
+<feature id="org.eclipse.jdt.source" url="features/org.eclipse.jdt.source_3.11.0.v20150603-2000/" version="3.11.0.v20150603-2000">
+</feature>
+<feature id="org.eclipse.equinox.server.jetty" url="features/org.eclipse.equinox.server.jetty_1.2.0.v20150519-1816/" version="1.2.0.v20150519-1816">
+</feature>
+<feature id="org.eclipse.equinox.p2.discovery.feature" url="features/org.eclipse.equinox.p2.discovery.feature_1.0.300.v20150430-1836/" version="1.0.300.v20150430-1836">
+</feature>
+<feature id="org.eclipse.equinox.p2.rcp.feature" url="features/org.eclipse.equinox.p2.rcp.feature_1.2.100.v20150527-1706/" version="1.2.100.v20150527-1706">
+</feature>
+<feature id="org.eclipse.mylyn.reviews.feature" plugin-identifier="org.eclipse.mylyn.reviews.core" url="features/org.eclipse.mylyn.reviews.feature_2.7.0.v20150526-1951/" version="2.7.0.v20150526-1951">
+</feature>
+<feature id="org.eclipse.mylyn.hudson" plugin-identifier="org.eclipse.mylyn.builds.core" url="features/org.eclipse.mylyn.hudson_1.8.0.v20150525-1955/" version="1.8.0.v20150525-1955">
+</feature>
+<feature id="org.eclipse.epp.mpc" plugin-identifier="org.eclipse.epp.mpc.ui" url="features/org.eclipse.epp.mpc_1.4.0.v20150618-1659/" version="1.4.0.v20150618-1659">
+</feature>
+<feature id="org.eclipse.mylyn.git" plugin-identifier="org.eclipse.mylyn.versions.core" url="features/org.eclipse.mylyn.git_1.8.0.v20150602-0359/" version="1.8.0.v20150602-0359">
+</feature>
+<feature id="org.eclipse.recommenders.snipmatch.rcp.feature" url="features/org.eclipse.recommenders.snipmatch.rcp.feature_2.2.0.v20150609-1848/" version="2.2.0.v20150609-1848">
+</feature>
+<feature id="org.eclipse.aether.transport.http.feature" url="features/org.eclipse.aether.transport.http.feature_1.0.1.v20141111/" version="1.0.1.v20141111">
+</feature>
+<feature id="org.eclipse.e4.core.tools.feature" url="features/org.eclipse.e4.core.tools.feature_4.5.0.v20150526-1621/" version="4.5.0.v20150526-1621">
+</feature>
+<feature id="org.eclipse.equinox.p2.rcp.feature.source" url="features/org.eclipse.equinox.p2.rcp.feature.source_1.2.100.v20150527-1706/" version="1.2.100.v20150527-1706">
+</feature>
+<feature id="org.eclipse.cdt.gdb" url="features/org.eclipse.cdt.gdb_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.pde" url="features/org.eclipse.pde_3.11.0.v20150603-2000/" version="3.11.0.v20150603-2000">
+</feature>
+<feature id="org.eclipse.cdt.platform.source" url="features/org.eclipse.cdt.platform.source_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature" url="features/org.eclipse.ecf.filetransfer.httpclient4.ssl.feature_1.0.0.v20150512-1727/" version="1.0.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.pde.api.tools.ee.feature" url="features/org.eclipse.pde.api.tools.ee.feature_1.0.1.v20140424-1723/" version="1.0.1.v20140424-1723">
+</feature>
+<feature id="org.eclipse.mylyn.java_feature" plugin-identifier="org.eclipse.mylyn.context.core" url="features/org.eclipse.mylyn.java_feature_3.16.0.v20150522-2252/" version="3.16.0.v20150522-2252">
+</feature>
+<feature id="org.eclipse.mylyn.team_feature" plugin-identifier="org.eclipse.mylyn.context.core" url="features/org.eclipse.mylyn.team_feature_3.16.0.v20150522-2252/" version="3.16.0.v20150522-2252">
+</feature>
+<feature id="org.eclipse.cdt.gnu.dsf" url="features/org.eclipse.cdt.gnu.dsf_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.epp.package.committers.feature" plugin-identifier="org.eclipse.epp.package.committers" url="features/org.eclipse.epp.package.committers.feature_4.5.0.20150621-1200/" version="4.5.0.20150621-1200">
+</feature>
+<feature id="org.eclipse.cdt.sdk" url="features/org.eclipse.cdt.sdk_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.equinox.weaving.sdk" url="features/org.eclipse.equinox.weaving.sdk_1.1.100.v20150430-1834/" version="1.1.100.v20150430-1834">
+</feature>
+<feature id="org.eclipse.mylyn.commons.repositories" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.commons.repositories_1.8.0.v20150526-1951/" version="1.8.0.v20150526-1951">
+</feature>
+<feature id="org.eclipse.rcp.configuration" url="features/org.eclipse.rcp.configuration_1.0.100.v20150603-2000/" version="1.0.100.v20150603-2000">
+</feature>
+<feature id="org.eclipse.osgi.compatibility.plugins.feature" url="features/org.eclipse.osgi.compatibility.plugins.feature_1.0.0.v20150202-1328/" version="1.0.0.v20150202-1328">
+</feature>
+<feature id="org.eclipse.equinox.server.core" url="features/org.eclipse.equinox.server.core_1.3.100.v20150529-1857/" version="1.3.100.v20150529-1857">
+</feature>
+<feature id="org.eclipse.mylyn.gerrit.dashboard.feature" url="features/org.eclipse.mylyn.gerrit.dashboard.feature_2.7.0.v20150526-1951/" version="2.7.0.v20150526-1951">
+</feature>
+<feature id="org.eclipse.mylyn.monitor" plugin-identifier="org.eclipse.mylyn.commons.core" url="features/org.eclipse.mylyn.monitor_3.16.0.v20150526-1951/" version="3.16.0.v20150526-1951">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.ssl.source.feature" url="features/org.eclipse.ecf.filetransfer.ssl.source.feature_1.0.0.v20150512-1727/" version="1.0.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.equinox.p2.extras.feature" url="features/org.eclipse.equinox.p2.extras.feature_1.2.100.v20150601-1708/" version="1.2.100.v20150601-1708">
+</feature>
+<feature id="org.eclipse.equinox.p2.extras.feature.source" url="features/org.eclipse.equinox.p2.extras.feature.source_1.2.100.v20150601-1708/" version="1.2.100.v20150601-1708">
+</feature>
+<feature id="org.eclipse.e4.core.tools.feature.source" url="features/org.eclipse.e4.core.tools.feature.source_4.5.0.v20150526-1621/" version="4.5.0.v20150526-1621">
+</feature>
+<feature id="org.eclipse.ecf.core.feature" url="features/org.eclipse.ecf.core.feature_1.1.0.v20150512-1727/" version="1.1.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.source.feature" url="features/org.eclipse.ecf.filetransfer.httpclient4.ssl.source.feature_1.0.0.v20150512-1727/" version="1.0.0.v20150512-1727">
+</feature>
+<feature id="org.eclipse.equinox.p2.sdk" url="features/org.eclipse.equinox.p2.sdk_3.9.100.v20150601-1708/" version="3.9.100.v20150601-1708">
+</feature>
+<feature id="org.eclipse.mylyn.builds" plugin-identifier="org.eclipse.mylyn.builds.core" url="features/org.eclipse.mylyn.builds_1.8.0.v20150525-1955/" version="1.8.0.v20150525-1955">
+</feature>
+<feature id="org.eclipse.mylyn.context_feature" plugin-identifier="org.eclipse.mylyn.context.core" url="features/org.eclipse.mylyn.context_feature_3.16.0.v20150522-2252/" version="3.16.0.v20150522-2252">
+</feature>
+<feature id="org.eclipse.cdt.gnu.debug" url="features/org.eclipse.cdt.gnu.debug_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.cdt.native" url="features/org.eclipse.cdt.native_8.7.0.201506070905/" version="8.7.0.201506070905">
+</feature>
+<feature id="org.eclipse.test" url="features/org.eclipse.test_3.7.0.v20150428-2048/" version="3.7.0.v20150428-2048">
+</feature>
+<feature id="org.eclipse.oomph.setup.core" url="features/org.eclipse.oomph.setup.core_1.1.0.v20150610-1559/" version="1.1.0.v20150610-1559">
+</feature>
+<feature id="org.eclipse.equinox.core.feature" url="features/org.eclipse.equinox.core.feature_1.2.100.v20150529-1857/" version="1.2.100.v20150529-1857">
+</feature>
+</site>
+</config>

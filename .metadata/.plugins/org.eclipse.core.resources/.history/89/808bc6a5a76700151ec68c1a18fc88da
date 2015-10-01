@@ -1,0 +1,26 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+import org.eclipse.cdt.core.dom.ast.IASTStatement;
+import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.text.Region;
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+
+public abstract class SourceStatementsCheck<T extends RefactoringParams> extends Check<T> {
+
+    private final IASTStatement[] statements;
+    
+    protected SourceStatementsCheck(IASTStatement[] statements) {
+        this.statements = statements;
+    }
+    
+    @Override
+    public IASTTranslationUnit getTranslationUnit() {
+        return null;
+    }
+    
+    public IASTStatement[] getStatements() {
+        return statements;
+    }
+
+}

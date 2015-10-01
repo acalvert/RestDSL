@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;loop&apos; in &apos;edu.auburn.oaccrefac.core.transformations.StripMineAlteration.doChange()&apos; to &apos;inq&apos;&#x0A;- Original project: &apos;edu.auburn.oaccrefac.core&apos;&#x0A;- Original element: &apos;edu.auburn.oaccrefac.core.transformations.StripMineAlteration.doChange().loop&apos;&#x0A;- Renamed element: &apos;loop&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;loop&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;edu.auburn.oaccrefac.core.transformations{StripMineAlteration.java[StripMineAlteration~doChange@loop!2310!2390!2333!2336!QForStatementInquisitor;!0!false" name="inq" references="true" stamp="1441904260822" version="1.0"/>
+</session>

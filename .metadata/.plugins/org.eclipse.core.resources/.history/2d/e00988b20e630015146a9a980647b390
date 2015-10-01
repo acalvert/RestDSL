@@ -1,0 +1,93 @@
+import java.util.Random;
+
+public class CacheSim {
+
+	/**
+	 * 
+	 * @param args cache size, block size, associativity (-1 for full, 1 for direct), replacement policy (lru, fifo)
+	 */
+	public static void main(String[] args) {
+
+		int addressSpace = 32;
+		int cacheSize, blockSize, associativity, numSets;
+		String distr;
+		Random rng = new Random();
+		Cache<?> cache;
+		
+		if(args.length == 5) {
+			cacheSize = Integer.parseInt(args[0]);
+			blockSize = Integer.parseInt(args[1]);
+			associativity = Integer.parseInt(args[2]);
+			if(associativity == -1) {
+				associativity = cacheSize/blockSize;
+			}
+			numSets = cacheSize/(associativity * blockSize);
+			if(args[3].equals("lru")) {
+				cache = new Cache<LRUReplacementPolicy>(associativity, numSets, blockSize, new LRUReplacementPolicy());
+			}
+			else if(args[3].equals("fifo")) {
+				cache = new Cache<FIFOReplacementPolicy>(associativity, numSets, blockSize, new FIFOReplacementPolicy());
+			}
+			else {
+				System.err.println("Invalid replacement policy. Please use \"lru\", \"fifo\", or use a direct-mapped cache");
+				return;
+			}
+		}
+		else if(args.length == 4) {
+			cacheSize = Integer.parseInt(args[0]);
+			blockSize = Integer.parseInt(args[1]);
+			associativity = Integer.parseInt(args[2]);
+			if(associativity == -1) {
+				associativity = cacheSize/blockSize;
+			}
+			numSets = cacheSize/(associativity * blockSize);
+			if(associativity == 1) {
+				cache = new Cache<StupidReplacementPolicy>(associativity, numSets, blockSize, new StupidReplacementPolicy());
+			}
+			else {
+				System.err.println("Please either use a direct-mapped cache or provide a replacement policy (\"lru\" or \"fifo\").");
+				return;
+			}
+		}
+		else {
+			System.err.println("Usage: cache <cache-size> <block-size> <associativity> [<replacement-policy>]");
+			return;
+		}
+
+		int accesses = 0;
+		int misses = 0;
+		int totalTime = 0;
+		double missRate;
+		double ema;
+		
+		//write a dummy array rather than use actual simulated memory for performance
+		byte[] dummy = new byte[blockSize];
+		for(accesses = 0; accesses < 1000000; accesses++) {
+			int timeThisAccess = 0;
+			
+//			int address = rng.nextInt((int) Math.pow(2, addressSpace)/4) * 4;
+			int address = (int) (rng.nextGaussian() * ((int) Math.pow(2, addressSpace)))/4*4;
+//			int address = 4096;
+			
+			try {
+				timeThisAccess += 1;
+				cache.read(address);
+			}
+			catch(CacheMissException e) {
+				timeThisAccess += blockSize/4;
+				misses++;
+				cache.write(address, dummy);
+			}
+			
+			totalTime += timeThisAccess;
+			if(accesses % 100000 == 0) System.out.println(accesses);
+		}		
+		
+		missRate = ((double) misses)/((double) accesses);
+		ema = ((double) totalTime)/((double) accesses);
+		
+		System.out.println(new SimResults(cacheSize, blockSize, args[3], missRate, ema));
+		
+	}
+	
+}

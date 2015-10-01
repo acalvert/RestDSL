@@ -1,0 +1,10 @@
+
+public class SimResults {
+
+	private int cacheSize;
+	private int blockSize;
+	private String policy;
+	private double missRate;
+	private double ema;
+	
+}

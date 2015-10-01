@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class CacheSim2 {
+
+	ArrayList<SimResults> results = new ArrayList<SimResults>();
+	static String FIFO = "FIFO";
+	static String LRU = "LRU";
+	
+	public static void main(String[] args) {
+		
+		int[] cacheSizes = new int[] {16*1024, 64*1024, 256*1024, 512*1024};
+		int[] blockSizes = new int[] {64, 128, 256, 1024, 4*1024};
+		
+		for(int cacheSize : cacheSizes) {
+			for(int blockSize : blockSizes) {
+				
+				//direct cache, FIFO
+				runSimulation(cacheSize, blockSize, 32, new Cache<FIFOReplacementPolicy>(1, cacheSize/blockSize, blockSize, new FIFOReplacementPolicy()), FIFO);
+				
+				//fully associative cache, FIFO
+				runSimulation(cacheSize, blockSize, 32, new Cache<FIFOReplacementPolicy>(cacheSize/blockSize, 1, blockSize, new FIFOReplacementPolicy()), FIFO);
+		
+				//direct cache, LRU
+				runSimulation(cacheSize, blockSize, 32, new Cache<LRUReplacementPolicy>(1, cacheSize/blockSize, blockSize, new LRUReplacementPolicy()), LRU);
+				
+				//fully associative cache, LRU
+				runSimulation(cacheSize, blockSize, 32, new Cache<LRUReplacementPolicy>(cacheSize/blockSize, 1, blockSize, new LRUReplacementPolicy()));
+				
+			}
+		}
+		
+	}
+	
+	public static <T extends ReplacementPolicy> SimResults runSimulation(int cacheSize, int blockSize, int addressSpace, Cache<T> cache, String policy) {
+		
+		Random rng = new Random();
+		
+		int accesses = 0;
+		int misses = 0;
+		int totalTime = 0;
+		double missRate;
+		double ema;
+		
+		//write a dummy array rather than use actual simulated memory for performance
+		byte[] dummy = new byte[blockSize];
+		for(accesses = 0; accesses < 1000000; accesses++) {
+			int timeThisAccess = 0;
+			
+			int address = rng.nextInt((int) Math.pow(2, addressSpace)/4) * 4;
+			
+			try {
+				timeThisAccess += 1;
+				cache.read(address);
+			}
+			catch(CacheMissException e) {
+				timeThisAccess += blockSize/4;
+				misses++;
+				cache.write(address, dummy);
+			}
+			
+			totalTime += timeThisAccess;
+		}
+		
+		missRate = ((double) misses)/((double) accesses);
+		ema = ((double) totalTime)/((double) accesses);
+		
+		
+		
+		return new SimResults(cacheSize, blockSize, policy, missRate, ema);
+	}
+	
+}

@@ -1,0 +1,38 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+public abstract class RefactoringParameters {
+
+    public class InterchangeParams extends RefactoringParameters {
+        private int depth;
+
+        public InterchangeParams(int depth) {
+            this.depth = depth;
+        }
+
+        public int getDepth() {
+            return depth;
+        }
+
+    }
+
+    public class StripMineParams extends RefactoringParameters {
+
+        private int stripFactor;
+        private int depth;
+
+        public StripMineParams(int stripFactor, int depth) {
+            this.stripFactor = stripFactor;
+            this.depth = depth;
+        }
+
+        public int getStripFactor() {
+            return stripFactor;
+        }
+
+        public int getDepth() {
+            return depth;
+        }
+
+    }
+
+}

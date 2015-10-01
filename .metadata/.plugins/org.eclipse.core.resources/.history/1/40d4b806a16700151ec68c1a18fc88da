@@ -1,0 +1,13 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
+
+public class SourceRegionCheck<T extends RefactoringParams> extends Check<T> {
+
+    @Override
+    public IASTTranslationUnit getTranslationUnit() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+}

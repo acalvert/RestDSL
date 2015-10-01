@@ -1,0 +1,104 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	(elements += Type)*
+	(apis += RestAPI)*
+;
+	
+Type:
+	PrimitiveType | DataModel | RestModel | MappingModel
+;
+
+PrimitiveType:
+	'primitiveType' name = ID
+;
+
+DataModel:
+	'dataModel' name = ID ('extends' superType = [DataModel])? '{'
+		(features += Feature)*
+	'}'
+;
+
+RestModel:
+	'restModel' name = ID ('extends' superType = [RestModel])? '{'
+		(features += Feature)*
+	'}'
+;
+
+MappingModel:
+	'mappingModel' name = ID ('extends' superType = [MappingModel])? '{'
+		(pairs += Transformation)*
+	'}'
+;
+
+Transformation:
+	'(' (dataModel = DataModel) '<=>' (restModel = RestModel) ')'
+;
+
+Feature:
+	(many ?= 'many')? name = ID ':' type = [Type]
+;
+	
+RestAPI:
+	(resource = Resource)
+	(service += Service)*
+	(dao += DataAccessObject)*
+;
+
+DataAccessObject:
+	'DAO' name = ID 
+	'find' '{' 
+		(findMethod = JavaMethod)
+	'}'
+	'create' '{'
+		(createMethod = JavaMethod)
+	'}'
+	'delete' '{'
+		(deleteMethod = JavaMethod)
+	'}'
+	'update' '{'
+		(updateMethod = JavaMethod)
+	'}'
+;
+
+Service:
+	'Service' name = ID 
+	'find' '{' 
+		(findMethod = JavaMethod)
+	'}'
+	'create' '{'
+		(createMethod = JavaMethod)
+	'}'
+	'delete' '{'
+		(deleteMethod = JavaMethod)
+	'}'
+	'update' '{'
+		(updateMethod = JavaMethod)
+	'}'
+;
+	
+Resource:
+	'Resource' name = ID 
+	'create' '(' createRestModel = RestModel ')' '{'
+		(createMethod = JavaMethod)
+		'return' createdRestModel = RestModel
+	'}'
+	'find' '(' findby = ID ')' '{' 
+		(findMethod = JavaMethod)
+		'return' foundRestModel = RestModel
+	'}'
+	'update' '(' updateby = ID ',' updateRestModel = RestModel ')' '{'
+		(updateMethod = JavaMethod)
+	'}'
+	'delete' '(' deleteby = ID ')' '{'
+		(deleteMethod = JavaMethod)
+	'}'
+	
+;
+
+JavaMethod:
+	code = STRING
+;
+

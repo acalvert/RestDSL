@@ -1,0 +1,22 @@
+1442975567866	Rename type 'Cache'
+1443024809637	Rename method 'getValue'
+1443027402831	Rename type 'DirectCache'
+1443028582421	Delete element
+1443033169560	Delete element
+1443035498151	Rename type 'LRURepla'
+1443035509572	Rename type 'LRUReplcementPolicya'
+1443064603554	Move type 'CacheSet' to new file
+1443064698470	Move type 'CacheRow' to new file
+1443065240786	Rename type 'CacheHistory'
+1443066017306	Move type 'Access' to new file
+1443066042464	Delete element
+1443066194483	Change method 'blockToReplace'
+1443068430395	Rename local variable 'leastOfTheMostRecentUses'
+1443076271239	Change method 'blockToReplace'
+1443076398318	Change method 'blockToReplace'
+1443081748185	Rename type 'Driver'
+1443082408582	Delete element
+1443084747932	Change method 'runSimulation'
+1443134947378	Delete element
+1443147165378	Rename type 'CacheSim'
+1443147442987	Rename type 'CacheSim2'

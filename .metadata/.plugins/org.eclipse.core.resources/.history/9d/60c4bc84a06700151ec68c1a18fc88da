@@ -1,0 +1,10 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+public abstract class SourceRegionAlteration<T extends SourceRegionCheck<?>> extends SourceAlteration<T> {
+
+    public SourceRegionAlteration(IASTRewrite rewriter, T check) {
+        super(rewriter, check);
+        // TODO Auto-generated constructor stub
+    }
+
+}

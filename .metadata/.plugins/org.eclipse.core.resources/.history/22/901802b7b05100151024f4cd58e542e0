@@ -1,0 +1,15 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+import org.eclipse.cdt.core.dom.ast.IASTForStatement;
+
+import edu.auburn.oaccrefac.core.transformations.RefactoringParameters.TileLoopsParams;
+
+public class TileLoopsCheck extends Check<TileLoopsParams> {
+
+    public TileLoopsCheck(IASTForStatement loop) {
+        super(loop);
+    }
+
+  //TODO implement this
+    
+}

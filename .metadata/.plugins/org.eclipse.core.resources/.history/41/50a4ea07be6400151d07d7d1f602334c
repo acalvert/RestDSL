@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="edu.auburn.oaccrefac.ui.actionSet"
+            label="OpenACC Refactoring"
+            visible="true">
+         <menu
+               id="oaccrefac_menu"
+               label="OpenACC &amp;Refactoring">
+            <separator
+                  name="oaccrefac_group">
+            </separator>
+         </menu>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.IntroOpenACCParallelDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.IntroOpenACCParallelDelegate"
+               label="&amp;Parallelize (OpenACC)"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               toolbarPath="oaccrefac_group"
+               tooltip="Adds an OpenACC parallel pragma before a for-loop">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.LoopUnrollingDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.LoopUnrollingDelegate"
+               label="&amp;Unrolling"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               toolbarPath="oaccrefac_group"
+               tooltip="Unrolls a selected for-loop for efficiency">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.LoopInterchangeDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.LoopInterchangeDelegate"
+               label="&amp;Interchange"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               toolbarPath="oaccrefac_group"
+               tooltip="Interchanges two nested loop headers">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.LoopFusionDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.LoopFusionDelegate"
+               label="&amp;Fusion"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               toolbarPath="oaccrefac_group"
+               tooltip="Defuse two for-loop together when possible.">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.LoopFissionDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.LoopFissionDelegate"
+               label="&amp;Fission"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               toolbarPath="oaccrefac_group"
+               tooltip="Apply loop fission on a compound for body.">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.LoopStripMiningDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.LoopStripMiningDelegate"
+               label="&amp;Strip Mining"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               pulldown="false"
+               toolbarPath="oaccrefac_group"
+               tooltip="Rearranges a loop into doubly-nested loops">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.LoopTilingDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.LoopTilingDelegate"
+               label="&amp;Tiling"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               pulldown="false"
+               toolbarPath="oaccrefac_group"
+               tooltip="Tiles the iteration ordering of nested loop">
+         </action>
+         <action
+               class="edu.auburn.oaccrefac.internal.ui.actions.IntrodueDataConstructDelegate"
+               id="edu.auburn.oaccrefac.internal.ui.actions.IntroduceDataConstructDelegate"
+               label="Intro &amp;Data Construct"
+               menubarPath="oaccrefac_menu/oaccrefac_group"
+               pulldown="false"
+               toolbarPath="oaccrefac_group"
+               tooltip="Tiles the iteration ordering of nested loop">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>

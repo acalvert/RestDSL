@@ -1,0 +1,5 @@
+1440867594057	Rename field 'COMP_OPEN'
+1440867606612	Rename field 'COMP_CLOSE'
+1440877167840	Rename local variable 'sbOff'
+1440877175500	Rename local variable 'sbEnd'
+1440877221124	Rename method 'getDeclaration'

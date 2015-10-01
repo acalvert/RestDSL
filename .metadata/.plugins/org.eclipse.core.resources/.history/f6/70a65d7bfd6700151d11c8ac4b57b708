@@ -1,0 +1,127 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+DomainModel:
+	(elements += Type)*
+	(apis += RestAPI)*
+;
+	
+Type:
+	PrimitiveType | DataModel | RestModel | MappingModel
+;
+
+RestAPI:
+	(resource = Resource)
+	(service += Service)*
+	(dao += DataAccessObject)*
+;
+
+PrimitiveType:
+	'primitiveType' name = ID
+;
+
+DataModel:
+	'dataModel' name = ID ('extends' superType = [DataModel])? '{'
+		(features += Feature)*
+	'}'
+;
+
+RestModel:
+	'restModel' name = ID ('extends' superType = [RestModel])? '{'
+		(features += Feature)*
+	'}'
+;
+
+MappingModel:
+	'mappingModel' name = ID ('extends' superType = [MappingModel])? '{'
+		(pairs += Transformation)*
+	'}'
+;
+
+Transformation:
+	'(' (dataModel = DataModel) '<=>' (restModel = RestModel) ')'
+;
+
+Feature:
+	(many ?= 'many')? name = ID ':' type = [Type]
+;
+
+Resource:
+	'Resource' name = ID 
+	'create' '(' createRestModel = [RestModel] ')' 'throws' exception1 = RestException '{'
+		(createMethod = JavaMethod)
+		'return' createdRestModel = [RestModel]
+	'}'
+	'find' '(' findby = ID ')' 'throws' exception2 = RestException '{' 
+		(findMethod = JavaMethod)
+		'return' foundRestModel = [RestModel]
+	'}'
+	'update' '(' updateby = ID ',' updateRestModel = [RestModel] ')' 'throws' exception3 = RestException  '{'
+		(updateMethod = JavaMethod)
+		'return' updatedRestModel = [RestModel]
+	'}'
+	'delete' '(' deleteby = ID ')' 'throws' exception4 = RestException '{'
+		(deleteMethod = JavaMethod)
+	'}'
+;
+
+Service:
+	'Service' name = ID 
+	'create' '(' createDataModel = [DataModel] ')' 'throws' exception1 = RestException '{'
+		(createMethod = JavaMethod)
+		'return' createdDataModel = [DataModel]
+	'}'
+	'find' '(' findby = ID ')' 'throws' exception2 = RestException '{' 
+		(findMethod = JavaMethod)
+		'return' foundDataModel = [DataModel]
+	'}'
+	'update' '(' updateby = ID ',' updateDataModel = [DataModel] ')' 'throws' exception3 = RestException  '{'
+		(updateMethod = JavaMethod)
+		'return' updatedDataModel = [DataModel]
+	'}'
+	'delete' '(' deleteby = ID ')' 'throws' exception4 = RestException '{'
+		(deleteMethod = JavaMethod)
+	'}'
+;
+
+DataAccessObject:
+	'DAO' name = ID 
+	'create' '(' createDataModel = [DataModel] ')' 'throws' exception1 = RestException '{'
+		(createMethod = JavaMethod)
+		'return' createdDataModel = [DataModel]
+	'}'
+	'find' '(' findby = INTEGER ')' 'throws' exception2 = RestException '{' 
+		(findMethod = JavaMethod)
+		'return' foundDataModel = [DataModel]
+	'}'
+	'update' '(' updateby = INTEGER ',' updateDataModel = [DataModel] ')' 'throws' exception3 = RestException  '{'
+		(updateMethod = JavaMethod)
+		'return' updatedDataModel = [DataModel]
+	'}'
+	'delete' '(' deleteby = INTEGER ')' 'throws' exception4 = RestException '{'
+		(deleteMethod = JavaMethod)
+	'}'
+;
+
+RestException:
+	statusCode = RestStatusCode
+;
+
+terminal INTEGER:
+	('0'..'9')+
+;
+
+enum RestStatusCode:
+	INFORMATIONAL = 'INFORMATIONAL' |
+	SUCCESS = 'SUCCESS' |
+	REDIRECTION = 'REDIRECTION' |
+	CLIENT_ERROR = 'CLIENT_ERROR' |
+	SERVER_ERROR = 'SERVER_ERROR'
+;
+
+JavaMethod:
+	//will be expanded later to include actual Java syntax
+	code = STRING
+;
+

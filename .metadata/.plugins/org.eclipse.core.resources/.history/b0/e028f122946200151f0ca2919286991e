@@ -1,0 +1,30 @@
+import java.util.Random;
+
+/**
+ * 
+ * 4-byte addressable memory
+ * (except not really because it gives random numbers on reads and ignores you on writes)
+ * 
+ * @author alexander
+ *
+ */
+public class MainMemory {
+
+	public MainMemory(int addressSize) {
+	}
+	
+	public byte[] read(int address) {
+		return readChunk(address, 4);
+	}
+	
+	public byte[] readChunk(int address, int length) {
+		byte[] bytes = new byte[length];
+		return bytes;
+	}
+	
+	public void write(int address, byte[] value) {
+		if(value.length != 4)
+			throw new IllegalArgumentException();
+	}
+	
+}

@@ -1,0 +1,11 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+import org.eclipse.jface.text.Region;
+
+public class IntroduceDataConstructCheck extends SourceRegionCheck<RefactoringParams> {
+
+    public IntroduceDataConstructCheck(Region region) {
+        super(region);
+    }
+
+}

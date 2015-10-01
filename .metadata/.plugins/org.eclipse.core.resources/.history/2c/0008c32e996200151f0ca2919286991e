@@ -1,0 +1,20 @@
+
+public class SimResults {
+
+	private int cacheSize;
+	private int blockSize;
+	private String policy;
+	private double missRate;
+	private double ema;
+	
+	public SimResults(int cacheSize, int blockSize, String policy, double missRate, double ema) {
+		this.cacheSize = cacheSize;
+		this.blockSize = blockSize;
+		this.policy = policy;
+		this.missRate = missRate;
+		this.ema = ema;
+	}
+	
+	
+	
+}

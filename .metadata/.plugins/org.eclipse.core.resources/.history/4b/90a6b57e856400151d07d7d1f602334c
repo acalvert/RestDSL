@@ -1,0 +1,16 @@
+int main() {
+
+	int array[10][20];
+
+	for(int i_0 = 0; i_0 < 10; i += 3) {
+		for(int j_0 = 0; j_0 < 20; j_0 += 2) {
+			for(int i = i_0; i < i_0 + 3 && i < 10; i++) {
+				for(int j = j_0; i < j_0 + 2 && j < 20; j++) {
+					array[i][j] = 0;
+				}
+			}
+		}
+	}
+
+	return 0;
+}

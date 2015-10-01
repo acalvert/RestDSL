@@ -1,0 +1,5 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+public interface RefactoringParameters {
+
+}

@@ -1,0 +1,32 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
+import org.eclipse.jface.text.Region;
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+
+public class SourceRegionCheck<T extends RefactoringParams> extends Check<T> {
+
+    private Region region;
+    
+    protected public SourceRegionCheck(Region region) {
+        this.region = region;
+    }
+    
+    @Override
+    public IASTTranslationUnit getTranslationUnit() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    protected void doRegionCheck(RefactoringStatus status) { }
+    
+    public RefactoringStatus regionCheck(RefactoringStatus status) {
+        doRegionCheck(status);
+        return status;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+}

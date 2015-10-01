@@ -1,0 +1,43 @@
+import java.util.Random;
+
+public class CacheSim2 {
+
+	public static void main(String[] args) {
+		
+		int addressSpace = 32;
+		int cacheSize, blockSize, associativity, numSets;
+		Random rng = new Random();
+		Cache<?> cache;
+		
+		int accesses = 0;
+		int misses = 0;
+		int totalTime = 0;
+		double missRate;
+		double ema;
+		
+		//write a dummy array rather than use actual simulated memory for performance
+		byte[] dummy = new byte[blockSize];
+		for(accesses = 0; accesses < 1000000; accesses++) {
+			int timeThisAccess = 0;
+			
+			int address = rng.nextInt((int) Math.pow(2, addressSpace)/4) * 4;
+			
+			try {
+				timeThisAccess += 1;
+				cache.read(address);
+			}
+			catch(CacheMissException e) {
+				timeThisAccess += blockSize/4;
+				misses++;
+				cache.write(address, dummy);
+			}
+			
+			totalTime += timeThisAccess;
+		}		
+		
+		missRate = ((double) misses)/((double) accesses);
+		ema = ((double) totalTime)/((double) accesses);
+		
+	}
+	
+}

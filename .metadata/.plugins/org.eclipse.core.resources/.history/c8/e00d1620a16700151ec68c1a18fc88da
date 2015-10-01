@@ -1,0 +1,21 @@
+package edu.auburn.oaccrefac.core.transformations;
+
+import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+
+public class SourceRegionCheck<T extends RefactoringParams> extends Check<T> {
+
+    @Override
+    public IASTTranslationUnit getTranslationUnit() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    protected void doRegionCheck(RefactoringStatus status) { }
+    
+    public void regionCheck(RefactoringStatus status) {
+        doRegionCheck(status);
+        return status;
+    }
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;14-SimpleBody&apos;&#x0A;- Original project: &apos;edu.auburn.oaccrefac.ui&apos;&#x0A;- Destination element: &apos;14-SimpleBody&apos;&#x0A;- Original elements:&#x0A;     main.c.result&#x0A;     main.c" description="Copy files" element1="testcode/LoopFusion/01-Basic/main.c.result" element2="testcode/LoopFusion/01-Basic/main.c" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1440558278501" target="/edu.auburn.oaccrefac.ui/testcode/LoopFusion/14-SimpleBody" units="0" version="1.0"/>
+</session>
