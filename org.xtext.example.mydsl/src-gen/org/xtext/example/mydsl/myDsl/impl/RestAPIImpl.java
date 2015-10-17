@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.DataAccessObject;
+import org.xtext.example.mydsl.myDsl.ExceptionMapper;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Resource;
 import org.xtext.example.mydsl.myDsl.RestAPI;
@@ -35,6 +36,7 @@ import org.xtext.example.mydsl.myDsl.Service;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.RestAPIImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.RestAPIImpl#getService <em>Service</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.RestAPIImpl#getDao <em>Dao</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.RestAPIImpl#getExceptionMapper <em>Exception Mapper</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,6 +72,16 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
    * @ordered
    */
   protected EList<DataAccessObject> dao;
+
+  /**
+   * The cached value of the '{@link #getExceptionMapper() <em>Exception Mapper</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExceptionMapper()
+   * @generated
+   * @ordered
+   */
+  protected EList<ExceptionMapper> exceptionMapper;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +185,20 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ExceptionMapper> getExceptionMapper()
+  {
+    if (exceptionMapper == null)
+    {
+      exceptionMapper = new EObjectContainmentEList<ExceptionMapper>(ExceptionMapper.class, this, MyDslPackage.REST_API__EXCEPTION_MAPPER);
+    }
+    return exceptionMapper;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -184,6 +210,8 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
         return ((InternalEList<?>)getService()).basicRemove(otherEnd, msgs);
       case MyDslPackage.REST_API__DAO:
         return ((InternalEList<?>)getDao()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.REST_API__EXCEPTION_MAPPER:
+        return ((InternalEList<?>)getExceptionMapper()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -204,6 +232,8 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
         return getService();
       case MyDslPackage.REST_API__DAO:
         return getDao();
+      case MyDslPackage.REST_API__EXCEPTION_MAPPER:
+        return getExceptionMapper();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -230,6 +260,10 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
         getDao().clear();
         getDao().addAll((Collection<? extends DataAccessObject>)newValue);
         return;
+      case MyDslPackage.REST_API__EXCEPTION_MAPPER:
+        getExceptionMapper().clear();
+        getExceptionMapper().addAll((Collection<? extends ExceptionMapper>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -253,6 +287,9 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
       case MyDslPackage.REST_API__DAO:
         getDao().clear();
         return;
+      case MyDslPackage.REST_API__EXCEPTION_MAPPER:
+        getExceptionMapper().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -273,6 +310,8 @@ public class RestAPIImpl extends MinimalEObjectImpl.Container implements RestAPI
         return service != null && !service.isEmpty();
       case MyDslPackage.REST_API__DAO:
         return dao != null && !dao.isEmpty();
+      case MyDslPackage.REST_API__EXCEPTION_MAPPER:
+        return exceptionMapper != null && !exceptionMapper.isEmpty();
     }
     return super.eIsSet(featureID);
   }

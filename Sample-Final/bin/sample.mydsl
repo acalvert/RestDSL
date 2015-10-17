@@ -1,0 +1,95 @@
+primitiveType String
+primitiveType Integer
+
+DataModel AccountModel {
+	id : 1
+}
+
+DataModel AccountModel2 extends AccountModel {
+	id : 2
+	dm : TransactionModel
+}
+
+DataModel TransactionModel {
+	id : 10
+}
+
+RestModel AccountRestModel {
+	id : 1
+	self : "http://bank.com/1"
+}
+
+RestModel AccountRestModel2 extends AccountRestModel {
+	id : 2
+	self : "http://bank.com/2"
+}
+
+<BEGIN_REST_API>
+
+	Resource AccountResource {
+		AccountService
+		ServerErrorTo1001
+		create (AccountRestModel) {
+			validate(AccountRestModel) {
+				"rest constraints validation"	
+			}
+			"use case specific java code goes here"
+			return AccountRestModel2
+		}
+		find (2)  {
+			"use case specific java code goes here"
+			return AccountRestModel2
+		}
+		update (2, AccountRestModel2)  {
+			validate(AccountRestModel) {
+				"rest constraints validation"
+			}
+			"use case specific java code goes here"
+			return AccountRestModel2
+		}
+		delete (2)  {
+			"use case specific java code goes here"
+		}
+	}
+	
+	Service AccountService {
+		AccountDAO
+		create (AccountModel2)  {
+			"use case specific java code goes here"
+			return AccountModel2
+		}
+		find (2)  {
+			"use case specific java code goes here"
+			return AccountModel2
+		}
+		update (2, AccountModel2)  {
+			"use case specific java code goes here"
+			return AccountModel2
+		}
+		delete (2)  {
+			"use case specific java code goes here"
+			throw [INFORMATIONAL, "informational rest exception"][REDIRECTION, "redirection rest exception"]
+		}
+	}
+	
+	DAO AccountDAO {
+		create (AccountModel2) {
+			"use case specific java code goes here"
+			return AccountModel2
+		}
+		find (2) {
+			"use case specific java code goes here"
+			return AccountModel2
+		}
+		update (2, AccountModel2) {
+			"use case specific java code goes here"
+			throw [INFORMATIONAL, ""]
+		}
+		delete (2) {
+			"use case specific java code goes here"
+		}
+	}
+	
+	ExceptionMapper ServerErrorTo1001 ([SERVER_ERROR, "server error"] <=> ["1001", "database specific error"])
+
+<END_REST_API>

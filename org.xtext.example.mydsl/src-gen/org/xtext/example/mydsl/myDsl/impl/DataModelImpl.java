@@ -30,6 +30,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DataModelImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DataModelImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DataModelImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
@@ -46,6 +47,26 @@ public class DataModelImpl extends TypeImpl implements DataModel
    * @ordered
    */
   protected DataModel superType;
+
+  /**
+   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getId()
+   * @generated
+   * @ordered
+   */
+  protected static final String ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getId()
+   * @generated
+   * @ordered
+   */
+  protected String id = ID_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
@@ -126,6 +147,29 @@ public class DataModelImpl extends TypeImpl implements DataModel
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getId()
+  {
+    return id;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setId(String newId)
+  {
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATA_MODEL__ID, oldId, id));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Feature> getFeatures()
   {
     if (features == null)
@@ -164,6 +208,8 @@ public class DataModelImpl extends TypeImpl implements DataModel
       case MyDslPackage.DATA_MODEL__SUPER_TYPE:
         if (resolve) return getSuperType();
         return basicGetSuperType();
+      case MyDslPackage.DATA_MODEL__ID:
+        return getId();
       case MyDslPackage.DATA_MODEL__FEATURES:
         return getFeatures();
     }
@@ -183,6 +229,9 @@ public class DataModelImpl extends TypeImpl implements DataModel
     {
       case MyDslPackage.DATA_MODEL__SUPER_TYPE:
         setSuperType((DataModel)newValue);
+        return;
+      case MyDslPackage.DATA_MODEL__ID:
+        setId((String)newValue);
         return;
       case MyDslPackage.DATA_MODEL__FEATURES:
         getFeatures().clear();
@@ -205,6 +254,9 @@ public class DataModelImpl extends TypeImpl implements DataModel
       case MyDslPackage.DATA_MODEL__SUPER_TYPE:
         setSuperType((DataModel)null);
         return;
+      case MyDslPackage.DATA_MODEL__ID:
+        setId(ID_EDEFAULT);
+        return;
       case MyDslPackage.DATA_MODEL__FEATURES:
         getFeatures().clear();
         return;
@@ -224,10 +276,29 @@ public class DataModelImpl extends TypeImpl implements DataModel
     {
       case MyDslPackage.DATA_MODEL__SUPER_TYPE:
         return superType != null;
+      case MyDslPackage.DATA_MODEL__ID:
+        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
       case MyDslPackage.DATA_MODEL__FEATURES:
         return features != null && !features.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (id: ");
+    result.append(id);
+    result.append(')');
+    return result.toString();
   }
 
 } //DataModelImpl

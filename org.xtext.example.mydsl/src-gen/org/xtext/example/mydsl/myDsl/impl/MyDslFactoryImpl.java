@@ -71,14 +71,20 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.PRIMITIVE_TYPE: return createPrimitiveType();
       case MyDslPackage.DATA_MODEL: return createDataModel();
       case MyDslPackage.REST_MODEL: return createRestModel();
-      case MyDslPackage.MAPPING_MODEL: return createMappingModel();
+      case MyDslPackage.MODEL_MAPPER: return createModelMapper();
       case MyDslPackage.TRANSFORMATION: return createTransformation();
       case MyDslPackage.FEATURE: return createFeature();
       case MyDslPackage.RESOURCE: return createResource();
       case MyDslPackage.SERVICE: return createService();
+      case MyDslPackage.VALIDATION_SERVICE: return createValidationService();
       case MyDslPackage.DATA_ACCESS_OBJECT: return createDataAccessObject();
+      case MyDslPackage.DATA_MODEL_METHOD_CONCLUSION: return createDataModelMethodConclusion();
+      case MyDslPackage.REST_MODEL_METHOD_CONCLUSION: return createRestModelMethodConclusion();
+      case MyDslPackage.REST_EXCEPTION_LIST: return createRestExceptionList();
+      case MyDslPackage.BASE_EXCEPTION: return createBaseException();
+      case MyDslPackage.EXCEPTION_MAPPER: return createExceptionMapper();
       case MyDslPackage.REST_EXCEPTION: return createRestException();
-      case MyDslPackage.JAVA_METHOD: return createJavaMethod();
+      case MyDslPackage.BLOCK: return createBlock();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -189,10 +195,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public MappingModel createMappingModel()
+  public ModelMapper createModelMapper()
   {
-    MappingModelImpl mappingModel = new MappingModelImpl();
-    return mappingModel;
+    ModelMapperImpl modelMapper = new ModelMapperImpl();
+    return modelMapper;
   }
 
   /**
@@ -244,10 +250,76 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ValidationService createValidationService()
+  {
+    ValidationServiceImpl validationService = new ValidationServiceImpl();
+    return validationService;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public DataAccessObject createDataAccessObject()
   {
     DataAccessObjectImpl dataAccessObject = new DataAccessObjectImpl();
     return dataAccessObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataModelMethodConclusion createDataModelMethodConclusion()
+  {
+    DataModelMethodConclusionImpl dataModelMethodConclusion = new DataModelMethodConclusionImpl();
+    return dataModelMethodConclusion;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RestModelMethodConclusion createRestModelMethodConclusion()
+  {
+    RestModelMethodConclusionImpl restModelMethodConclusion = new RestModelMethodConclusionImpl();
+    return restModelMethodConclusion;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RestExceptionList createRestExceptionList()
+  {
+    RestExceptionListImpl restExceptionList = new RestExceptionListImpl();
+    return restExceptionList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BaseException createBaseException()
+  {
+    BaseExceptionImpl baseException = new BaseExceptionImpl();
+    return baseException;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExceptionMapper createExceptionMapper()
+  {
+    ExceptionMapperImpl exceptionMapper = new ExceptionMapperImpl();
+    return exceptionMapper;
   }
 
   /**
@@ -266,10 +338,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public JavaMethod createJavaMethod()
+  public Block createBlock()
   {
-    JavaMethodImpl javaMethod = new JavaMethodImpl();
-    return javaMethod;
+    BlockImpl block = new BlockImpl();
+    return block;
   }
 
   /**

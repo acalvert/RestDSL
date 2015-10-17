@@ -117,11 +117,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.MAPPING_MODEL:
+      case MyDslPackage.MODEL_MAPPER:
       {
-        MappingModel mappingModel = (MappingModel)theEObject;
-        T result = caseMappingModel(mappingModel);
-        if (result == null) result = caseType(mappingModel);
+        ModelMapper modelMapper = (ModelMapper)theEObject;
+        T result = caseModelMapper(modelMapper);
+        if (result == null) result = caseType(modelMapper);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -153,10 +153,52 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.VALIDATION_SERVICE:
+      {
+        ValidationService validationService = (ValidationService)theEObject;
+        T result = caseValidationService(validationService);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.DATA_ACCESS_OBJECT:
       {
         DataAccessObject dataAccessObject = (DataAccessObject)theEObject;
         T result = caseDataAccessObject(dataAccessObject);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.DATA_MODEL_METHOD_CONCLUSION:
+      {
+        DataModelMethodConclusion dataModelMethodConclusion = (DataModelMethodConclusion)theEObject;
+        T result = caseDataModelMethodConclusion(dataModelMethodConclusion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.REST_MODEL_METHOD_CONCLUSION:
+      {
+        RestModelMethodConclusion restModelMethodConclusion = (RestModelMethodConclusion)theEObject;
+        T result = caseRestModelMethodConclusion(restModelMethodConclusion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.REST_EXCEPTION_LIST:
+      {
+        RestExceptionList restExceptionList = (RestExceptionList)theEObject;
+        T result = caseRestExceptionList(restExceptionList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.BASE_EXCEPTION:
+      {
+        BaseException baseException = (BaseException)theEObject;
+        T result = caseBaseException(baseException);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.EXCEPTION_MAPPER:
+      {
+        ExceptionMapper exceptionMapper = (ExceptionMapper)theEObject;
+        T result = caseExceptionMapper(exceptionMapper);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -167,10 +209,10 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.JAVA_METHOD:
+      case MyDslPackage.BLOCK:
       {
-        JavaMethod javaMethod = (JavaMethod)theEObject;
-        T result = caseJavaMethod(javaMethod);
+        Block block = (Block)theEObject;
+        T result = caseBlock(block);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -275,17 +317,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Mapping Model</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Model Mapper</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Mapping Model</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Model Mapper</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseMappingModel(MappingModel object)
+  public T caseModelMapper(ModelMapper object)
   {
     return null;
   }
@@ -355,6 +397,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Validation Service</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Validation Service</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValidationService(ValidationService object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Data Access Object</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -366,6 +424,86 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDataAccessObject(DataAccessObject object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Data Model Method Conclusion</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Data Model Method Conclusion</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDataModelMethodConclusion(DataModelMethodConclusion object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rest Model Method Conclusion</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rest Model Method Conclusion</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRestModelMethodConclusion(RestModelMethodConclusion object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rest Exception List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rest Exception List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRestExceptionList(RestExceptionList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Base Exception</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Base Exception</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBaseException(BaseException object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Exception Mapper</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Exception Mapper</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExceptionMapper(ExceptionMapper object)
   {
     return null;
   }
@@ -387,17 +525,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Java Method</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Java Method</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Block</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseJavaMethod(JavaMethod object)
+  public T caseBlock(Block object)
   {
     return null;
   }

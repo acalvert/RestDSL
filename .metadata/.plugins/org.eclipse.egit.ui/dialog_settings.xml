@@ -3,6 +3,11 @@
 	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
 	<item value="/media/alexander/1TB_HDD/EclipseLinux/git/oaccrefac/.git" key="GitSelectRepositoryPage.lastRepository"/>
 	<item value="true" key="CommitDialog.showUntracked"/>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="http://git.eclipse.org/gitroot/cdt/org.eclipse.cdt.git"/>
+		<item value="https://git.eclipse.org:29418/cdt/org.eclipse.cdt.git"/>
+		<item value="http://git.eclipse.org:29418/cdt/org.eclipse.cdt.git"/>
+	</list>
 	<list key="CommitDialog.authorValues">
 		<item value="Alexander Calvert &lt;afc0005@auburn.edu&gt;"/>
 	</list>

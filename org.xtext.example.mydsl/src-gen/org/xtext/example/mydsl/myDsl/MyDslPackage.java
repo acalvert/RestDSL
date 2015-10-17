@@ -160,13 +160,22 @@ public interface MyDslPackage extends EPackage
   int REST_API__DAO = 2;
 
   /**
+   * The feature id for the '<em><b>Exception Mapper</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_API__EXCEPTION_MAPPER = 3;
+
+  /**
    * The number of structural features of the '<em>Rest API</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REST_API_FEATURE_COUNT = 3;
+  int REST_API_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -225,13 +234,22 @@ public interface MyDslPackage extends EPackage
   int DATA_MODEL__SUPER_TYPE = TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_MODEL__ID = TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATA_MODEL__FEATURES = TYPE_FEATURE_COUNT + 1;
+  int DATA_MODEL__FEATURES = TYPE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Data Model</em>' class.
@@ -240,7 +258,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_MODEL_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+  int DATA_MODEL_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RestModelImpl <em>Rest Model</em>}' class.
@@ -271,13 +289,31 @@ public interface MyDslPackage extends EPackage
   int REST_MODEL__SUPER_TYPE = TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_MODEL__ID = TYPE_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REST_MODEL__FEATURES = TYPE_FEATURE_COUNT + 1;
+  int REST_MODEL__FEATURES = TYPE_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Self</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_MODEL__SELF = TYPE_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Rest Model</em>' class.
@@ -286,17 +322,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REST_MODEL_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+  int REST_MODEL_FEATURE_COUNT = TYPE_FEATURE_COUNT + 4;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MappingModelImpl <em>Mapping Model</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ModelMapperImpl <em>Model Mapper</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.MappingModelImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMappingModel()
+   * @see org.xtext.example.mydsl.myDsl.impl.ModelMapperImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getModelMapper()
    * @generated
    */
-  int MAPPING_MODEL = 6;
+  int MODEL_MAPPER = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -305,7 +341,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAPPING_MODEL__NAME = TYPE__NAME;
+  int MODEL_MAPPER__NAME = TYPE__NAME;
 
   /**
    * The feature id for the '<em><b>Transformation</b></em>' containment reference list.
@@ -314,16 +350,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MAPPING_MODEL__TRANSFORMATION = TYPE_FEATURE_COUNT + 0;
+  int MODEL_MAPPER__TRANSFORMATION = TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Mapping Model</em>' class.
+   * The number of structural features of the '<em>Model Mapper</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MAPPING_MODEL_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+  int MODEL_MAPPER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.TransformationImpl <em>Transformation</em>}' class.
@@ -428,22 +464,40 @@ public interface MyDslPackage extends EPackage
   int RESOURCE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Service</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESOURCE__SERVICE = 1;
+
+  /**
+   * The feature id for the '<em><b>Exception Mapper</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESOURCE__EXCEPTION_MAPPER = 2;
+
+  /**
    * The feature id for the '<em><b>Create Rest Model</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE__CREATE_REST_MODEL = 1;
+  int RESOURCE__CREATE_REST_MODEL = 3;
 
   /**
-   * The feature id for the '<em><b>Exception1</b></em>' containment reference.
+   * The feature id for the '<em><b>Create Val Service</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE__EXCEPTION1 = 2;
+  int RESOURCE__CREATE_VAL_SERVICE = 4;
 
   /**
    * The feature id for the '<em><b>Create Method</b></em>' containment reference.
@@ -452,16 +506,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__CREATE_METHOD = 3;
+  int RESOURCE__CREATE_METHOD = 5;
 
   /**
-   * The feature id for the '<em><b>Created Rest Model</b></em>' reference.
+   * The feature id for the '<em><b>Create Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE__CREATED_REST_MODEL = 4;
+  int RESOURCE__CREATE_CONCLUSION = 6;
 
   /**
    * The feature id for the '<em><b>Findby</b></em>' attribute.
@@ -470,16 +524,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__FINDBY = 5;
-
-  /**
-   * The feature id for the '<em><b>Exception2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RESOURCE__EXCEPTION2 = 6;
+  int RESOURCE__FINDBY = 7;
 
   /**
    * The feature id for the '<em><b>Find Method</b></em>' containment reference.
@@ -488,16 +533,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__FIND_METHOD = 7;
+  int RESOURCE__FIND_METHOD = 8;
 
   /**
-   * The feature id for the '<em><b>Found Rest Model</b></em>' reference.
+   * The feature id for the '<em><b>Find Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE__FOUND_REST_MODEL = 8;
+  int RESOURCE__FIND_CONCLUSION = 9;
 
   /**
    * The feature id for the '<em><b>Updateby</b></em>' attribute.
@@ -506,7 +551,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__UPDATEBY = 9;
+  int RESOURCE__UPDATEBY = 10;
 
   /**
    * The feature id for the '<em><b>Update Rest Model</b></em>' reference.
@@ -515,16 +560,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__UPDATE_REST_MODEL = 10;
+  int RESOURCE__UPDATE_REST_MODEL = 11;
 
   /**
-   * The feature id for the '<em><b>Exception3</b></em>' containment reference.
+   * The feature id for the '<em><b>Update Val Service</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE__EXCEPTION3 = 11;
+  int RESOURCE__UPDATE_VAL_SERVICE = 12;
 
   /**
    * The feature id for the '<em><b>Update Method</b></em>' containment reference.
@@ -533,16 +578,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__UPDATE_METHOD = 12;
+  int RESOURCE__UPDATE_METHOD = 13;
 
   /**
-   * The feature id for the '<em><b>Updated Rest Model</b></em>' reference.
+   * The feature id for the '<em><b>Update Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE__UPDATED_REST_MODEL = 13;
+  int RESOURCE__UPDATE_CONCLUSION = 14;
 
   /**
    * The feature id for the '<em><b>Deleteby</b></em>' attribute.
@@ -551,16 +596,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RESOURCE__DELETEBY = 14;
-
-  /**
-   * The feature id for the '<em><b>Exception4</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RESOURCE__EXCEPTION4 = 15;
+  int RESOURCE__DELETEBY = 15;
 
   /**
    * The feature id for the '<em><b>Delete Method</b></em>' containment reference.
@@ -572,13 +608,22 @@ public interface MyDslPackage extends EPackage
   int RESOURCE__DELETE_METHOD = 16;
 
   /**
+   * The feature id for the '<em><b>Exception4</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RESOURCE__EXCEPTION4 = 17;
+
+  /**
    * The number of structural features of the '<em>Resource</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RESOURCE_FEATURE_COUNT = 17;
+  int RESOURCE_FEATURE_COUNT = 18;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ServiceImpl <em>Service</em>}' class.
@@ -600,22 +645,22 @@ public interface MyDslPackage extends EPackage
   int SERVICE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Dao</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERVICE__DAO = 1;
+
+  /**
    * The feature id for the '<em><b>Create Data Model</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__CREATE_DATA_MODEL = 1;
-
-  /**
-   * The feature id for the '<em><b>Exception1</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE__EXCEPTION1 = 2;
+  int SERVICE__CREATE_DATA_MODEL = 2;
 
   /**
    * The feature id for the '<em><b>Create Method</b></em>' containment reference.
@@ -627,13 +672,13 @@ public interface MyDslPackage extends EPackage
   int SERVICE__CREATE_METHOD = 3;
 
   /**
-   * The feature id for the '<em><b>Created Data Model</b></em>' reference.
+   * The feature id for the '<em><b>Create Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__CREATED_DATA_MODEL = 4;
+  int SERVICE__CREATE_CONCLUSION = 4;
 
   /**
    * The feature id for the '<em><b>Findby</b></em>' attribute.
@@ -645,31 +690,22 @@ public interface MyDslPackage extends EPackage
   int SERVICE__FINDBY = 5;
 
   /**
-   * The feature id for the '<em><b>Exception2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE__EXCEPTION2 = 6;
-
-  /**
    * The feature id for the '<em><b>Find Method</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__FIND_METHOD = 7;
+  int SERVICE__FIND_METHOD = 6;
 
   /**
-   * The feature id for the '<em><b>Found Data Model</b></em>' reference.
+   * The feature id for the '<em><b>Find Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__FOUND_DATA_MODEL = 8;
+  int SERVICE__FIND_CONCLUSION = 7;
 
   /**
    * The feature id for the '<em><b>Updateby</b></em>' attribute.
@@ -678,7 +714,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__UPDATEBY = 9;
+  int SERVICE__UPDATEBY = 8;
 
   /**
    * The feature id for the '<em><b>Update Data Model</b></em>' reference.
@@ -687,16 +723,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__UPDATE_DATA_MODEL = 10;
-
-  /**
-   * The feature id for the '<em><b>Exception3</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE__EXCEPTION3 = 11;
+  int SERVICE__UPDATE_DATA_MODEL = 9;
 
   /**
    * The feature id for the '<em><b>Update Method</b></em>' containment reference.
@@ -705,16 +732,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__UPDATE_METHOD = 12;
+  int SERVICE__UPDATE_METHOD = 10;
 
   /**
-   * The feature id for the '<em><b>Updated Data Model</b></em>' reference.
+   * The feature id for the '<em><b>Update Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SERVICE__UPDATED_DATA_MODEL = 13;
+  int SERVICE__UPDATE_CONCLUSION = 11;
 
   /**
    * The feature id for the '<em><b>Deleteby</b></em>' attribute.
@@ -723,16 +750,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__DELETEBY = 14;
-
-  /**
-   * The feature id for the '<em><b>Exception4</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE__EXCEPTION4 = 15;
+  int SERVICE__DELETEBY = 12;
 
   /**
    * The feature id for the '<em><b>Delete Method</b></em>' containment reference.
@@ -741,7 +759,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE__DELETE_METHOD = 16;
+  int SERVICE__DELETE_METHOD = 13;
+
+  /**
+   * The feature id for the '<em><b>Exception4</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERVICE__EXCEPTION4 = 14;
 
   /**
    * The number of structural features of the '<em>Service</em>' class.
@@ -750,7 +777,44 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SERVICE_FEATURE_COUNT = 17;
+  int SERVICE_FEATURE_COUNT = 15;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ValidationServiceImpl <em>Validation Service</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ValidationServiceImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getValidationService()
+   * @generated
+   */
+  int VALIDATION_SERVICE = 11;
+
+  /**
+   * The feature id for the '<em><b>Rest Model</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION_SERVICE__REST_MODEL = 0;
+
+  /**
+   * The feature id for the '<em><b>Block</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION_SERVICE__BLOCK = 1;
+
+  /**
+   * The number of structural features of the '<em>Validation Service</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALIDATION_SERVICE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DataAccessObjectImpl <em>Data Access Object</em>}' class.
@@ -760,7 +824,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDataAccessObject()
    * @generated
    */
-  int DATA_ACCESS_OBJECT = 11;
+  int DATA_ACCESS_OBJECT = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -781,31 +845,22 @@ public interface MyDslPackage extends EPackage
   int DATA_ACCESS_OBJECT__CREATE_DATA_MODEL = 1;
 
   /**
-   * The feature id for the '<em><b>Exception1</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATA_ACCESS_OBJECT__EXCEPTION1 = 2;
-
-  /**
    * The feature id for the '<em><b>Create Method</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__CREATE_METHOD = 3;
+  int DATA_ACCESS_OBJECT__CREATE_METHOD = 2;
 
   /**
-   * The feature id for the '<em><b>Created Data Model</b></em>' reference.
+   * The feature id for the '<em><b>Create Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__CREATED_DATA_MODEL = 4;
+  int DATA_ACCESS_OBJECT__CREATE_CONCLUSION = 3;
 
   /**
    * The feature id for the '<em><b>Findby</b></em>' attribute.
@@ -814,16 +869,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__FINDBY = 5;
-
-  /**
-   * The feature id for the '<em><b>Exception2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATA_ACCESS_OBJECT__EXCEPTION2 = 6;
+  int DATA_ACCESS_OBJECT__FINDBY = 4;
 
   /**
    * The feature id for the '<em><b>Find Method</b></em>' containment reference.
@@ -832,16 +878,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__FIND_METHOD = 7;
+  int DATA_ACCESS_OBJECT__FIND_METHOD = 5;
 
   /**
-   * The feature id for the '<em><b>Found Data Model</b></em>' reference.
+   * The feature id for the '<em><b>Find Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__FOUND_DATA_MODEL = 8;
+  int DATA_ACCESS_OBJECT__FIND_CONCLUSION = 6;
 
   /**
    * The feature id for the '<em><b>Updateby</b></em>' attribute.
@@ -850,7 +896,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__UPDATEBY = 9;
+  int DATA_ACCESS_OBJECT__UPDATEBY = 7;
 
   /**
    * The feature id for the '<em><b>Update Data Model</b></em>' reference.
@@ -859,16 +905,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__UPDATE_DATA_MODEL = 10;
-
-  /**
-   * The feature id for the '<em><b>Exception3</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATA_ACCESS_OBJECT__EXCEPTION3 = 11;
+  int DATA_ACCESS_OBJECT__UPDATE_DATA_MODEL = 8;
 
   /**
    * The feature id for the '<em><b>Update Method</b></em>' containment reference.
@@ -877,16 +914,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__UPDATE_METHOD = 12;
+  int DATA_ACCESS_OBJECT__UPDATE_METHOD = 9;
 
   /**
-   * The feature id for the '<em><b>Updated Data Model</b></em>' reference.
+   * The feature id for the '<em><b>Update Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__UPDATED_DATA_MODEL = 13;
+  int DATA_ACCESS_OBJECT__UPDATE_CONCLUSION = 10;
 
   /**
    * The feature id for the '<em><b>Deleteby</b></em>' attribute.
@@ -895,16 +932,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__DELETEBY = 14;
-
-  /**
-   * The feature id for the '<em><b>Exception4</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATA_ACCESS_OBJECT__EXCEPTION4 = 15;
+  int DATA_ACCESS_OBJECT__DELETEBY = 11;
 
   /**
    * The feature id for the '<em><b>Delete Method</b></em>' containment reference.
@@ -913,7 +941,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT__DELETE_METHOD = 16;
+  int DATA_ACCESS_OBJECT__DELETE_METHOD = 12;
+
+  /**
+   * The feature id for the '<em><b>Exceptions</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_ACCESS_OBJECT__EXCEPTIONS = 13;
 
   /**
    * The number of structural features of the '<em>Data Access Object</em>' class.
@@ -922,7 +959,192 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATA_ACCESS_OBJECT_FEATURE_COUNT = 17;
+  int DATA_ACCESS_OBJECT_FEATURE_COUNT = 14;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DataModelMethodConclusionImpl <em>Data Model Method Conclusion</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.DataModelMethodConclusionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDataModelMethodConclusion()
+   * @generated
+   */
+  int DATA_MODEL_METHOD_CONCLUSION = 13;
+
+  /**
+   * The feature id for the '<em><b>Data Model</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_MODEL_METHOD_CONCLUSION__DATA_MODEL = 0;
+
+  /**
+   * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_MODEL_METHOD_CONCLUSION__EXCEPTIONS = 1;
+
+  /**
+   * The number of structural features of the '<em>Data Model Method Conclusion</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_MODEL_METHOD_CONCLUSION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RestModelMethodConclusionImpl <em>Rest Model Method Conclusion</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.RestModelMethodConclusionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRestModelMethodConclusion()
+   * @generated
+   */
+  int REST_MODEL_METHOD_CONCLUSION = 14;
+
+  /**
+   * The feature id for the '<em><b>Rest Model</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_MODEL_METHOD_CONCLUSION__REST_MODEL = 0;
+
+  /**
+   * The feature id for the '<em><b>Exception</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_MODEL_METHOD_CONCLUSION__EXCEPTION = 1;
+
+  /**
+   * The number of structural features of the '<em>Rest Model Method Conclusion</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_MODEL_METHOD_CONCLUSION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RestExceptionListImpl <em>Rest Exception List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.RestExceptionListImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRestExceptionList()
+   * @generated
+   */
+  int REST_EXCEPTION_LIST = 15;
+
+  /**
+   * The feature id for the '<em><b>Exception</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_EXCEPTION_LIST__EXCEPTION = 0;
+
+  /**
+   * The number of structural features of the '<em>Rest Exception List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_EXCEPTION_LIST_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.BaseExceptionImpl <em>Base Exception</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.BaseExceptionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getBaseException()
+   * @generated
+   */
+  int BASE_EXCEPTION = 16;
+
+  /**
+   * The feature id for the '<em><b>Error Code</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASE_EXCEPTION__ERROR_CODE = 0;
+
+  /**
+   * The feature id for the '<em><b>Message</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASE_EXCEPTION__MESSAGE = 1;
+
+  /**
+   * The number of structural features of the '<em>Base Exception</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASE_EXCEPTION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ExceptionMapperImpl <em>Exception Mapper</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ExceptionMapperImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExceptionMapper()
+   * @generated
+   */
+  int EXCEPTION_MAPPER = 17;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXCEPTION_MAPPER__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Rest Exception</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXCEPTION_MAPPER__REST_EXCEPTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Base Exception</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXCEPTION_MAPPER__BASE_EXCEPTION = 2;
+
+  /**
+   * The number of structural features of the '<em>Exception Mapper</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXCEPTION_MAPPER_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RestExceptionImpl <em>Rest Exception</em>}' class.
@@ -932,7 +1154,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRestException()
    * @generated
    */
-  int REST_EXCEPTION = 12;
+  int REST_EXCEPTION = 18;
 
   /**
    * The feature id for the '<em><b>Status Code</b></em>' attribute.
@@ -944,23 +1166,32 @@ public interface MyDslPackage extends EPackage
   int REST_EXCEPTION__STATUS_CODE = 0;
 
   /**
+   * The feature id for the '<em><b>Message</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REST_EXCEPTION__MESSAGE = 1;
+
+  /**
    * The number of structural features of the '<em>Rest Exception</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REST_EXCEPTION_FEATURE_COUNT = 1;
+  int REST_EXCEPTION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.JavaMethodImpl <em>Java Method</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.BlockImpl <em>Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.JavaMethodImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getJavaMethod()
+   * @see org.xtext.example.mydsl.myDsl.impl.BlockImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getBlock()
    * @generated
    */
-  int JAVA_METHOD = 13;
+  int BLOCK = 19;
 
   /**
    * The feature id for the '<em><b>Code</b></em>' attribute.
@@ -969,16 +1200,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int JAVA_METHOD__CODE = 0;
+  int BLOCK__CODE = 0;
 
   /**
-   * The number of structural features of the '<em>Java Method</em>' class.
+   * The number of structural features of the '<em>Block</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int JAVA_METHOD_FEATURE_COUNT = 1;
+  int BLOCK_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.RestStatusCode <em>Rest Status Code</em>}' enum.
@@ -988,7 +1219,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRestStatusCode()
    * @generated
    */
-  int REST_STATUS_CODE = 14;
+  int REST_STATUS_CODE = 20;
 
 
   /**
@@ -1088,6 +1319,17 @@ public interface MyDslPackage extends EPackage
   EReference getRestAPI_Dao();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.RestAPI#getExceptionMapper <em>Exception Mapper</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exception Mapper</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestAPI#getExceptionMapper()
+   * @see #getRestAPI()
+   * @generated
+   */
+  EReference getRestAPI_ExceptionMapper();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.PrimitiveType <em>Primitive Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1117,6 +1359,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getDataModel_SuperType();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DataModel#getId <em>Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Id</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataModel#getId()
+   * @see #getDataModel()
+   * @generated
+   */
+  EAttribute getDataModel_Id();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.DataModel#getFeatures <em>Features</em>}'.
@@ -1151,6 +1404,17 @@ public interface MyDslPackage extends EPackage
   EReference getRestModel_SuperType();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.RestModel#getId <em>Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Id</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestModel#getId()
+   * @see #getRestModel()
+   * @generated
+   */
+  EAttribute getRestModel_Id();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.RestModel#getFeatures <em>Features</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1162,25 +1426,36 @@ public interface MyDslPackage extends EPackage
   EReference getRestModel_Features();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.MappingModel <em>Mapping Model</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.RestModel#getSelf <em>Self</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Mapping Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.MappingModel
+   * @return the meta object for the attribute '<em>Self</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestModel#getSelf()
+   * @see #getRestModel()
    * @generated
    */
-  EClass getMappingModel();
+  EAttribute getRestModel_Self();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.MappingModel#getTransformation <em>Transformation</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ModelMapper <em>Model Mapper</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Model Mapper</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ModelMapper
+   * @generated
+   */
+  EClass getModelMapper();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ModelMapper#getTransformation <em>Transformation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Transformation</em>'.
-   * @see org.xtext.example.mydsl.myDsl.MappingModel#getTransformation()
-   * @see #getMappingModel()
+   * @see org.xtext.example.mydsl.myDsl.ModelMapper#getTransformation()
+   * @see #getModelMapper()
    * @generated
    */
-  EReference getMappingModel_Transformation();
+  EReference getModelMapper_Transformation();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Transformation <em>Transformation</em>}'.
@@ -1279,6 +1554,28 @@ public interface MyDslPackage extends EPackage
   EAttribute getResource_Name();
 
   /**
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Resource#getService <em>Service</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Service</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getService()
+   * @see #getResource()
+   * @generated
+   */
+  EReference getResource_Service();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Resource#getExceptionMapper <em>Exception Mapper</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Exception Mapper</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getExceptionMapper()
+   * @see #getResource()
+   * @generated
+   */
+  EReference getResource_ExceptionMapper();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateRestModel <em>Create Rest Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1290,15 +1587,15 @@ public interface MyDslPackage extends EPackage
   EReference getResource_CreateRestModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getException1 <em>Exception1</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateValService <em>Create Val Service</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception1</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getException1()
+   * @return the meta object for the containment reference '<em>Create Val Service</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getCreateValService()
    * @see #getResource()
    * @generated
    */
-  EReference getResource_Exception1();
+  EReference getResource_CreateValService();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateMethod <em>Create Method</em>}'.
@@ -1312,15 +1609,15 @@ public interface MyDslPackage extends EPackage
   EReference getResource_CreateMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Resource#getCreatedRestModel <em>Created Rest Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateConclusion <em>Create Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Created Rest Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getCreatedRestModel()
+   * @return the meta object for the containment reference '<em>Create Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getCreateConclusion()
    * @see #getResource()
    * @generated
    */
-  EReference getResource_CreatedRestModel();
+  EReference getResource_CreateConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Resource#getFindby <em>Findby</em>}'.
@@ -1334,17 +1631,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getResource_Findby();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getException2 <em>Exception2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception2</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getException2()
-   * @see #getResource()
-   * @generated
-   */
-  EReference getResource_Exception2();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getFindMethod <em>Find Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1356,15 +1642,15 @@ public interface MyDslPackage extends EPackage
   EReference getResource_FindMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Resource#getFoundRestModel <em>Found Rest Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getFindConclusion <em>Find Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Found Rest Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getFoundRestModel()
+   * @return the meta object for the containment reference '<em>Find Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getFindConclusion()
    * @see #getResource()
    * @generated
    */
-  EReference getResource_FoundRestModel();
+  EReference getResource_FindConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateby <em>Updateby</em>}'.
@@ -1389,15 +1675,15 @@ public interface MyDslPackage extends EPackage
   EReference getResource_UpdateRestModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getException3 <em>Exception3</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateValService <em>Update Val Service</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception3</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getException3()
+   * @return the meta object for the containment reference '<em>Update Val Service</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getUpdateValService()
    * @see #getResource()
    * @generated
    */
-  EReference getResource_Exception3();
+  EReference getResource_UpdateValService();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateMethod <em>Update Method</em>}'.
@@ -1411,15 +1697,15 @@ public interface MyDslPackage extends EPackage
   EReference getResource_UpdateMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdatedRestModel <em>Updated Rest Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateConclusion <em>Update Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Updated Rest Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getUpdatedRestModel()
+   * @return the meta object for the containment reference '<em>Update Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getUpdateConclusion()
    * @see #getResource()
    * @generated
    */
-  EReference getResource_UpdatedRestModel();
+  EReference getResource_UpdateConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Resource#getDeleteby <em>Deleteby</em>}'.
@@ -1433,17 +1719,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getResource_Deleteby();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getException4 <em>Exception4</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception4</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Resource#getException4()
-   * @see #getResource()
-   * @generated
-   */
-  EReference getResource_Exception4();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getDeleteMethod <em>Delete Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1453,6 +1728,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getResource_DeleteMethod();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Resource#getException4 <em>Exception4</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exception4</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Resource#getException4()
+   * @see #getResource()
+   * @generated
+   */
+  EReference getResource_Exception4();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Service <em>Service</em>}'.
@@ -1476,6 +1762,17 @@ public interface MyDslPackage extends EPackage
   EAttribute getService_Name();
 
   /**
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Service#getDao <em>Dao</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Dao</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Service#getDao()
+   * @see #getService()
+   * @generated
+   */
+  EReference getService_Dao();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Service#getCreateDataModel <em>Create Data Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1485,17 +1782,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getService_CreateDataModel();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getException1 <em>Exception1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception1</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getException1()
-   * @see #getService()
-   * @generated
-   */
-  EReference getService_Exception1();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getCreateMethod <em>Create Method</em>}'.
@@ -1509,15 +1795,15 @@ public interface MyDslPackage extends EPackage
   EReference getService_CreateMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Service#getCreatedDataModel <em>Created Data Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getCreateConclusion <em>Create Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Created Data Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getCreatedDataModel()
+   * @return the meta object for the containment reference '<em>Create Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Service#getCreateConclusion()
    * @see #getService()
    * @generated
    */
-  EReference getService_CreatedDataModel();
+  EReference getService_CreateConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Service#getFindby <em>Findby</em>}'.
@@ -1531,17 +1817,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getService_Findby();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getException2 <em>Exception2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception2</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getException2()
-   * @see #getService()
-   * @generated
-   */
-  EReference getService_Exception2();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getFindMethod <em>Find Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1553,15 +1828,15 @@ public interface MyDslPackage extends EPackage
   EReference getService_FindMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Service#getFoundDataModel <em>Found Data Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getFindConclusion <em>Find Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Found Data Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getFoundDataModel()
+   * @return the meta object for the containment reference '<em>Find Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Service#getFindConclusion()
    * @see #getService()
    * @generated
    */
-  EReference getService_FoundDataModel();
+  EReference getService_FindConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Service#getUpdateby <em>Updateby</em>}'.
@@ -1586,17 +1861,6 @@ public interface MyDslPackage extends EPackage
   EReference getService_UpdateDataModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getException3 <em>Exception3</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception3</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getException3()
-   * @see #getService()
-   * @generated
-   */
-  EReference getService_Exception3();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getUpdateMethod <em>Update Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1608,15 +1872,15 @@ public interface MyDslPackage extends EPackage
   EReference getService_UpdateMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Service#getUpdatedDataModel <em>Updated Data Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getUpdateConclusion <em>Update Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Updated Data Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getUpdatedDataModel()
+   * @return the meta object for the containment reference '<em>Update Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Service#getUpdateConclusion()
    * @see #getService()
    * @generated
    */
-  EReference getService_UpdatedDataModel();
+  EReference getService_UpdateConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Service#getDeleteby <em>Deleteby</em>}'.
@@ -1630,6 +1894,17 @@ public interface MyDslPackage extends EPackage
   EAttribute getService_Deleteby();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getDeleteMethod <em>Delete Method</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Delete Method</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Service#getDeleteMethod()
+   * @see #getService()
+   * @generated
+   */
+  EReference getService_DeleteMethod();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getException4 <em>Exception4</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1641,15 +1916,36 @@ public interface MyDslPackage extends EPackage
   EReference getService_Exception4();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Service#getDeleteMethod <em>Delete Method</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ValidationService <em>Validation Service</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Delete Method</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Service#getDeleteMethod()
-   * @see #getService()
+   * @return the meta object for class '<em>Validation Service</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ValidationService
    * @generated
    */
-  EReference getService_DeleteMethod();
+  EClass getValidationService();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ValidationService#getRestModel <em>Rest Model</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Rest Model</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ValidationService#getRestModel()
+   * @see #getValidationService()
+   * @generated
+   */
+  EReference getValidationService_RestModel();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ValidationService#getBlock <em>Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Block</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ValidationService#getBlock()
+   * @see #getValidationService()
+   * @generated
+   */
+  EReference getValidationService_Block();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DataAccessObject <em>Data Access Object</em>}'.
@@ -1684,17 +1980,6 @@ public interface MyDslPackage extends EPackage
   EReference getDataAccessObject_CreateDataModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getException1 <em>Exception1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception1</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getException1()
-   * @see #getDataAccessObject()
-   * @generated
-   */
-  EReference getDataAccessObject_Exception1();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getCreateMethod <em>Create Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1706,15 +1991,15 @@ public interface MyDslPackage extends EPackage
   EReference getDataAccessObject_CreateMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getCreatedDataModel <em>Created Data Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getCreateConclusion <em>Create Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Created Data Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getCreatedDataModel()
+   * @return the meta object for the containment reference '<em>Create Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getCreateConclusion()
    * @see #getDataAccessObject()
    * @generated
    */
-  EReference getDataAccessObject_CreatedDataModel();
+  EReference getDataAccessObject_CreateConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getFindby <em>Findby</em>}'.
@@ -1728,17 +2013,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getDataAccessObject_Findby();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getException2 <em>Exception2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception2</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getException2()
-   * @see #getDataAccessObject()
-   * @generated
-   */
-  EReference getDataAccessObject_Exception2();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getFindMethod <em>Find Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1750,15 +2024,15 @@ public interface MyDslPackage extends EPackage
   EReference getDataAccessObject_FindMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getFoundDataModel <em>Found Data Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getFindConclusion <em>Find Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Found Data Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getFoundDataModel()
+   * @return the meta object for the containment reference '<em>Find Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getFindConclusion()
    * @see #getDataAccessObject()
    * @generated
    */
-  EReference getDataAccessObject_FoundDataModel();
+  EReference getDataAccessObject_FindConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getUpdateby <em>Updateby</em>}'.
@@ -1783,17 +2057,6 @@ public interface MyDslPackage extends EPackage
   EReference getDataAccessObject_UpdateDataModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getException3 <em>Exception3</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception3</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getException3()
-   * @see #getDataAccessObject()
-   * @generated
-   */
-  EReference getDataAccessObject_Exception3();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getUpdateMethod <em>Update Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1805,15 +2068,15 @@ public interface MyDslPackage extends EPackage
   EReference getDataAccessObject_UpdateMethod();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getUpdatedDataModel <em>Updated Data Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getUpdateConclusion <em>Update Conclusion</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Updated Data Model</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getUpdatedDataModel()
+   * @return the meta object for the containment reference '<em>Update Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getUpdateConclusion()
    * @see #getDataAccessObject()
    * @generated
    */
-  EReference getDataAccessObject_UpdatedDataModel();
+  EReference getDataAccessObject_UpdateConclusion();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getDeleteby <em>Deleteby</em>}'.
@@ -1827,17 +2090,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getDataAccessObject_Deleteby();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getException4 <em>Exception4</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exception4</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getException4()
-   * @see #getDataAccessObject()
-   * @generated
-   */
-  EReference getDataAccessObject_Exception4();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getDeleteMethod <em>Delete Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1847,6 +2099,177 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getDataAccessObject_DeleteMethod();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.DataAccessObject#getExceptions <em>Exceptions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exceptions</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataAccessObject#getExceptions()
+   * @see #getDataAccessObject()
+   * @generated
+   */
+  EReference getDataAccessObject_Exceptions();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DataModelMethodConclusion <em>Data Model Method Conclusion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Data Model Method Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataModelMethodConclusion
+   * @generated
+   */
+  EClass getDataModelMethodConclusion();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DataModelMethodConclusion#getDataModel <em>Data Model</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Data Model</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataModelMethodConclusion#getDataModel()
+   * @see #getDataModelMethodConclusion()
+   * @generated
+   */
+  EReference getDataModelMethodConclusion_DataModel();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.DataModelMethodConclusion#getExceptions <em>Exceptions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exceptions</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DataModelMethodConclusion#getExceptions()
+   * @see #getDataModelMethodConclusion()
+   * @generated
+   */
+  EReference getDataModelMethodConclusion_Exceptions();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.RestModelMethodConclusion <em>Rest Model Method Conclusion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rest Model Method Conclusion</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestModelMethodConclusion
+   * @generated
+   */
+  EClass getRestModelMethodConclusion();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.RestModelMethodConclusion#getRestModel <em>Rest Model</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Rest Model</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestModelMethodConclusion#getRestModel()
+   * @see #getRestModelMethodConclusion()
+   * @generated
+   */
+  EReference getRestModelMethodConclusion_RestModel();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.RestModelMethodConclusion#getException <em>Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exception</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestModelMethodConclusion#getException()
+   * @see #getRestModelMethodConclusion()
+   * @generated
+   */
+  EReference getRestModelMethodConclusion_Exception();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.RestExceptionList <em>Rest Exception List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rest Exception List</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestExceptionList
+   * @generated
+   */
+  EClass getRestExceptionList();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.RestExceptionList#getException <em>Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exception</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestExceptionList#getException()
+   * @see #getRestExceptionList()
+   * @generated
+   */
+  EReference getRestExceptionList_Exception();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.BaseException <em>Base Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Base Exception</em>'.
+   * @see org.xtext.example.mydsl.myDsl.BaseException
+   * @generated
+   */
+  EClass getBaseException();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.BaseException#getErrorCode <em>Error Code</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Error Code</em>'.
+   * @see org.xtext.example.mydsl.myDsl.BaseException#getErrorCode()
+   * @see #getBaseException()
+   * @generated
+   */
+  EAttribute getBaseException_ErrorCode();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.BaseException#getMessage <em>Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.BaseException#getMessage()
+   * @see #getBaseException()
+   * @generated
+   */
+  EAttribute getBaseException_Message();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ExceptionMapper <em>Exception Mapper</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Exception Mapper</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ExceptionMapper
+   * @generated
+   */
+  EClass getExceptionMapper();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ExceptionMapper#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ExceptionMapper#getName()
+   * @see #getExceptionMapper()
+   * @generated
+   */
+  EAttribute getExceptionMapper_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ExceptionMapper#getRestException <em>Rest Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Rest Exception</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ExceptionMapper#getRestException()
+   * @see #getExceptionMapper()
+   * @generated
+   */
+  EReference getExceptionMapper_RestException();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ExceptionMapper#getBaseException <em>Base Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Base Exception</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ExceptionMapper#getBaseException()
+   * @see #getExceptionMapper()
+   * @generated
+   */
+  EReference getExceptionMapper_BaseException();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.RestException <em>Rest Exception</em>}'.
@@ -1870,25 +2293,36 @@ public interface MyDslPackage extends EPackage
   EAttribute getRestException_StatusCode();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.JavaMethod <em>Java Method</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.RestException#getMessage <em>Message</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Java Method</em>'.
-   * @see org.xtext.example.mydsl.myDsl.JavaMethod
+   * @return the meta object for the attribute '<em>Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.RestException#getMessage()
+   * @see #getRestException()
    * @generated
    */
-  EClass getJavaMethod();
+  EAttribute getRestException_Message();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.JavaMethod#getCode <em>Code</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Block <em>Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Block</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Block
+   * @generated
+   */
+  EClass getBlock();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Block#getCode <em>Code</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Code</em>'.
-   * @see org.xtext.example.mydsl.myDsl.JavaMethod#getCode()
-   * @see #getJavaMethod()
+   * @see org.xtext.example.mydsl.myDsl.Block#getCode()
+   * @see #getBlock()
    * @generated
    */
-  EAttribute getJavaMethod_Code();
+  EAttribute getBlock_Code();
 
   /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.myDsl.RestStatusCode <em>Rest Status Code</em>}'.
@@ -2002,6 +2436,14 @@ public interface MyDslPackage extends EPackage
     EReference REST_API__DAO = eINSTANCE.getRestAPI_Dao();
 
     /**
+     * The meta object literal for the '<em><b>Exception Mapper</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REST_API__EXCEPTION_MAPPER = eINSTANCE.getRestAPI_ExceptionMapper();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2030,6 +2472,14 @@ public interface MyDslPackage extends EPackage
     EReference DATA_MODEL__SUPER_TYPE = eINSTANCE.getDataModel_SuperType();
 
     /**
+     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DATA_MODEL__ID = eINSTANCE.getDataModel_Id();
+
+    /**
      * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2056,6 +2506,14 @@ public interface MyDslPackage extends EPackage
     EReference REST_MODEL__SUPER_TYPE = eINSTANCE.getRestModel_SuperType();
 
     /**
+     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REST_MODEL__ID = eINSTANCE.getRestModel_Id();
+
+    /**
      * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2064,14 +2522,22 @@ public interface MyDslPackage extends EPackage
     EReference REST_MODEL__FEATURES = eINSTANCE.getRestModel_Features();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MappingModelImpl <em>Mapping Model</em>}' class.
+     * The meta object literal for the '<em><b>Self</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.MappingModelImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMappingModel()
      * @generated
      */
-    EClass MAPPING_MODEL = eINSTANCE.getMappingModel();
+    EAttribute REST_MODEL__SELF = eINSTANCE.getRestModel_Self();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ModelMapperImpl <em>Model Mapper</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ModelMapperImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getModelMapper()
+     * @generated
+     */
+    EClass MODEL_MAPPER = eINSTANCE.getModelMapper();
 
     /**
      * The meta object literal for the '<em><b>Transformation</b></em>' containment reference list feature.
@@ -2079,7 +2545,7 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MAPPING_MODEL__TRANSFORMATION = eINSTANCE.getMappingModel_Transformation();
+    EReference MODEL_MAPPER__TRANSFORMATION = eINSTANCE.getModelMapper_Transformation();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.TransformationImpl <em>Transformation</em>}' class.
@@ -2160,6 +2626,22 @@ public interface MyDslPackage extends EPackage
     EAttribute RESOURCE__NAME = eINSTANCE.getResource_Name();
 
     /**
+     * The meta object literal for the '<em><b>Service</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RESOURCE__SERVICE = eINSTANCE.getResource_Service();
+
+    /**
+     * The meta object literal for the '<em><b>Exception Mapper</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RESOURCE__EXCEPTION_MAPPER = eINSTANCE.getResource_ExceptionMapper();
+
+    /**
      * The meta object literal for the '<em><b>Create Rest Model</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2168,12 +2650,12 @@ public interface MyDslPackage extends EPackage
     EReference RESOURCE__CREATE_REST_MODEL = eINSTANCE.getResource_CreateRestModel();
 
     /**
-     * The meta object literal for the '<em><b>Exception1</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Create Val Service</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RESOURCE__EXCEPTION1 = eINSTANCE.getResource_Exception1();
+    EReference RESOURCE__CREATE_VAL_SERVICE = eINSTANCE.getResource_CreateValService();
 
     /**
      * The meta object literal for the '<em><b>Create Method</b></em>' containment reference feature.
@@ -2184,12 +2666,12 @@ public interface MyDslPackage extends EPackage
     EReference RESOURCE__CREATE_METHOD = eINSTANCE.getResource_CreateMethod();
 
     /**
-     * The meta object literal for the '<em><b>Created Rest Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Create Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RESOURCE__CREATED_REST_MODEL = eINSTANCE.getResource_CreatedRestModel();
+    EReference RESOURCE__CREATE_CONCLUSION = eINSTANCE.getResource_CreateConclusion();
 
     /**
      * The meta object literal for the '<em><b>Findby</b></em>' attribute feature.
@@ -2200,14 +2682,6 @@ public interface MyDslPackage extends EPackage
     EAttribute RESOURCE__FINDBY = eINSTANCE.getResource_Findby();
 
     /**
-     * The meta object literal for the '<em><b>Exception2</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RESOURCE__EXCEPTION2 = eINSTANCE.getResource_Exception2();
-
-    /**
      * The meta object literal for the '<em><b>Find Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2216,12 +2690,12 @@ public interface MyDslPackage extends EPackage
     EReference RESOURCE__FIND_METHOD = eINSTANCE.getResource_FindMethod();
 
     /**
-     * The meta object literal for the '<em><b>Found Rest Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Find Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RESOURCE__FOUND_REST_MODEL = eINSTANCE.getResource_FoundRestModel();
+    EReference RESOURCE__FIND_CONCLUSION = eINSTANCE.getResource_FindConclusion();
 
     /**
      * The meta object literal for the '<em><b>Updateby</b></em>' attribute feature.
@@ -2240,12 +2714,12 @@ public interface MyDslPackage extends EPackage
     EReference RESOURCE__UPDATE_REST_MODEL = eINSTANCE.getResource_UpdateRestModel();
 
     /**
-     * The meta object literal for the '<em><b>Exception3</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Update Val Service</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RESOURCE__EXCEPTION3 = eINSTANCE.getResource_Exception3();
+    EReference RESOURCE__UPDATE_VAL_SERVICE = eINSTANCE.getResource_UpdateValService();
 
     /**
      * The meta object literal for the '<em><b>Update Method</b></em>' containment reference feature.
@@ -2256,12 +2730,12 @@ public interface MyDslPackage extends EPackage
     EReference RESOURCE__UPDATE_METHOD = eINSTANCE.getResource_UpdateMethod();
 
     /**
-     * The meta object literal for the '<em><b>Updated Rest Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Update Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RESOURCE__UPDATED_REST_MODEL = eINSTANCE.getResource_UpdatedRestModel();
+    EReference RESOURCE__UPDATE_CONCLUSION = eINSTANCE.getResource_UpdateConclusion();
 
     /**
      * The meta object literal for the '<em><b>Deleteby</b></em>' attribute feature.
@@ -2272,20 +2746,20 @@ public interface MyDslPackage extends EPackage
     EAttribute RESOURCE__DELETEBY = eINSTANCE.getResource_Deleteby();
 
     /**
-     * The meta object literal for the '<em><b>Exception4</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RESOURCE__EXCEPTION4 = eINSTANCE.getResource_Exception4();
-
-    /**
      * The meta object literal for the '<em><b>Delete Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference RESOURCE__DELETE_METHOD = eINSTANCE.getResource_DeleteMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Exception4</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RESOURCE__EXCEPTION4 = eINSTANCE.getResource_Exception4();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ServiceImpl <em>Service</em>}' class.
@@ -2306,20 +2780,20 @@ public interface MyDslPackage extends EPackage
     EAttribute SERVICE__NAME = eINSTANCE.getService_Name();
 
     /**
+     * The meta object literal for the '<em><b>Dao</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SERVICE__DAO = eINSTANCE.getService_Dao();
+
+    /**
      * The meta object literal for the '<em><b>Create Data Model</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference SERVICE__CREATE_DATA_MODEL = eINSTANCE.getService_CreateDataModel();
-
-    /**
-     * The meta object literal for the '<em><b>Exception1</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SERVICE__EXCEPTION1 = eINSTANCE.getService_Exception1();
 
     /**
      * The meta object literal for the '<em><b>Create Method</b></em>' containment reference feature.
@@ -2330,12 +2804,12 @@ public interface MyDslPackage extends EPackage
     EReference SERVICE__CREATE_METHOD = eINSTANCE.getService_CreateMethod();
 
     /**
-     * The meta object literal for the '<em><b>Created Data Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Create Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SERVICE__CREATED_DATA_MODEL = eINSTANCE.getService_CreatedDataModel();
+    EReference SERVICE__CREATE_CONCLUSION = eINSTANCE.getService_CreateConclusion();
 
     /**
      * The meta object literal for the '<em><b>Findby</b></em>' attribute feature.
@@ -2346,14 +2820,6 @@ public interface MyDslPackage extends EPackage
     EAttribute SERVICE__FINDBY = eINSTANCE.getService_Findby();
 
     /**
-     * The meta object literal for the '<em><b>Exception2</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SERVICE__EXCEPTION2 = eINSTANCE.getService_Exception2();
-
-    /**
      * The meta object literal for the '<em><b>Find Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2362,12 +2828,12 @@ public interface MyDslPackage extends EPackage
     EReference SERVICE__FIND_METHOD = eINSTANCE.getService_FindMethod();
 
     /**
-     * The meta object literal for the '<em><b>Found Data Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Find Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SERVICE__FOUND_DATA_MODEL = eINSTANCE.getService_FoundDataModel();
+    EReference SERVICE__FIND_CONCLUSION = eINSTANCE.getService_FindConclusion();
 
     /**
      * The meta object literal for the '<em><b>Updateby</b></em>' attribute feature.
@@ -2386,14 +2852,6 @@ public interface MyDslPackage extends EPackage
     EReference SERVICE__UPDATE_DATA_MODEL = eINSTANCE.getService_UpdateDataModel();
 
     /**
-     * The meta object literal for the '<em><b>Exception3</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SERVICE__EXCEPTION3 = eINSTANCE.getService_Exception3();
-
-    /**
      * The meta object literal for the '<em><b>Update Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2402,12 +2860,12 @@ public interface MyDslPackage extends EPackage
     EReference SERVICE__UPDATE_METHOD = eINSTANCE.getService_UpdateMethod();
 
     /**
-     * The meta object literal for the '<em><b>Updated Data Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Update Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SERVICE__UPDATED_DATA_MODEL = eINSTANCE.getService_UpdatedDataModel();
+    EReference SERVICE__UPDATE_CONCLUSION = eINSTANCE.getService_UpdateConclusion();
 
     /**
      * The meta object literal for the '<em><b>Deleteby</b></em>' attribute feature.
@@ -2418,6 +2876,14 @@ public interface MyDslPackage extends EPackage
     EAttribute SERVICE__DELETEBY = eINSTANCE.getService_Deleteby();
 
     /**
+     * The meta object literal for the '<em><b>Delete Method</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SERVICE__DELETE_METHOD = eINSTANCE.getService_DeleteMethod();
+
+    /**
      * The meta object literal for the '<em><b>Exception4</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2426,12 +2892,30 @@ public interface MyDslPackage extends EPackage
     EReference SERVICE__EXCEPTION4 = eINSTANCE.getService_Exception4();
 
     /**
-     * The meta object literal for the '<em><b>Delete Method</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ValidationServiceImpl <em>Validation Service</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ValidationServiceImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getValidationService()
+     * @generated
+     */
+    EClass VALIDATION_SERVICE = eINSTANCE.getValidationService();
+
+    /**
+     * The meta object literal for the '<em><b>Rest Model</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SERVICE__DELETE_METHOD = eINSTANCE.getService_DeleteMethod();
+    EReference VALIDATION_SERVICE__REST_MODEL = eINSTANCE.getValidationService_RestModel();
+
+    /**
+     * The meta object literal for the '<em><b>Block</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALIDATION_SERVICE__BLOCK = eINSTANCE.getValidationService_Block();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DataAccessObjectImpl <em>Data Access Object</em>}' class.
@@ -2460,14 +2944,6 @@ public interface MyDslPackage extends EPackage
     EReference DATA_ACCESS_OBJECT__CREATE_DATA_MODEL = eINSTANCE.getDataAccessObject_CreateDataModel();
 
     /**
-     * The meta object literal for the '<em><b>Exception1</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATA_ACCESS_OBJECT__EXCEPTION1 = eINSTANCE.getDataAccessObject_Exception1();
-
-    /**
      * The meta object literal for the '<em><b>Create Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2476,12 +2952,12 @@ public interface MyDslPackage extends EPackage
     EReference DATA_ACCESS_OBJECT__CREATE_METHOD = eINSTANCE.getDataAccessObject_CreateMethod();
 
     /**
-     * The meta object literal for the '<em><b>Created Data Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Create Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DATA_ACCESS_OBJECT__CREATED_DATA_MODEL = eINSTANCE.getDataAccessObject_CreatedDataModel();
+    EReference DATA_ACCESS_OBJECT__CREATE_CONCLUSION = eINSTANCE.getDataAccessObject_CreateConclusion();
 
     /**
      * The meta object literal for the '<em><b>Findby</b></em>' attribute feature.
@@ -2492,14 +2968,6 @@ public interface MyDslPackage extends EPackage
     EAttribute DATA_ACCESS_OBJECT__FINDBY = eINSTANCE.getDataAccessObject_Findby();
 
     /**
-     * The meta object literal for the '<em><b>Exception2</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATA_ACCESS_OBJECT__EXCEPTION2 = eINSTANCE.getDataAccessObject_Exception2();
-
-    /**
      * The meta object literal for the '<em><b>Find Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2508,12 +2976,12 @@ public interface MyDslPackage extends EPackage
     EReference DATA_ACCESS_OBJECT__FIND_METHOD = eINSTANCE.getDataAccessObject_FindMethod();
 
     /**
-     * The meta object literal for the '<em><b>Found Data Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Find Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DATA_ACCESS_OBJECT__FOUND_DATA_MODEL = eINSTANCE.getDataAccessObject_FoundDataModel();
+    EReference DATA_ACCESS_OBJECT__FIND_CONCLUSION = eINSTANCE.getDataAccessObject_FindConclusion();
 
     /**
      * The meta object literal for the '<em><b>Updateby</b></em>' attribute feature.
@@ -2532,14 +3000,6 @@ public interface MyDslPackage extends EPackage
     EReference DATA_ACCESS_OBJECT__UPDATE_DATA_MODEL = eINSTANCE.getDataAccessObject_UpdateDataModel();
 
     /**
-     * The meta object literal for the '<em><b>Exception3</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATA_ACCESS_OBJECT__EXCEPTION3 = eINSTANCE.getDataAccessObject_Exception3();
-
-    /**
      * The meta object literal for the '<em><b>Update Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2548,12 +3008,12 @@ public interface MyDslPackage extends EPackage
     EReference DATA_ACCESS_OBJECT__UPDATE_METHOD = eINSTANCE.getDataAccessObject_UpdateMethod();
 
     /**
-     * The meta object literal for the '<em><b>Updated Data Model</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Update Conclusion</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DATA_ACCESS_OBJECT__UPDATED_DATA_MODEL = eINSTANCE.getDataAccessObject_UpdatedDataModel();
+    EReference DATA_ACCESS_OBJECT__UPDATE_CONCLUSION = eINSTANCE.getDataAccessObject_UpdateConclusion();
 
     /**
      * The meta object literal for the '<em><b>Deleteby</b></em>' attribute feature.
@@ -2564,20 +3024,150 @@ public interface MyDslPackage extends EPackage
     EAttribute DATA_ACCESS_OBJECT__DELETEBY = eINSTANCE.getDataAccessObject_Deleteby();
 
     /**
-     * The meta object literal for the '<em><b>Exception4</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATA_ACCESS_OBJECT__EXCEPTION4 = eINSTANCE.getDataAccessObject_Exception4();
-
-    /**
      * The meta object literal for the '<em><b>Delete Method</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DATA_ACCESS_OBJECT__DELETE_METHOD = eINSTANCE.getDataAccessObject_DeleteMethod();
+
+    /**
+     * The meta object literal for the '<em><b>Exceptions</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DATA_ACCESS_OBJECT__EXCEPTIONS = eINSTANCE.getDataAccessObject_Exceptions();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DataModelMethodConclusionImpl <em>Data Model Method Conclusion</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DataModelMethodConclusionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDataModelMethodConclusion()
+     * @generated
+     */
+    EClass DATA_MODEL_METHOD_CONCLUSION = eINSTANCE.getDataModelMethodConclusion();
+
+    /**
+     * The meta object literal for the '<em><b>Data Model</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DATA_MODEL_METHOD_CONCLUSION__DATA_MODEL = eINSTANCE.getDataModelMethodConclusion_DataModel();
+
+    /**
+     * The meta object literal for the '<em><b>Exceptions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DATA_MODEL_METHOD_CONCLUSION__EXCEPTIONS = eINSTANCE.getDataModelMethodConclusion_Exceptions();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RestModelMethodConclusionImpl <em>Rest Model Method Conclusion</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.RestModelMethodConclusionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRestModelMethodConclusion()
+     * @generated
+     */
+    EClass REST_MODEL_METHOD_CONCLUSION = eINSTANCE.getRestModelMethodConclusion();
+
+    /**
+     * The meta object literal for the '<em><b>Rest Model</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REST_MODEL_METHOD_CONCLUSION__REST_MODEL = eINSTANCE.getRestModelMethodConclusion_RestModel();
+
+    /**
+     * The meta object literal for the '<em><b>Exception</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REST_MODEL_METHOD_CONCLUSION__EXCEPTION = eINSTANCE.getRestModelMethodConclusion_Exception();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RestExceptionListImpl <em>Rest Exception List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.RestExceptionListImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRestExceptionList()
+     * @generated
+     */
+    EClass REST_EXCEPTION_LIST = eINSTANCE.getRestExceptionList();
+
+    /**
+     * The meta object literal for the '<em><b>Exception</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REST_EXCEPTION_LIST__EXCEPTION = eINSTANCE.getRestExceptionList_Exception();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.BaseExceptionImpl <em>Base Exception</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.BaseExceptionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getBaseException()
+     * @generated
+     */
+    EClass BASE_EXCEPTION = eINSTANCE.getBaseException();
+
+    /**
+     * The meta object literal for the '<em><b>Error Code</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BASE_EXCEPTION__ERROR_CODE = eINSTANCE.getBaseException_ErrorCode();
+
+    /**
+     * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BASE_EXCEPTION__MESSAGE = eINSTANCE.getBaseException_Message();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ExceptionMapperImpl <em>Exception Mapper</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ExceptionMapperImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExceptionMapper()
+     * @generated
+     */
+    EClass EXCEPTION_MAPPER = eINSTANCE.getExceptionMapper();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXCEPTION_MAPPER__NAME = eINSTANCE.getExceptionMapper_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Rest Exception</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXCEPTION_MAPPER__REST_EXCEPTION = eINSTANCE.getExceptionMapper_RestException();
+
+    /**
+     * The meta object literal for the '<em><b>Base Exception</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXCEPTION_MAPPER__BASE_EXCEPTION = eINSTANCE.getExceptionMapper_BaseException();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RestExceptionImpl <em>Rest Exception</em>}' class.
@@ -2598,14 +3188,22 @@ public interface MyDslPackage extends EPackage
     EAttribute REST_EXCEPTION__STATUS_CODE = eINSTANCE.getRestException_StatusCode();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.JavaMethodImpl <em>Java Method</em>}' class.
+     * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.JavaMethodImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getJavaMethod()
      * @generated
      */
-    EClass JAVA_METHOD = eINSTANCE.getJavaMethod();
+    EAttribute REST_EXCEPTION__MESSAGE = eINSTANCE.getRestException_Message();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.BlockImpl <em>Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.BlockImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getBlock()
+     * @generated
+     */
+    EClass BLOCK = eINSTANCE.getBlock();
 
     /**
      * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
@@ -2613,7 +3211,7 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute JAVA_METHOD__CODE = eINSTANCE.getJavaMethod_Code();
+    EAttribute BLOCK__CODE = eINSTANCE.getBlock_Code();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.RestStatusCode <em>Rest Status Code</em>}' enum.

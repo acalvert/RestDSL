@@ -17,19 +17,24 @@
         eType="#//Service" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dao" upperBound="-1" eType="#//DataAccessObject"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptionMapper" upperBound="-1"
+        eType="#//ExceptionMapper" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataModel" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//DataModel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//Feature" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RestModel" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//RestModel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//Feature" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MappingModel" eSuperTypes="#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelMapper" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transformation" upperBound="-1"
         eType="#//Transformation" containment="true"/>
   </eClassifiers>
@@ -44,87 +49,118 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Resource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" unique="false"
+        upperBound="-1" eType="#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptionMapper" eType="#//ExceptionMapper"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createRestModel" eType="#//RestModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception1" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="createValService" eType="#//ValidationService"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="createdRestModel" eType="#//RestModel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="findby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception2" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="createConclusion" eType="#//RestModelMethodConclusion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="findby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="findMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="foundRestModel" eType="#//RestModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="findConclusion" eType="#//RestModelMethodConclusion"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateRestModel" eType="#//RestModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception3" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updateValService" eType="#//ValidationService"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="updatedRestModel" eType="#//RestModel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception4" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updateConclusion" eType="#//RestModelMethodConclusion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deleteMethod" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exception4" eType="#//RestExceptionList"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dao" unique="false" upperBound="-1"
+        eType="#//DataAccessObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception1" eType="#//RestException"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="createdDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="findby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception2" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="createConclusion" eType="#//DataModelMethodConclusion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="findby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="findMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="foundDataModel" eType="#//DataModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="findConclusion" eType="#//DataModelMethodConclusion"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception3" eType="#//RestException"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="updatedDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception4" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updateConclusion" eType="#//DataModelMethodConclusion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deleteMethod" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exception4" eType="#//RestExceptionList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidationService">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restModel" eType="#//RestModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataAccessObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception1" eType="#//RestException"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="createdDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="findby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception2" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="createConclusion" eType="#//DataModelMethodConclusion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="findby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="findMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="foundDataModel" eType="#//DataModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="findConclusion" eType="#//DataModelMethodConclusion"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception3" eType="#//RestException"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateMethod" eType="#//Block"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="updatedDataModel" eType="#//DataModel"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exception4" eType="#//RestException"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updateConclusion" eType="#//DataModelMethodConclusion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteby" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deleteMethod" eType="#//Block"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptions" eType="#//RestExceptionList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataModelMethodConclusion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataModel" eType="#//DataModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptions" upperBound="-1"
+        eType="#//RestExceptionList" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RestModelMethodConclusion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restModel" eType="#//RestModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exception" upperBound="-1"
+        eType="#//RestExceptionList" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RestExceptionList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exception" upperBound="-1"
+        eType="#//RestException" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseException">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="errorCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExceptionMapper">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restException" eType="#//RestException"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseException" eType="#//BaseException"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RestException">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="statusCode" eType="#//RestStatusCode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RestStatusCode">
     <eLiterals name="INFORMATIONAL" literal="INFORMATIONAL"/>
@@ -132,6 +168,7 @@
     <eLiterals name="REDIRECTION" value="2" literal="REDIRECTION"/>
     <eLiterals name="CLIENT_ERROR" value="3" literal="CLIENT_ERROR"/>
     <eLiterals name="SERVER_ERROR" value="4" literal="SERVER_ERROR"/>
+    <eLiterals name="NETWORK_ERROR" value="5" literal="NETWORK_ERROR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -77,13 +77,13 @@ public interface MyDslFactory extends EFactory
   RestModel createRestModel();
 
   /**
-   * Returns a new object of class '<em>Mapping Model</em>'.
+   * Returns a new object of class '<em>Model Mapper</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Mapping Model</em>'.
+   * @return a new object of class '<em>Model Mapper</em>'.
    * @generated
    */
-  MappingModel createMappingModel();
+  ModelMapper createModelMapper();
 
   /**
    * Returns a new object of class '<em>Transformation</em>'.
@@ -122,6 +122,15 @@ public interface MyDslFactory extends EFactory
   Service createService();
 
   /**
+   * Returns a new object of class '<em>Validation Service</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Validation Service</em>'.
+   * @generated
+   */
+  ValidationService createValidationService();
+
+  /**
    * Returns a new object of class '<em>Data Access Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -129,6 +138,51 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   DataAccessObject createDataAccessObject();
+
+  /**
+   * Returns a new object of class '<em>Data Model Method Conclusion</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Model Method Conclusion</em>'.
+   * @generated
+   */
+  DataModelMethodConclusion createDataModelMethodConclusion();
+
+  /**
+   * Returns a new object of class '<em>Rest Model Method Conclusion</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rest Model Method Conclusion</em>'.
+   * @generated
+   */
+  RestModelMethodConclusion createRestModelMethodConclusion();
+
+  /**
+   * Returns a new object of class '<em>Rest Exception List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rest Exception List</em>'.
+   * @generated
+   */
+  RestExceptionList createRestExceptionList();
+
+  /**
+   * Returns a new object of class '<em>Base Exception</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Base Exception</em>'.
+   * @generated
+   */
+  BaseException createBaseException();
+
+  /**
+   * Returns a new object of class '<em>Exception Mapper</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Exception Mapper</em>'.
+   * @generated
+   */
+  ExceptionMapper createExceptionMapper();
 
   /**
    * Returns a new object of class '<em>Rest Exception</em>'.
@@ -140,13 +194,13 @@ public interface MyDslFactory extends EFactory
   RestException createRestException();
 
   /**
-   * Returns a new object of class '<em>Java Method</em>'.
+   * Returns a new object of class '<em>Block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Java Method</em>'.
+   * @return a new object of class '<em>Block</em>'.
    * @generated
    */
-  JavaMethod createJavaMethod();
+  Block createBlock();
 
   /**
    * Returns the package supported by this factory.

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.RestException#getStatusCode <em>Status Code</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.RestException#getMessage <em>Message</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestException()
@@ -50,5 +51,31 @@ public interface RestException extends EObject
    * @generated
    */
   void setStatusCode(RestStatusCode value);
+
+  /**
+   * Returns the value of the '<em><b>Message</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Message</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Message</em>' attribute.
+   * @see #setMessage(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestException_Message()
+   * @model
+   * @generated
+   */
+  String getMessage();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.RestException#getMessage <em>Message</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Message</em>' attribute.
+   * @see #getMessage()
+   * @generated
+   */
+  void setMessage(String value);
 
 } // RestException

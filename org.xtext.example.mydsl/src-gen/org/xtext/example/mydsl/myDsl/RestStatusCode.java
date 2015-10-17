@@ -67,7 +67,17 @@ public enum RestStatusCode implements Enumerator
    * @generated
    * @ordered
    */
-  SERVER_ERROR(4, "SERVER_ERROR", "SERVER_ERROR");
+  SERVER_ERROR(4, "SERVER_ERROR", "SERVER_ERROR"),
+
+  /**
+   * The '<em><b>NETWORK ERROR</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #NETWORK_ERROR_VALUE
+   * @generated
+   * @ordered
+   */
+  NETWORK_ERROR(5, "NETWORK_ERROR", "NETWORK_ERROR");
 
   /**
    * The '<em><b>INFORMATIONAL</b></em>' literal value.
@@ -145,6 +155,21 @@ public enum RestStatusCode implements Enumerator
   public static final int SERVER_ERROR_VALUE = 4;
 
   /**
+   * The '<em><b>NETWORK ERROR</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>NETWORK ERROR</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #NETWORK_ERROR
+   * @model
+   * @generated
+   * @ordered
+   */
+  public static final int NETWORK_ERROR_VALUE = 5;
+
+  /**
    * An array of all the '<em><b>Rest Status Code</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -158,6 +183,7 @@ public enum RestStatusCode implements Enumerator
       REDIRECTION,
       CLIENT_ERROR,
       SERVER_ERROR,
+      NETWORK_ERROR,
     };
 
   /**
@@ -227,6 +253,7 @@ public enum RestStatusCode implements Enumerator
       case REDIRECTION_VALUE: return REDIRECTION;
       case CLIENT_ERROR_VALUE: return CLIENT_ERROR;
       case SERVER_ERROR_VALUE: return SERVER_ERROR;
+      case NETWORK_ERROR_VALUE: return NETWORK_ERROR;
     }
     return null;
   }

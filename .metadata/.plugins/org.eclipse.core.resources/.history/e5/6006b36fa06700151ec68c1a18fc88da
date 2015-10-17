@@ -1,5 +1,0 @@
-package edu.auburn.oaccrefac.core.transformations;
-
-public class SourceRegionAlteration<T extends SourceRegionCheck<?>> extends SourceAlteration<T> {
-
-}

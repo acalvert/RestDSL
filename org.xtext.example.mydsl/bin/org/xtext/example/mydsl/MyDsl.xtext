@@ -2,7 +2,7 @@ grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
-import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+
 
 DomainModel:
 	(elements += Type)*
@@ -10,13 +10,16 @@ DomainModel:
 ;
 	
 Type:
-	PrimitiveType | DataModel | RestModel | MappingModel
+	PrimitiveType | DataModel | RestModel | ModelMapper
 ;
 
 RestAPI:
+	'<BEGIN_REST_API>'
 	(resource = Resource)
 	(service += Service)*
 	(dao += DataAccessObject)*
+	(exceptionMapper += ExceptionMapper)*
+	'<END_REST_API>'
 ;
 
 PrimitiveType:
@@ -24,19 +27,22 @@ PrimitiveType:
 ;
 
 DataModel:
-	'dataModel' name = ID ('extends' superType = [DataModel])? '{'
+	'DataModel' name = ID ('extends' superType = [DataModel])? '{'
+		'id' ':' id = INTEGER
 		(features += Feature)*
 	'}'
 ;
 
 RestModel:
-	'restModel' name = ID ('extends' superType = [RestModel])? '{'
+	'RestModel' name = ID ('extends' superType = [RestModel])? '{'
+		'id' ':' id = INTEGER
 		(features += Feature)*
+		'self' ':' self = STRING
 	'}'
 ;
 
-MappingModel:
-	'mappingModel' name = ID '{'
+ModelMapper:
+	'ModelMapper' name = ID '{'
 		(transformation += Transformation)*
 	'}'
 ;
@@ -50,68 +56,109 @@ Feature:
 ;
 
 Resource:
-	'Resource' name = ID 
-	'create' '(' createRestModel = [RestModel] ')' 'throws' exception1 = RestException '{'
-		(createMethod = Block)
-		'return' createdRestModel = [RestModel]
-	'}'
-	'find' '(' findby = INTEGER ')' 'throws' exception2 = RestException '{' 
-		(findMethod = Block)
-		'return' foundRestModel = [RestModel]
-	'}'
-	'update' '(' updateby = INTEGER ',' updateRestModel = [RestModel] ')' 'throws' exception3 = RestException  '{'
-		(updateMethod = Block)
-		'return' updatedRestModel = [RestModel]
-	'}'
-	'delete' '(' deleteby = INTEGER ')' 'throws' exception4 = RestException '{'
-		(deleteMethod = Block)
+	'Resource' name = ID '{'
+		(service += [Service])+
+		(exceptionMapper = [ExceptionMapper])
+		'create' '(' createRestModel = [RestModel] ')' '{'
+			(createValService = ValidationService)
+			(createMethod = Block)
+			createConclusion = RestModelMethodConclusion
+		'}'
+		'find' '(' findby = INTEGER ')' '{' 
+			(findMethod = Block)
+			findConclusion = RestModelMethodConclusion
+		'}'
+		'update' '(' updateby = INTEGER ',' updateRestModel = [RestModel] ')' '{'
+			(updateValService = ValidationService)
+			(updateMethod = Block)
+			updateConclusion = RestModelMethodConclusion
+		'}'
+		'delete' '(' deleteby = INTEGER ')' '{'
+			(deleteMethod = Block)
+			('throw' exception4 = RestExceptionList)?
+		'}'
 	'}'
 ;
 
 Service:
-	'Service' name = ID 
-	'create' '(' createDataModel = [DataModel] ')' 'throws' exception1 = RestException '{'
-		(createMethod = Block)
-		'return' createdDataModel = [DataModel]
+	'Service' name = ID '{'
+		(dao += [DataAccessObject])+
+		'create' '(' createDataModel = [DataModel] ')' '{'
+			(createMethod = Block)
+			createConclusion = DataModelMethodConclusion
+		'}'
+		'find' '(' findby = INTEGER ')' '{' 
+			(findMethod = Block)
+			findConclusion = DataModelMethodConclusion
+		'}'
+		'update' '(' updateby = INTEGER ',' updateDataModel = [DataModel] ')' '{'
+			(updateMethod = Block)
+			updateConclusion = DataModelMethodConclusion
+		'}'
+		'delete' '(' deleteby = INTEGER ')' '{'
+			(deleteMethod = Block)
+			('throw' exception4 = RestExceptionList)?
+		'}'
 	'}'
-	'find' '(' findby = INTEGER ')' 'throws' exception2 = RestException '{' 
-		(findMethod = Block)
-		'return' foundDataModel = [DataModel]
-	'}'
-	'update' '(' updateby = INTEGER ',' updateDataModel = [DataModel] ')' 'throws' exception3 = RestException  '{'
-		(updateMethod = Block)
-		'return' updatedDataModel = [DataModel]
-	'}'
-	'delete' '(' deleteby = INTEGER ')' 'throws' exception4 = RestException '{'
-		(deleteMethod = Block)
+;
+
+ValidationService:
+	'validate' '(' restModel = [RestModel] ')' '{'
+		block = Block
 	'}'
 ;
 
 DataAccessObject:
-	'DAO' name = ID 
-	'create' '(' createDataModel = [DataModel] ')' 'throws' exception1 = RestException '{'
-		(createMethod = Block)
-		'return' createdDataModel = [DataModel]
-	'}'
-	'find' '(' findby = INTEGER ')' 'throws' exception2 = RestException '{' 
-		(findMethod = Block)
-		'return' foundDataModel = [DataModel]
-	'}'
-	'update' '(' updateby = INTEGER ',' updateDataModel = [DataModel] ')' 'throws' exception3 = RestException  '{'
-		(updateMethod = Block)
-		'return' updatedDataModel = [DataModel]
-	'}'
-	'delete' '(' deleteby = INTEGER ')' 'throws' exception4 = RestException '{'
-		(deleteMethod = Block)
+	'DAO' name = ID '{'
+		'create' '(' createDataModel = [DataModel] ')' '{'
+			(createMethod = Block)
+			createConclusion = DataModelMethodConclusion
+		'}'
+		'find' '(' findby = INTEGER ')' '{' 
+			(findMethod = Block)
+			findConclusion = DataModelMethodConclusion
+		'}'
+		'update' '(' updateby = INTEGER ',' updateDataModel = [DataModel] ')' '{'
+			(updateMethod = Block)
+			updateConclusion = DataModelMethodConclusion
+		'}'
+		'delete' '(' deleteby = INTEGER ')' '{'
+			(deleteMethod = Block)
+			('throw' exceptions = RestExceptionList)?
+		'}'
 	'}'
 ;
 
+DataModelMethodConclusion:
+	('return' dataModel = [DataModel]) | ('throw' exceptions += RestExceptionList)
+;
+
+RestModelMethodConclusion:
+	('return' restModel = [RestModel]) | ('throw' exception += RestExceptionList)
+;
+
+RestExceptionList:
+	(exception += RestException)+
+;
+
+BaseException:
+	'[' errorCode = STRING ',' message = STRING ']'
+;
+
+ExceptionMapper:
+	'ExceptionMapper' name = ID '(' (restException = RestException) '<=>' (baseException = BaseException) ')'
+;
+
 RestException:
-	statusCode = RestStatusCode
+	'[' statusCode = RestStatusCode ','	message = STRING ']'
 ;
 
 terminal INTEGER:
 	('0'..'9')+
+;
+
+terminal STRING:
+	'\"'('0'..'9'|'A'..'Z'|'a'..'z'|'_'|':'|'/'|'.'|' ')*'\"'
 ;
 
 enum RestStatusCode:
@@ -124,7 +171,7 @@ enum RestStatusCode:
 ;
 
 Block:
-	//will be expanded later to include actual Java syntax for a block of statements
+	//could be expanded later to include actual Java syntax for a block of statements
 	//<block> ::= { <block-statements>? }
 	code = STRING
 ;

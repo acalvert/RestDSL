@@ -2,8 +2,12 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -11,11 +15,17 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.mydsl.myDsl.JavaMethod;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import org.xtext.example.mydsl.myDsl.Block;
+import org.xtext.example.mydsl.myDsl.ExceptionMapper;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Resource;
-import org.xtext.example.mydsl.myDsl.RestException;
+import org.xtext.example.mydsl.myDsl.RestExceptionList;
 import org.xtext.example.mydsl.myDsl.RestModel;
+import org.xtext.example.mydsl.myDsl.RestModelMethodConclusion;
+import org.xtext.example.mydsl.myDsl.Service;
+import org.xtext.example.mydsl.myDsl.ValidationService;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,22 +36,23 @@ import org.xtext.example.mydsl.myDsl.RestModel;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getService <em>Service</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getExceptionMapper <em>Exception Mapper</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getCreateRestModel <em>Create Rest Model</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getException1 <em>Exception1</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getCreateValService <em>Create Val Service</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getCreateMethod <em>Create Method</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getCreatedRestModel <em>Created Rest Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getCreateConclusion <em>Create Conclusion</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getFindby <em>Findby</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getException2 <em>Exception2</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getFindMethod <em>Find Method</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getFoundRestModel <em>Found Rest Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getFindConclusion <em>Find Conclusion</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getUpdateby <em>Updateby</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getUpdateRestModel <em>Update Rest Model</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getException3 <em>Exception3</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getUpdateValService <em>Update Val Service</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getUpdateMethod <em>Update Method</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getUpdatedRestModel <em>Updated Rest Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getUpdateConclusion <em>Update Conclusion</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getDeleteby <em>Deleteby</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getException4 <em>Exception4</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getDeleteMethod <em>Delete Method</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ResourceImpl#getException4 <em>Exception4</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,6 +80,26 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getService() <em>Service</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getService()
+   * @generated
+   * @ordered
+   */
+  protected EList<Service> service;
+
+  /**
+   * The cached value of the '{@link #getExceptionMapper() <em>Exception Mapper</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExceptionMapper()
+   * @generated
+   * @ordered
+   */
+  protected ExceptionMapper exceptionMapper;
+
+  /**
    * The cached value of the '{@link #getCreateRestModel() <em>Create Rest Model</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -79,14 +110,14 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
   protected RestModel createRestModel;
 
   /**
-   * The cached value of the '{@link #getException1() <em>Exception1</em>}' containment reference.
+   * The cached value of the '{@link #getCreateValService() <em>Create Val Service</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getException1()
+   * @see #getCreateValService()
    * @generated
    * @ordered
    */
-  protected RestException exception1;
+  protected ValidationService createValService;
 
   /**
    * The cached value of the '{@link #getCreateMethod() <em>Create Method</em>}' containment reference.
@@ -96,17 +127,17 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * @generated
    * @ordered
    */
-  protected JavaMethod createMethod;
+  protected Block createMethod;
 
   /**
-   * The cached value of the '{@link #getCreatedRestModel() <em>Created Rest Model</em>}' reference.
+   * The cached value of the '{@link #getCreateConclusion() <em>Create Conclusion</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getCreatedRestModel()
+   * @see #getCreateConclusion()
    * @generated
    * @ordered
    */
-  protected RestModel createdRestModel;
+  protected RestModelMethodConclusion createConclusion;
 
   /**
    * The default value of the '{@link #getFindby() <em>Findby</em>}' attribute.
@@ -129,16 +160,6 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
   protected String findby = FINDBY_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getException2() <em>Exception2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getException2()
-   * @generated
-   * @ordered
-   */
-  protected RestException exception2;
-
-  /**
    * The cached value of the '{@link #getFindMethod() <em>Find Method</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -146,17 +167,17 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * @generated
    * @ordered
    */
-  protected JavaMethod findMethod;
+  protected Block findMethod;
 
   /**
-   * The cached value of the '{@link #getFoundRestModel() <em>Found Rest Model</em>}' reference.
+   * The cached value of the '{@link #getFindConclusion() <em>Find Conclusion</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFoundRestModel()
+   * @see #getFindConclusion()
    * @generated
    * @ordered
    */
-  protected RestModel foundRestModel;
+  protected RestModelMethodConclusion findConclusion;
 
   /**
    * The default value of the '{@link #getUpdateby() <em>Updateby</em>}' attribute.
@@ -189,14 +210,14 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
   protected RestModel updateRestModel;
 
   /**
-   * The cached value of the '{@link #getException3() <em>Exception3</em>}' containment reference.
+   * The cached value of the '{@link #getUpdateValService() <em>Update Val Service</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getException3()
+   * @see #getUpdateValService()
    * @generated
    * @ordered
    */
-  protected RestException exception3;
+  protected ValidationService updateValService;
 
   /**
    * The cached value of the '{@link #getUpdateMethod() <em>Update Method</em>}' containment reference.
@@ -206,17 +227,17 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * @generated
    * @ordered
    */
-  protected JavaMethod updateMethod;
+  protected Block updateMethod;
 
   /**
-   * The cached value of the '{@link #getUpdatedRestModel() <em>Updated Rest Model</em>}' reference.
+   * The cached value of the '{@link #getUpdateConclusion() <em>Update Conclusion</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getUpdatedRestModel()
+   * @see #getUpdateConclusion()
    * @generated
    * @ordered
    */
-  protected RestModel updatedRestModel;
+  protected RestModelMethodConclusion updateConclusion;
 
   /**
    * The default value of the '{@link #getDeleteby() <em>Deleteby</em>}' attribute.
@@ -239,16 +260,6 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
   protected String deleteby = DELETEBY_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getException4() <em>Exception4</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getException4()
-   * @generated
-   * @ordered
-   */
-  protected RestException exception4;
-
-  /**
    * The cached value of the '{@link #getDeleteMethod() <em>Delete Method</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -256,7 +267,17 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * @generated
    * @ordered
    */
-  protected JavaMethod deleteMethod;
+  protected Block deleteMethod;
+
+  /**
+   * The cached value of the '{@link #getException4() <em>Exception4</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getException4()
+   * @generated
+   * @ordered
+   */
+  protected RestExceptionList exception4;
 
   /**
    * <!-- begin-user-doc -->
@@ -307,6 +328,63 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Service> getService()
+  {
+    if (service == null)
+    {
+      service = new EObjectResolvingEList<Service>(Service.class, this, MyDslPackage.RESOURCE__SERVICE);
+    }
+    return service;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExceptionMapper getExceptionMapper()
+  {
+    if (exceptionMapper != null && exceptionMapper.eIsProxy())
+    {
+      InternalEObject oldExceptionMapper = (InternalEObject)exceptionMapper;
+      exceptionMapper = (ExceptionMapper)eResolveProxy(oldExceptionMapper);
+      if (exceptionMapper != oldExceptionMapper)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.RESOURCE__EXCEPTION_MAPPER, oldExceptionMapper, exceptionMapper));
+      }
+    }
+    return exceptionMapper;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExceptionMapper basicGetExceptionMapper()
+  {
+    return exceptionMapper;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExceptionMapper(ExceptionMapper newExceptionMapper)
+  {
+    ExceptionMapper oldExceptionMapper = exceptionMapper;
+    exceptionMapper = newExceptionMapper;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION_MAPPER, oldExceptionMapper, exceptionMapper));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public RestModel getCreateRestModel()
   {
     if (createRestModel != null && createRestModel.eIsProxy())
@@ -350,9 +428,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestException getException1()
+  public ValidationService getCreateValService()
   {
-    return exception1;
+    return createValService;
   }
 
   /**
@@ -360,13 +438,13 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetException1(RestException newException1, NotificationChain msgs)
+  public NotificationChain basicSetCreateValService(ValidationService newCreateValService, NotificationChain msgs)
   {
-    RestException oldException1 = exception1;
-    exception1 = newException1;
+    ValidationService oldCreateValService = createValService;
+    createValService = newCreateValService;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION1, oldException1, newException1);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__CREATE_VAL_SERVICE, oldCreateValService, newCreateValService);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -377,20 +455,20 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setException1(RestException newException1)
+  public void setCreateValService(ValidationService newCreateValService)
   {
-    if (newException1 != exception1)
+    if (newCreateValService != createValService)
     {
       NotificationChain msgs = null;
-      if (exception1 != null)
-        msgs = ((InternalEObject)exception1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION1, null, msgs);
-      if (newException1 != null)
-        msgs = ((InternalEObject)newException1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION1, null, msgs);
-      msgs = basicSetException1(newException1, msgs);
+      if (createValService != null)
+        msgs = ((InternalEObject)createValService).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__CREATE_VAL_SERVICE, null, msgs);
+      if (newCreateValService != null)
+        msgs = ((InternalEObject)newCreateValService).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__CREATE_VAL_SERVICE, null, msgs);
+      msgs = basicSetCreateValService(newCreateValService, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION1, newException1, newException1));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__CREATE_VAL_SERVICE, newCreateValService, newCreateValService));
   }
 
   /**
@@ -398,7 +476,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public JavaMethod getCreateMethod()
+  public Block getCreateMethod()
   {
     return createMethod;
   }
@@ -408,9 +486,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCreateMethod(JavaMethod newCreateMethod, NotificationChain msgs)
+  public NotificationChain basicSetCreateMethod(Block newCreateMethod, NotificationChain msgs)
   {
-    JavaMethod oldCreateMethod = createMethod;
+    Block oldCreateMethod = createMethod;
     createMethod = newCreateMethod;
     if (eNotificationRequired())
     {
@@ -425,7 +503,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCreateMethod(JavaMethod newCreateMethod)
+  public void setCreateMethod(Block newCreateMethod)
   {
     if (newCreateMethod != createMethod)
     {
@@ -446,19 +524,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestModel getCreatedRestModel()
+  public RestModelMethodConclusion getCreateConclusion()
   {
-    if (createdRestModel != null && createdRestModel.eIsProxy())
-    {
-      InternalEObject oldCreatedRestModel = (InternalEObject)createdRestModel;
-      createdRestModel = (RestModel)eResolveProxy(oldCreatedRestModel);
-      if (createdRestModel != oldCreatedRestModel)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.RESOURCE__CREATED_REST_MODEL, oldCreatedRestModel, createdRestModel));
-      }
-    }
-    return createdRestModel;
+    return createConclusion;
   }
 
   /**
@@ -466,22 +534,37 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestModel basicGetCreatedRestModel()
+  public NotificationChain basicSetCreateConclusion(RestModelMethodConclusion newCreateConclusion, NotificationChain msgs)
   {
-    return createdRestModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setCreatedRestModel(RestModel newCreatedRestModel)
-  {
-    RestModel oldCreatedRestModel = createdRestModel;
-    createdRestModel = newCreatedRestModel;
+    RestModelMethodConclusion oldCreateConclusion = createConclusion;
+    createConclusion = newCreateConclusion;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__CREATED_REST_MODEL, oldCreatedRestModel, createdRestModel));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__CREATE_CONCLUSION, oldCreateConclusion, newCreateConclusion);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCreateConclusion(RestModelMethodConclusion newCreateConclusion)
+  {
+    if (newCreateConclusion != createConclusion)
+    {
+      NotificationChain msgs = null;
+      if (createConclusion != null)
+        msgs = ((InternalEObject)createConclusion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__CREATE_CONCLUSION, null, msgs);
+      if (newCreateConclusion != null)
+        msgs = ((InternalEObject)newCreateConclusion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__CREATE_CONCLUSION, null, msgs);
+      msgs = basicSetCreateConclusion(newCreateConclusion, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__CREATE_CONCLUSION, newCreateConclusion, newCreateConclusion));
   }
 
   /**
@@ -512,55 +595,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestException getException2()
-  {
-    return exception2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetException2(RestException newException2, NotificationChain msgs)
-  {
-    RestException oldException2 = exception2;
-    exception2 = newException2;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION2, oldException2, newException2);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setException2(RestException newException2)
-  {
-    if (newException2 != exception2)
-    {
-      NotificationChain msgs = null;
-      if (exception2 != null)
-        msgs = ((InternalEObject)exception2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION2, null, msgs);
-      if (newException2 != null)
-        msgs = ((InternalEObject)newException2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION2, null, msgs);
-      msgs = basicSetException2(newException2, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION2, newException2, newException2));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JavaMethod getFindMethod()
+  public Block getFindMethod()
   {
     return findMethod;
   }
@@ -570,9 +605,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFindMethod(JavaMethod newFindMethod, NotificationChain msgs)
+  public NotificationChain basicSetFindMethod(Block newFindMethod, NotificationChain msgs)
   {
-    JavaMethod oldFindMethod = findMethod;
+    Block oldFindMethod = findMethod;
     findMethod = newFindMethod;
     if (eNotificationRequired())
     {
@@ -587,7 +622,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFindMethod(JavaMethod newFindMethod)
+  public void setFindMethod(Block newFindMethod)
   {
     if (newFindMethod != findMethod)
     {
@@ -608,19 +643,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestModel getFoundRestModel()
+  public RestModelMethodConclusion getFindConclusion()
   {
-    if (foundRestModel != null && foundRestModel.eIsProxy())
-    {
-      InternalEObject oldFoundRestModel = (InternalEObject)foundRestModel;
-      foundRestModel = (RestModel)eResolveProxy(oldFoundRestModel);
-      if (foundRestModel != oldFoundRestModel)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.RESOURCE__FOUND_REST_MODEL, oldFoundRestModel, foundRestModel));
-      }
-    }
-    return foundRestModel;
+    return findConclusion;
   }
 
   /**
@@ -628,22 +653,37 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestModel basicGetFoundRestModel()
+  public NotificationChain basicSetFindConclusion(RestModelMethodConclusion newFindConclusion, NotificationChain msgs)
   {
-    return foundRestModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFoundRestModel(RestModel newFoundRestModel)
-  {
-    RestModel oldFoundRestModel = foundRestModel;
-    foundRestModel = newFoundRestModel;
+    RestModelMethodConclusion oldFindConclusion = findConclusion;
+    findConclusion = newFindConclusion;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__FOUND_REST_MODEL, oldFoundRestModel, foundRestModel));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__FIND_CONCLUSION, oldFindConclusion, newFindConclusion);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFindConclusion(RestModelMethodConclusion newFindConclusion)
+  {
+    if (newFindConclusion != findConclusion)
+    {
+      NotificationChain msgs = null;
+      if (findConclusion != null)
+        msgs = ((InternalEObject)findConclusion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__FIND_CONCLUSION, null, msgs);
+      if (newFindConclusion != null)
+        msgs = ((InternalEObject)newFindConclusion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__FIND_CONCLUSION, null, msgs);
+      msgs = basicSetFindConclusion(newFindConclusion, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__FIND_CONCLUSION, newFindConclusion, newFindConclusion));
   }
 
   /**
@@ -717,9 +757,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestException getException3()
+  public ValidationService getUpdateValService()
   {
-    return exception3;
+    return updateValService;
   }
 
   /**
@@ -727,13 +767,13 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetException3(RestException newException3, NotificationChain msgs)
+  public NotificationChain basicSetUpdateValService(ValidationService newUpdateValService, NotificationChain msgs)
   {
-    RestException oldException3 = exception3;
-    exception3 = newException3;
+    ValidationService oldUpdateValService = updateValService;
+    updateValService = newUpdateValService;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION3, oldException3, newException3);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE, oldUpdateValService, newUpdateValService);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -744,20 +784,20 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setException3(RestException newException3)
+  public void setUpdateValService(ValidationService newUpdateValService)
   {
-    if (newException3 != exception3)
+    if (newUpdateValService != updateValService)
     {
       NotificationChain msgs = null;
-      if (exception3 != null)
-        msgs = ((InternalEObject)exception3).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION3, null, msgs);
-      if (newException3 != null)
-        msgs = ((InternalEObject)newException3).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION3, null, msgs);
-      msgs = basicSetException3(newException3, msgs);
+      if (updateValService != null)
+        msgs = ((InternalEObject)updateValService).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE, null, msgs);
+      if (newUpdateValService != null)
+        msgs = ((InternalEObject)newUpdateValService).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE, null, msgs);
+      msgs = basicSetUpdateValService(newUpdateValService, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION3, newException3, newException3));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE, newUpdateValService, newUpdateValService));
   }
 
   /**
@@ -765,7 +805,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public JavaMethod getUpdateMethod()
+  public Block getUpdateMethod()
   {
     return updateMethod;
   }
@@ -775,9 +815,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetUpdateMethod(JavaMethod newUpdateMethod, NotificationChain msgs)
+  public NotificationChain basicSetUpdateMethod(Block newUpdateMethod, NotificationChain msgs)
   {
-    JavaMethod oldUpdateMethod = updateMethod;
+    Block oldUpdateMethod = updateMethod;
     updateMethod = newUpdateMethod;
     if (eNotificationRequired())
     {
@@ -792,7 +832,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setUpdateMethod(JavaMethod newUpdateMethod)
+  public void setUpdateMethod(Block newUpdateMethod)
   {
     if (newUpdateMethod != updateMethod)
     {
@@ -813,19 +853,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestModel getUpdatedRestModel()
+  public RestModelMethodConclusion getUpdateConclusion()
   {
-    if (updatedRestModel != null && updatedRestModel.eIsProxy())
-    {
-      InternalEObject oldUpdatedRestModel = (InternalEObject)updatedRestModel;
-      updatedRestModel = (RestModel)eResolveProxy(oldUpdatedRestModel);
-      if (updatedRestModel != oldUpdatedRestModel)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.RESOURCE__UPDATED_REST_MODEL, oldUpdatedRestModel, updatedRestModel));
-      }
-    }
-    return updatedRestModel;
+    return updateConclusion;
   }
 
   /**
@@ -833,22 +863,37 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestModel basicGetUpdatedRestModel()
+  public NotificationChain basicSetUpdateConclusion(RestModelMethodConclusion newUpdateConclusion, NotificationChain msgs)
   {
-    return updatedRestModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setUpdatedRestModel(RestModel newUpdatedRestModel)
-  {
-    RestModel oldUpdatedRestModel = updatedRestModel;
-    updatedRestModel = newUpdatedRestModel;
+    RestModelMethodConclusion oldUpdateConclusion = updateConclusion;
+    updateConclusion = newUpdateConclusion;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__UPDATED_REST_MODEL, oldUpdatedRestModel, updatedRestModel));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__UPDATE_CONCLUSION, oldUpdateConclusion, newUpdateConclusion);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setUpdateConclusion(RestModelMethodConclusion newUpdateConclusion)
+  {
+    if (newUpdateConclusion != updateConclusion)
+    {
+      NotificationChain msgs = null;
+      if (updateConclusion != null)
+        msgs = ((InternalEObject)updateConclusion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__UPDATE_CONCLUSION, null, msgs);
+      if (newUpdateConclusion != null)
+        msgs = ((InternalEObject)newUpdateConclusion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__UPDATE_CONCLUSION, null, msgs);
+      msgs = basicSetUpdateConclusion(newUpdateConclusion, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__UPDATE_CONCLUSION, newUpdateConclusion, newUpdateConclusion));
   }
 
   /**
@@ -879,55 +924,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public RestException getException4()
-  {
-    return exception4;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetException4(RestException newException4, NotificationChain msgs)
-  {
-    RestException oldException4 = exception4;
-    exception4 = newException4;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION4, oldException4, newException4);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setException4(RestException newException4)
-  {
-    if (newException4 != exception4)
-    {
-      NotificationChain msgs = null;
-      if (exception4 != null)
-        msgs = ((InternalEObject)exception4).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION4, null, msgs);
-      if (newException4 != null)
-        msgs = ((InternalEObject)newException4).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION4, null, msgs);
-      msgs = basicSetException4(newException4, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION4, newException4, newException4));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JavaMethod getDeleteMethod()
+  public Block getDeleteMethod()
   {
     return deleteMethod;
   }
@@ -937,9 +934,9 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDeleteMethod(JavaMethod newDeleteMethod, NotificationChain msgs)
+  public NotificationChain basicSetDeleteMethod(Block newDeleteMethod, NotificationChain msgs)
   {
-    JavaMethod oldDeleteMethod = deleteMethod;
+    Block oldDeleteMethod = deleteMethod;
     deleteMethod = newDeleteMethod;
     if (eNotificationRequired())
     {
@@ -954,7 +951,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDeleteMethod(JavaMethod newDeleteMethod)
+  public void setDeleteMethod(Block newDeleteMethod)
   {
     if (newDeleteMethod != deleteMethod)
     {
@@ -975,27 +972,79 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
+  public RestExceptionList getException4()
+  {
+    return exception4;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetException4(RestExceptionList newException4, NotificationChain msgs)
+  {
+    RestExceptionList oldException4 = exception4;
+    exception4 = newException4;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION4, oldException4, newException4);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setException4(RestExceptionList newException4)
+  {
+    if (newException4 != exception4)
+    {
+      NotificationChain msgs = null;
+      if (exception4 != null)
+        msgs = ((InternalEObject)exception4).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION4, null, msgs);
+      if (newException4 != null)
+        msgs = ((InternalEObject)newException4).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.RESOURCE__EXCEPTION4, null, msgs);
+      msgs = basicSetException4(newException4, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.RESOURCE__EXCEPTION4, newException4, newException4));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
-      case MyDslPackage.RESOURCE__EXCEPTION1:
-        return basicSetException1(null, msgs);
+      case MyDslPackage.RESOURCE__CREATE_VAL_SERVICE:
+        return basicSetCreateValService(null, msgs);
       case MyDslPackage.RESOURCE__CREATE_METHOD:
         return basicSetCreateMethod(null, msgs);
-      case MyDslPackage.RESOURCE__EXCEPTION2:
-        return basicSetException2(null, msgs);
+      case MyDslPackage.RESOURCE__CREATE_CONCLUSION:
+        return basicSetCreateConclusion(null, msgs);
       case MyDslPackage.RESOURCE__FIND_METHOD:
         return basicSetFindMethod(null, msgs);
-      case MyDslPackage.RESOURCE__EXCEPTION3:
-        return basicSetException3(null, msgs);
+      case MyDslPackage.RESOURCE__FIND_CONCLUSION:
+        return basicSetFindConclusion(null, msgs);
+      case MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE:
+        return basicSetUpdateValService(null, msgs);
       case MyDslPackage.RESOURCE__UPDATE_METHOD:
         return basicSetUpdateMethod(null, msgs);
-      case MyDslPackage.RESOURCE__EXCEPTION4:
-        return basicSetException4(null, msgs);
+      case MyDslPackage.RESOURCE__UPDATE_CONCLUSION:
+        return basicSetUpdateConclusion(null, msgs);
       case MyDslPackage.RESOURCE__DELETE_METHOD:
         return basicSetDeleteMethod(null, msgs);
+      case MyDslPackage.RESOURCE__EXCEPTION4:
+        return basicSetException4(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -1012,43 +1061,43 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
     {
       case MyDslPackage.RESOURCE__NAME:
         return getName();
+      case MyDslPackage.RESOURCE__SERVICE:
+        return getService();
+      case MyDslPackage.RESOURCE__EXCEPTION_MAPPER:
+        if (resolve) return getExceptionMapper();
+        return basicGetExceptionMapper();
       case MyDslPackage.RESOURCE__CREATE_REST_MODEL:
         if (resolve) return getCreateRestModel();
         return basicGetCreateRestModel();
-      case MyDslPackage.RESOURCE__EXCEPTION1:
-        return getException1();
+      case MyDslPackage.RESOURCE__CREATE_VAL_SERVICE:
+        return getCreateValService();
       case MyDslPackage.RESOURCE__CREATE_METHOD:
         return getCreateMethod();
-      case MyDslPackage.RESOURCE__CREATED_REST_MODEL:
-        if (resolve) return getCreatedRestModel();
-        return basicGetCreatedRestModel();
+      case MyDslPackage.RESOURCE__CREATE_CONCLUSION:
+        return getCreateConclusion();
       case MyDslPackage.RESOURCE__FINDBY:
         return getFindby();
-      case MyDslPackage.RESOURCE__EXCEPTION2:
-        return getException2();
       case MyDslPackage.RESOURCE__FIND_METHOD:
         return getFindMethod();
-      case MyDslPackage.RESOURCE__FOUND_REST_MODEL:
-        if (resolve) return getFoundRestModel();
-        return basicGetFoundRestModel();
+      case MyDslPackage.RESOURCE__FIND_CONCLUSION:
+        return getFindConclusion();
       case MyDslPackage.RESOURCE__UPDATEBY:
         return getUpdateby();
       case MyDslPackage.RESOURCE__UPDATE_REST_MODEL:
         if (resolve) return getUpdateRestModel();
         return basicGetUpdateRestModel();
-      case MyDslPackage.RESOURCE__EXCEPTION3:
-        return getException3();
+      case MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE:
+        return getUpdateValService();
       case MyDslPackage.RESOURCE__UPDATE_METHOD:
         return getUpdateMethod();
-      case MyDslPackage.RESOURCE__UPDATED_REST_MODEL:
-        if (resolve) return getUpdatedRestModel();
-        return basicGetUpdatedRestModel();
+      case MyDslPackage.RESOURCE__UPDATE_CONCLUSION:
+        return getUpdateConclusion();
       case MyDslPackage.RESOURCE__DELETEBY:
         return getDeleteby();
-      case MyDslPackage.RESOURCE__EXCEPTION4:
-        return getException4();
       case MyDslPackage.RESOURCE__DELETE_METHOD:
         return getDeleteMethod();
+      case MyDslPackage.RESOURCE__EXCEPTION4:
+        return getException4();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -1058,6 +1107,7 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -1066,29 +1116,33 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
       case MyDslPackage.RESOURCE__NAME:
         setName((String)newValue);
         return;
+      case MyDslPackage.RESOURCE__SERVICE:
+        getService().clear();
+        getService().addAll((Collection<? extends Service>)newValue);
+        return;
+      case MyDslPackage.RESOURCE__EXCEPTION_MAPPER:
+        setExceptionMapper((ExceptionMapper)newValue);
+        return;
       case MyDslPackage.RESOURCE__CREATE_REST_MODEL:
         setCreateRestModel((RestModel)newValue);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION1:
-        setException1((RestException)newValue);
+      case MyDslPackage.RESOURCE__CREATE_VAL_SERVICE:
+        setCreateValService((ValidationService)newValue);
         return;
       case MyDslPackage.RESOURCE__CREATE_METHOD:
-        setCreateMethod((JavaMethod)newValue);
+        setCreateMethod((Block)newValue);
         return;
-      case MyDslPackage.RESOURCE__CREATED_REST_MODEL:
-        setCreatedRestModel((RestModel)newValue);
+      case MyDslPackage.RESOURCE__CREATE_CONCLUSION:
+        setCreateConclusion((RestModelMethodConclusion)newValue);
         return;
       case MyDslPackage.RESOURCE__FINDBY:
         setFindby((String)newValue);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION2:
-        setException2((RestException)newValue);
-        return;
       case MyDslPackage.RESOURCE__FIND_METHOD:
-        setFindMethod((JavaMethod)newValue);
+        setFindMethod((Block)newValue);
         return;
-      case MyDslPackage.RESOURCE__FOUND_REST_MODEL:
-        setFoundRestModel((RestModel)newValue);
+      case MyDslPackage.RESOURCE__FIND_CONCLUSION:
+        setFindConclusion((RestModelMethodConclusion)newValue);
         return;
       case MyDslPackage.RESOURCE__UPDATEBY:
         setUpdateby((String)newValue);
@@ -1096,23 +1150,23 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
       case MyDslPackage.RESOURCE__UPDATE_REST_MODEL:
         setUpdateRestModel((RestModel)newValue);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION3:
-        setException3((RestException)newValue);
+      case MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE:
+        setUpdateValService((ValidationService)newValue);
         return;
       case MyDslPackage.RESOURCE__UPDATE_METHOD:
-        setUpdateMethod((JavaMethod)newValue);
+        setUpdateMethod((Block)newValue);
         return;
-      case MyDslPackage.RESOURCE__UPDATED_REST_MODEL:
-        setUpdatedRestModel((RestModel)newValue);
+      case MyDslPackage.RESOURCE__UPDATE_CONCLUSION:
+        setUpdateConclusion((RestModelMethodConclusion)newValue);
         return;
       case MyDslPackage.RESOURCE__DELETEBY:
         setDeleteby((String)newValue);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION4:
-        setException4((RestException)newValue);
-        return;
       case MyDslPackage.RESOURCE__DELETE_METHOD:
-        setDeleteMethod((JavaMethod)newValue);
+        setDeleteMethod((Block)newValue);
+        return;
+      case MyDslPackage.RESOURCE__EXCEPTION4:
+        setException4((RestExceptionList)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -1131,29 +1185,32 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
       case MyDslPackage.RESOURCE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case MyDslPackage.RESOURCE__SERVICE:
+        getService().clear();
+        return;
+      case MyDslPackage.RESOURCE__EXCEPTION_MAPPER:
+        setExceptionMapper((ExceptionMapper)null);
+        return;
       case MyDslPackage.RESOURCE__CREATE_REST_MODEL:
         setCreateRestModel((RestModel)null);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION1:
-        setException1((RestException)null);
+      case MyDslPackage.RESOURCE__CREATE_VAL_SERVICE:
+        setCreateValService((ValidationService)null);
         return;
       case MyDslPackage.RESOURCE__CREATE_METHOD:
-        setCreateMethod((JavaMethod)null);
+        setCreateMethod((Block)null);
         return;
-      case MyDslPackage.RESOURCE__CREATED_REST_MODEL:
-        setCreatedRestModel((RestModel)null);
+      case MyDslPackage.RESOURCE__CREATE_CONCLUSION:
+        setCreateConclusion((RestModelMethodConclusion)null);
         return;
       case MyDslPackage.RESOURCE__FINDBY:
         setFindby(FINDBY_EDEFAULT);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION2:
-        setException2((RestException)null);
-        return;
       case MyDslPackage.RESOURCE__FIND_METHOD:
-        setFindMethod((JavaMethod)null);
+        setFindMethod((Block)null);
         return;
-      case MyDslPackage.RESOURCE__FOUND_REST_MODEL:
-        setFoundRestModel((RestModel)null);
+      case MyDslPackage.RESOURCE__FIND_CONCLUSION:
+        setFindConclusion((RestModelMethodConclusion)null);
         return;
       case MyDslPackage.RESOURCE__UPDATEBY:
         setUpdateby(UPDATEBY_EDEFAULT);
@@ -1161,23 +1218,23 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
       case MyDslPackage.RESOURCE__UPDATE_REST_MODEL:
         setUpdateRestModel((RestModel)null);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION3:
-        setException3((RestException)null);
+      case MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE:
+        setUpdateValService((ValidationService)null);
         return;
       case MyDslPackage.RESOURCE__UPDATE_METHOD:
-        setUpdateMethod((JavaMethod)null);
+        setUpdateMethod((Block)null);
         return;
-      case MyDslPackage.RESOURCE__UPDATED_REST_MODEL:
-        setUpdatedRestModel((RestModel)null);
+      case MyDslPackage.RESOURCE__UPDATE_CONCLUSION:
+        setUpdateConclusion((RestModelMethodConclusion)null);
         return;
       case MyDslPackage.RESOURCE__DELETEBY:
         setDeleteby(DELETEBY_EDEFAULT);
         return;
-      case MyDslPackage.RESOURCE__EXCEPTION4:
-        setException4((RestException)null);
-        return;
       case MyDslPackage.RESOURCE__DELETE_METHOD:
-        setDeleteMethod((JavaMethod)null);
+        setDeleteMethod((Block)null);
+        return;
+      case MyDslPackage.RESOURCE__EXCEPTION4:
+        setException4((RestExceptionList)null);
         return;
     }
     super.eUnset(featureID);
@@ -1195,38 +1252,40 @@ public class ResourceImpl extends MinimalEObjectImpl.Container implements Resour
     {
       case MyDslPackage.RESOURCE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.RESOURCE__SERVICE:
+        return service != null && !service.isEmpty();
+      case MyDslPackage.RESOURCE__EXCEPTION_MAPPER:
+        return exceptionMapper != null;
       case MyDslPackage.RESOURCE__CREATE_REST_MODEL:
         return createRestModel != null;
-      case MyDslPackage.RESOURCE__EXCEPTION1:
-        return exception1 != null;
+      case MyDslPackage.RESOURCE__CREATE_VAL_SERVICE:
+        return createValService != null;
       case MyDslPackage.RESOURCE__CREATE_METHOD:
         return createMethod != null;
-      case MyDslPackage.RESOURCE__CREATED_REST_MODEL:
-        return createdRestModel != null;
+      case MyDslPackage.RESOURCE__CREATE_CONCLUSION:
+        return createConclusion != null;
       case MyDslPackage.RESOURCE__FINDBY:
         return FINDBY_EDEFAULT == null ? findby != null : !FINDBY_EDEFAULT.equals(findby);
-      case MyDslPackage.RESOURCE__EXCEPTION2:
-        return exception2 != null;
       case MyDslPackage.RESOURCE__FIND_METHOD:
         return findMethod != null;
-      case MyDslPackage.RESOURCE__FOUND_REST_MODEL:
-        return foundRestModel != null;
+      case MyDslPackage.RESOURCE__FIND_CONCLUSION:
+        return findConclusion != null;
       case MyDslPackage.RESOURCE__UPDATEBY:
         return UPDATEBY_EDEFAULT == null ? updateby != null : !UPDATEBY_EDEFAULT.equals(updateby);
       case MyDslPackage.RESOURCE__UPDATE_REST_MODEL:
         return updateRestModel != null;
-      case MyDslPackage.RESOURCE__EXCEPTION3:
-        return exception3 != null;
+      case MyDslPackage.RESOURCE__UPDATE_VAL_SERVICE:
+        return updateValService != null;
       case MyDslPackage.RESOURCE__UPDATE_METHOD:
         return updateMethod != null;
-      case MyDslPackage.RESOURCE__UPDATED_REST_MODEL:
-        return updatedRestModel != null;
+      case MyDslPackage.RESOURCE__UPDATE_CONCLUSION:
+        return updateConclusion != null;
       case MyDslPackage.RESOURCE__DELETEBY:
         return DELETEBY_EDEFAULT == null ? deleteby != null : !DELETEBY_EDEFAULT.equals(deleteby);
-      case MyDslPackage.RESOURCE__EXCEPTION4:
-        return exception4 != null;
       case MyDslPackage.RESOURCE__DELETE_METHOD:
         return deleteMethod != null;
+      case MyDslPackage.RESOURCE__EXCEPTION4:
+        return exception4 != null;
     }
     return super.eIsSet(featureID);
   }

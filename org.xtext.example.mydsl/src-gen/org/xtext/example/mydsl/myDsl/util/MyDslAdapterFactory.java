@@ -105,9 +105,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createRestModelAdapter();
       }
       @Override
-      public Adapter caseMappingModel(MappingModel object)
+      public Adapter caseModelMapper(ModelMapper object)
       {
-        return createMappingModelAdapter();
+        return createModelMapperAdapter();
       }
       @Override
       public Adapter caseTransformation(Transformation object)
@@ -130,9 +130,39 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createServiceAdapter();
       }
       @Override
+      public Adapter caseValidationService(ValidationService object)
+      {
+        return createValidationServiceAdapter();
+      }
+      @Override
       public Adapter caseDataAccessObject(DataAccessObject object)
       {
         return createDataAccessObjectAdapter();
+      }
+      @Override
+      public Adapter caseDataModelMethodConclusion(DataModelMethodConclusion object)
+      {
+        return createDataModelMethodConclusionAdapter();
+      }
+      @Override
+      public Adapter caseRestModelMethodConclusion(RestModelMethodConclusion object)
+      {
+        return createRestModelMethodConclusionAdapter();
+      }
+      @Override
+      public Adapter caseRestExceptionList(RestExceptionList object)
+      {
+        return createRestExceptionListAdapter();
+      }
+      @Override
+      public Adapter caseBaseException(BaseException object)
+      {
+        return createBaseExceptionAdapter();
+      }
+      @Override
+      public Adapter caseExceptionMapper(ExceptionMapper object)
+      {
+        return createExceptionMapperAdapter();
       }
       @Override
       public Adapter caseRestException(RestException object)
@@ -140,9 +170,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createRestExceptionAdapter();
       }
       @Override
-      public Adapter caseJavaMethod(JavaMethod object)
+      public Adapter caseBlock(Block object)
       {
-        return createJavaMethodAdapter();
+        return createBlockAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -257,16 +287,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.MappingModel <em>Mapping Model</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ModelMapper <em>Model Mapper</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.MappingModel
+   * @see org.xtext.example.mydsl.myDsl.ModelMapper
    * @generated
    */
-  public Adapter createMappingModelAdapter()
+  public Adapter createModelMapperAdapter()
   {
     return null;
   }
@@ -332,6 +362,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ValidationService <em>Validation Service</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ValidationService
+   * @generated
+   */
+  public Adapter createValidationServiceAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DataAccessObject <em>Data Access Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -342,6 +387,81 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDataAccessObjectAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DataModelMethodConclusion <em>Data Model Method Conclusion</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.DataModelMethodConclusion
+   * @generated
+   */
+  public Adapter createDataModelMethodConclusionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.RestModelMethodConclusion <em>Rest Model Method Conclusion</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.RestModelMethodConclusion
+   * @generated
+   */
+  public Adapter createRestModelMethodConclusionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.RestExceptionList <em>Rest Exception List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.RestExceptionList
+   * @generated
+   */
+  public Adapter createRestExceptionListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.BaseException <em>Base Exception</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.BaseException
+   * @generated
+   */
+  public Adapter createBaseExceptionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ExceptionMapper <em>Exception Mapper</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ExceptionMapper
+   * @generated
+   */
+  public Adapter createExceptionMapperAdapter()
   {
     return null;
   }
@@ -362,16 +482,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.JavaMethod <em>Java Method</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Block <em>Block</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.JavaMethod
+   * @see org.xtext.example.mydsl.myDsl.Block
    * @generated
    */
-  public Adapter createJavaMethodAdapter()
+  public Adapter createBlockAdapter()
   {
     return null;
   }

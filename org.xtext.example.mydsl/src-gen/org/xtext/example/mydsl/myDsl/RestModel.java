@@ -14,7 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.RestModel#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.RestModel#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.RestModel#getFeatures <em>Features</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.RestModel#getSelf <em>Self</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestModel()
@@ -50,6 +52,32 @@ public interface RestModel extends Type
   void setSuperType(RestModel value);
 
   /**
+   * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Id</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Id</em>' attribute.
+   * @see #setId(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestModel_Id()
+   * @model
+   * @generated
+   */
+  String getId();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.RestModel#getId <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Id</em>' attribute.
+   * @see #getId()
+   * @generated
+   */
+  void setId(String value);
+
+  /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Feature}.
    * <!-- begin-user-doc -->
@@ -64,5 +92,31 @@ public interface RestModel extends Type
    * @generated
    */
   EList<Feature> getFeatures();
+
+  /**
+   * Returns the value of the '<em><b>Self</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Self</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Self</em>' attribute.
+   * @see #setSelf(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestModel_Self()
+   * @model
+   * @generated
+   */
+  String getSelf();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.RestModel#getSelf <em>Self</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Self</em>' attribute.
+   * @see #getSelf()
+   * @generated
+   */
+  void setSelf(String value);
 
 } // RestModel

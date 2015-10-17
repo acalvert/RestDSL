@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.DataModel#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.DataModel#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.DataModel#getFeatures <em>Features</em>}</li>
  * </ul>
  *
@@ -48,6 +49,32 @@ public interface DataModel extends Type
    * @generated
    */
   void setSuperType(DataModel value);
+
+  /**
+   * Returns the value of the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Id</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Id</em>' attribute.
+   * @see #setId(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDataModel_Id()
+   * @model
+   * @generated
+   */
+  String getId();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.DataModel#getId <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Id</em>' attribute.
+   * @see #getId()
+   * @generated
+   */
+  void setId(String value);
 
   /**
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.

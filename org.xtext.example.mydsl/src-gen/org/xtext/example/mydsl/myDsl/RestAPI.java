@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.RestAPI#getResource <em>Resource</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.RestAPI#getService <em>Service</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.RestAPI#getDao <em>Dao</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.RestAPI#getExceptionMapper <em>Exception Mapper</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestAPI()
@@ -83,5 +84,21 @@ public interface RestAPI extends EObject
    * @generated
    */
   EList<DataAccessObject> getDao();
+
+  /**
+   * Returns the value of the '<em><b>Exception Mapper</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ExceptionMapper}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Exception Mapper</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Exception Mapper</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getRestAPI_ExceptionMapper()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ExceptionMapper> getExceptionMapper();
 
 } // RestAPI

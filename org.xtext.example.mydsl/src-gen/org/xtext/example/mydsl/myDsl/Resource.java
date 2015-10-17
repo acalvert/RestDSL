@@ -2,6 +2,8 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,22 +16,23 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getService <em>Service</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getExceptionMapper <em>Exception Mapper</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getCreateRestModel <em>Create Rest Model</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getException1 <em>Exception1</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getCreateValService <em>Create Val Service</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getCreateMethod <em>Create Method</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getCreatedRestModel <em>Created Rest Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getCreateConclusion <em>Create Conclusion</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getFindby <em>Findby</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getException2 <em>Exception2</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getFindMethod <em>Find Method</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getFoundRestModel <em>Found Rest Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getFindConclusion <em>Find Conclusion</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateby <em>Updateby</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateRestModel <em>Update Rest Model</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getException3 <em>Exception3</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateValService <em>Update Val Service</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateMethod <em>Update Method</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getUpdatedRestModel <em>Updated Rest Model</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateConclusion <em>Update Conclusion</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getDeleteby <em>Deleteby</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getException4 <em>Exception4</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getDeleteMethod <em>Delete Method</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Resource#getException4 <em>Exception4</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource()
@@ -65,6 +68,48 @@ public interface Resource extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Service</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Service}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Service</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Service</em>' reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_Service()
+   * @model
+   * @generated
+   */
+  EList<Service> getService();
+
+  /**
+   * Returns the value of the '<em><b>Exception Mapper</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Exception Mapper</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Exception Mapper</em>' reference.
+   * @see #setExceptionMapper(ExceptionMapper)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_ExceptionMapper()
+   * @model
+   * @generated
+   */
+  ExceptionMapper getExceptionMapper();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getExceptionMapper <em>Exception Mapper</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Exception Mapper</em>' reference.
+   * @see #getExceptionMapper()
+   * @generated
+   */
+  void setExceptionMapper(ExceptionMapper value);
+
+  /**
    * Returns the value of the '<em><b>Create Rest Model</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -91,30 +136,30 @@ public interface Resource extends EObject
   void setCreateRestModel(RestModel value);
 
   /**
-   * Returns the value of the '<em><b>Exception1</b></em>' containment reference.
+   * Returns the value of the '<em><b>Create Val Service</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Exception1</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Create Val Service</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Exception1</em>' containment reference.
-   * @see #setException1(RestException)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_Exception1()
+   * @return the value of the '<em>Create Val Service</em>' containment reference.
+   * @see #setCreateValService(ValidationService)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_CreateValService()
    * @model containment="true"
    * @generated
    */
-  RestException getException1();
+  ValidationService getCreateValService();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getException1 <em>Exception1</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateValService <em>Create Val Service</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exception1</em>' containment reference.
-   * @see #getException1()
+   * @param value the new value of the '<em>Create Val Service</em>' containment reference.
+   * @see #getCreateValService()
    * @generated
    */
-  void setException1(RestException value);
+  void setCreateValService(ValidationService value);
 
   /**
    * Returns the value of the '<em><b>Create Method</b></em>' containment reference.
@@ -125,12 +170,12 @@ public interface Resource extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Create Method</em>' containment reference.
-   * @see #setCreateMethod(JavaMethod)
+   * @see #setCreateMethod(Block)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_CreateMethod()
    * @model containment="true"
    * @generated
    */
-  JavaMethod getCreateMethod();
+  Block getCreateMethod();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateMethod <em>Create Method</em>}' containment reference.
@@ -140,33 +185,33 @@ public interface Resource extends EObject
    * @see #getCreateMethod()
    * @generated
    */
-  void setCreateMethod(JavaMethod value);
+  void setCreateMethod(Block value);
 
   /**
-   * Returns the value of the '<em><b>Created Rest Model</b></em>' reference.
+   * Returns the value of the '<em><b>Create Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Created Rest Model</em>' reference isn't clear,
+   * If the meaning of the '<em>Create Conclusion</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Created Rest Model</em>' reference.
-   * @see #setCreatedRestModel(RestModel)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_CreatedRestModel()
-   * @model
+   * @return the value of the '<em>Create Conclusion</em>' containment reference.
+   * @see #setCreateConclusion(RestModelMethodConclusion)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_CreateConclusion()
+   * @model containment="true"
    * @generated
    */
-  RestModel getCreatedRestModel();
+  RestModelMethodConclusion getCreateConclusion();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getCreatedRestModel <em>Created Rest Model</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getCreateConclusion <em>Create Conclusion</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Created Rest Model</em>' reference.
-   * @see #getCreatedRestModel()
+   * @param value the new value of the '<em>Create Conclusion</em>' containment reference.
+   * @see #getCreateConclusion()
    * @generated
    */
-  void setCreatedRestModel(RestModel value);
+  void setCreateConclusion(RestModelMethodConclusion value);
 
   /**
    * Returns the value of the '<em><b>Findby</b></em>' attribute.
@@ -195,32 +240,6 @@ public interface Resource extends EObject
   void setFindby(String value);
 
   /**
-   * Returns the value of the '<em><b>Exception2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Exception2</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Exception2</em>' containment reference.
-   * @see #setException2(RestException)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_Exception2()
-   * @model containment="true"
-   * @generated
-   */
-  RestException getException2();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getException2 <em>Exception2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exception2</em>' containment reference.
-   * @see #getException2()
-   * @generated
-   */
-  void setException2(RestException value);
-
-  /**
    * Returns the value of the '<em><b>Find Method</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -229,12 +248,12 @@ public interface Resource extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Find Method</em>' containment reference.
-   * @see #setFindMethod(JavaMethod)
+   * @see #setFindMethod(Block)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_FindMethod()
    * @model containment="true"
    * @generated
    */
-  JavaMethod getFindMethod();
+  Block getFindMethod();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getFindMethod <em>Find Method</em>}' containment reference.
@@ -244,33 +263,33 @@ public interface Resource extends EObject
    * @see #getFindMethod()
    * @generated
    */
-  void setFindMethod(JavaMethod value);
+  void setFindMethod(Block value);
 
   /**
-   * Returns the value of the '<em><b>Found Rest Model</b></em>' reference.
+   * Returns the value of the '<em><b>Find Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Found Rest Model</em>' reference isn't clear,
+   * If the meaning of the '<em>Find Conclusion</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Found Rest Model</em>' reference.
-   * @see #setFoundRestModel(RestModel)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_FoundRestModel()
-   * @model
+   * @return the value of the '<em>Find Conclusion</em>' containment reference.
+   * @see #setFindConclusion(RestModelMethodConclusion)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_FindConclusion()
+   * @model containment="true"
    * @generated
    */
-  RestModel getFoundRestModel();
+  RestModelMethodConclusion getFindConclusion();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getFoundRestModel <em>Found Rest Model</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getFindConclusion <em>Find Conclusion</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Found Rest Model</em>' reference.
-   * @see #getFoundRestModel()
+   * @param value the new value of the '<em>Find Conclusion</em>' containment reference.
+   * @see #getFindConclusion()
    * @generated
    */
-  void setFoundRestModel(RestModel value);
+  void setFindConclusion(RestModelMethodConclusion value);
 
   /**
    * Returns the value of the '<em><b>Updateby</b></em>' attribute.
@@ -325,30 +344,30 @@ public interface Resource extends EObject
   void setUpdateRestModel(RestModel value);
 
   /**
-   * Returns the value of the '<em><b>Exception3</b></em>' containment reference.
+   * Returns the value of the '<em><b>Update Val Service</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Exception3</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Update Val Service</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Exception3</em>' containment reference.
-   * @see #setException3(RestException)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_Exception3()
+   * @return the value of the '<em>Update Val Service</em>' containment reference.
+   * @see #setUpdateValService(ValidationService)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_UpdateValService()
    * @model containment="true"
    * @generated
    */
-  RestException getException3();
+  ValidationService getUpdateValService();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getException3 <em>Exception3</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateValService <em>Update Val Service</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exception3</em>' containment reference.
-   * @see #getException3()
+   * @param value the new value of the '<em>Update Val Service</em>' containment reference.
+   * @see #getUpdateValService()
    * @generated
    */
-  void setException3(RestException value);
+  void setUpdateValService(ValidationService value);
 
   /**
    * Returns the value of the '<em><b>Update Method</b></em>' containment reference.
@@ -359,12 +378,12 @@ public interface Resource extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Update Method</em>' containment reference.
-   * @see #setUpdateMethod(JavaMethod)
+   * @see #setUpdateMethod(Block)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_UpdateMethod()
    * @model containment="true"
    * @generated
    */
-  JavaMethod getUpdateMethod();
+  Block getUpdateMethod();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateMethod <em>Update Method</em>}' containment reference.
@@ -374,33 +393,33 @@ public interface Resource extends EObject
    * @see #getUpdateMethod()
    * @generated
    */
-  void setUpdateMethod(JavaMethod value);
+  void setUpdateMethod(Block value);
 
   /**
-   * Returns the value of the '<em><b>Updated Rest Model</b></em>' reference.
+   * Returns the value of the '<em><b>Update Conclusion</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Updated Rest Model</em>' reference isn't clear,
+   * If the meaning of the '<em>Update Conclusion</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Updated Rest Model</em>' reference.
-   * @see #setUpdatedRestModel(RestModel)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_UpdatedRestModel()
-   * @model
+   * @return the value of the '<em>Update Conclusion</em>' containment reference.
+   * @see #setUpdateConclusion(RestModelMethodConclusion)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_UpdateConclusion()
+   * @model containment="true"
    * @generated
    */
-  RestModel getUpdatedRestModel();
+  RestModelMethodConclusion getUpdateConclusion();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdatedRestModel <em>Updated Rest Model</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getUpdateConclusion <em>Update Conclusion</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Updated Rest Model</em>' reference.
-   * @see #getUpdatedRestModel()
+   * @param value the new value of the '<em>Update Conclusion</em>' containment reference.
+   * @see #getUpdateConclusion()
    * @generated
    */
-  void setUpdatedRestModel(RestModel value);
+  void setUpdateConclusion(RestModelMethodConclusion value);
 
   /**
    * Returns the value of the '<em><b>Deleteby</b></em>' attribute.
@@ -429,32 +448,6 @@ public interface Resource extends EObject
   void setDeleteby(String value);
 
   /**
-   * Returns the value of the '<em><b>Exception4</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Exception4</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Exception4</em>' containment reference.
-   * @see #setException4(RestException)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_Exception4()
-   * @model containment="true"
-   * @generated
-   */
-  RestException getException4();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getException4 <em>Exception4</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exception4</em>' containment reference.
-   * @see #getException4()
-   * @generated
-   */
-  void setException4(RestException value);
-
-  /**
    * Returns the value of the '<em><b>Delete Method</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -463,12 +456,12 @@ public interface Resource extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Delete Method</em>' containment reference.
-   * @see #setDeleteMethod(JavaMethod)
+   * @see #setDeleteMethod(Block)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_DeleteMethod()
    * @model containment="true"
    * @generated
    */
-  JavaMethod getDeleteMethod();
+  Block getDeleteMethod();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getDeleteMethod <em>Delete Method</em>}' containment reference.
@@ -478,6 +471,32 @@ public interface Resource extends EObject
    * @see #getDeleteMethod()
    * @generated
    */
-  void setDeleteMethod(JavaMethod value);
+  void setDeleteMethod(Block value);
+
+  /**
+   * Returns the value of the '<em><b>Exception4</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Exception4</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Exception4</em>' containment reference.
+   * @see #setException4(RestExceptionList)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getResource_Exception4()
+   * @model containment="true"
+   * @generated
+   */
+  RestExceptionList getException4();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Resource#getException4 <em>Exception4</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Exception4</em>' containment reference.
+   * @see #getException4()
+   * @generated
+   */
+  void setException4(RestExceptionList value);
 
 } // Resource

@@ -10,23 +10,29 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.xtext.example.mydsl.myDsl.BaseException;
+import org.xtext.example.mydsl.myDsl.Block;
 import org.xtext.example.mydsl.myDsl.DataAccessObject;
 import org.xtext.example.mydsl.myDsl.DataModel;
+import org.xtext.example.mydsl.myDsl.DataModelMethodConclusion;
 import org.xtext.example.mydsl.myDsl.DomainModel;
+import org.xtext.example.mydsl.myDsl.ExceptionMapper;
 import org.xtext.example.mydsl.myDsl.Feature;
-import org.xtext.example.mydsl.myDsl.JavaMethod;
-import org.xtext.example.mydsl.myDsl.MappingModel;
+import org.xtext.example.mydsl.myDsl.ModelMapper;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.PrimitiveType;
 import org.xtext.example.mydsl.myDsl.Resource;
 import org.xtext.example.mydsl.myDsl.RestAPI;
 import org.xtext.example.mydsl.myDsl.RestException;
+import org.xtext.example.mydsl.myDsl.RestExceptionList;
 import org.xtext.example.mydsl.myDsl.RestModel;
+import org.xtext.example.mydsl.myDsl.RestModelMethodConclusion;
 import org.xtext.example.mydsl.myDsl.RestStatusCode;
 import org.xtext.example.mydsl.myDsl.Service;
 import org.xtext.example.mydsl.myDsl.Transformation;
 import org.xtext.example.mydsl.myDsl.Type;
+import org.xtext.example.mydsl.myDsl.ValidationService;
 
 /**
  * <!-- begin-user-doc -->
@@ -83,7 +89,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass mappingModelEClass = null;
+  private EClass modelMapperEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,7 +124,49 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass validationServiceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass dataAccessObjectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dataModelMethodConclusionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass restModelMethodConclusionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass restExceptionListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass baseExceptionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exceptionMapperEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,7 +180,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass javaMethodEClass = null;
+  private EClass blockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -299,6 +347,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRestAPI_ExceptionMapper()
+  {
+    return (EReference)restAPIEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPrimitiveType()
   {
     return primitiveTypeEClass;
@@ -329,9 +387,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getDataModel_Id()
+  {
+    return (EAttribute)dataModelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getDataModel_Features()
   {
-    return (EReference)dataModelEClass.getEStructuralFeatures().get(1);
+    return (EReference)dataModelEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -359,9 +427,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRestModel_Id()
+  {
+    return (EAttribute)restModelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getRestModel_Features()
   {
-    return (EReference)restModelEClass.getEStructuralFeatures().get(1);
+    return (EReference)restModelEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -369,9 +447,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getMappingModel()
+  public EAttribute getRestModel_Self()
   {
-    return mappingModelEClass;
+    return (EAttribute)restModelEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -379,9 +457,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMappingModel_Transformation()
+  public EClass getModelMapper()
   {
-    return (EReference)mappingModelEClass.getEStructuralFeatures().get(0);
+    return modelMapperEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModelMapper_Transformation()
+  {
+    return (EReference)modelMapperEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -479,7 +567,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_CreateRestModel()
+  public EReference getResource_Service()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(1);
   }
@@ -489,7 +577,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_Exception1()
+  public EReference getResource_ExceptionMapper()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(2);
   }
@@ -499,7 +587,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_CreateMethod()
+  public EReference getResource_CreateRestModel()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(3);
   }
@@ -509,7 +597,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_CreatedRestModel()
+  public EReference getResource_CreateValService()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(4);
   }
@@ -519,9 +607,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getResource_Findby()
+  public EReference getResource_CreateMethod()
   {
-    return (EAttribute)resourceEClass.getEStructuralFeatures().get(5);
+    return (EReference)resourceEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -529,7 +617,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_Exception2()
+  public EReference getResource_CreateConclusion()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(6);
   }
@@ -539,9 +627,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_FindMethod()
+  public EAttribute getResource_Findby()
   {
-    return (EReference)resourceEClass.getEStructuralFeatures().get(7);
+    return (EAttribute)resourceEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -549,7 +637,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_FoundRestModel()
+  public EReference getResource_FindMethod()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(8);
   }
@@ -559,9 +647,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getResource_FindConclusion()
+  {
+    return (EReference)resourceEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getResource_Updateby()
   {
-    return (EAttribute)resourceEClass.getEStructuralFeatures().get(9);
+    return (EAttribute)resourceEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -571,16 +669,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getResource_UpdateRestModel()
   {
-    return (EReference)resourceEClass.getEStructuralFeatures().get(10);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getResource_Exception3()
-  {
     return (EReference)resourceEClass.getEStructuralFeatures().get(11);
   }
 
@@ -589,7 +677,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_UpdateMethod()
+  public EReference getResource_UpdateValService()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(12);
   }
@@ -599,7 +687,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_UpdatedRestModel()
+  public EReference getResource_UpdateMethod()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(13);
   }
@@ -609,9 +697,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getResource_Deleteby()
+  public EReference getResource_UpdateConclusion()
   {
-    return (EAttribute)resourceEClass.getEStructuralFeatures().get(14);
+    return (EReference)resourceEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -619,9 +707,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getResource_Exception4()
+  public EAttribute getResource_Deleteby()
   {
-    return (EReference)resourceEClass.getEStructuralFeatures().get(15);
+    return (EAttribute)resourceEClass.getEStructuralFeatures().get(15);
   }
 
   /**
@@ -632,6 +720,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getResource_DeleteMethod()
   {
     return (EReference)resourceEClass.getEStructuralFeatures().get(16);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getResource_Exception4()
+  {
+    return (EReference)resourceEClass.getEStructuralFeatures().get(17);
   }
 
   /**
@@ -659,7 +757,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_CreateDataModel()
+  public EReference getService_Dao()
   {
     return (EReference)serviceEClass.getEStructuralFeatures().get(1);
   }
@@ -669,7 +767,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_Exception1()
+  public EReference getService_CreateDataModel()
   {
     return (EReference)serviceEClass.getEStructuralFeatures().get(2);
   }
@@ -689,7 +787,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_CreatedDataModel()
+  public EReference getService_CreateConclusion()
   {
     return (EReference)serviceEClass.getEStructuralFeatures().get(4);
   }
@@ -709,7 +807,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_Exception2()
+  public EReference getService_FindMethod()
   {
     return (EReference)serviceEClass.getEStructuralFeatures().get(6);
   }
@@ -719,7 +817,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_FindMethod()
+  public EReference getService_FindConclusion()
   {
     return (EReference)serviceEClass.getEStructuralFeatures().get(7);
   }
@@ -729,19 +827,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_FoundDataModel()
-  {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(8);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getService_Updateby()
   {
-    return (EAttribute)serviceEClass.getEStructuralFeatures().get(9);
+    return (EAttribute)serviceEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -751,17 +839,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getService_UpdateDataModel()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(10);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getService_Exception3()
-  {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(11);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -771,7 +849,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getService_UpdateMethod()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(12);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -779,9 +857,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getService_UpdatedDataModel()
+  public EReference getService_UpdateConclusion()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(13);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -791,17 +869,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getService_Deleteby()
   {
-    return (EAttribute)serviceEClass.getEStructuralFeatures().get(14);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getService_Exception4()
-  {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(15);
+    return (EAttribute)serviceEClass.getEStructuralFeatures().get(12);
   }
 
   /**
@@ -811,7 +879,47 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getService_DeleteMethod()
   {
-    return (EReference)serviceEClass.getEStructuralFeatures().get(16);
+    return (EReference)serviceEClass.getEStructuralFeatures().get(13);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getService_Exception4()
+  {
+    return (EReference)serviceEClass.getEStructuralFeatures().get(14);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getValidationService()
+  {
+    return validationServiceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidationService_RestModel()
+  {
+    return (EReference)validationServiceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidationService_Block()
+  {
+    return (EReference)validationServiceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -849,7 +957,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataAccessObject_Exception1()
+  public EReference getDataAccessObject_CreateMethod()
   {
     return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(2);
   }
@@ -859,7 +967,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataAccessObject_CreateMethod()
+  public EReference getDataAccessObject_CreateConclusion()
   {
     return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(3);
   }
@@ -869,29 +977,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataAccessObject_CreatedDataModel()
-  {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getDataAccessObject_Findby()
   {
-    return (EAttribute)dataAccessObjectEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDataAccessObject_Exception2()
-  {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)dataAccessObjectEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -901,7 +989,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getDataAccessObject_FindMethod()
   {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(7);
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -909,9 +997,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataAccessObject_FoundDataModel()
+  public EReference getDataAccessObject_FindConclusion()
   {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(8);
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -921,7 +1009,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getDataAccessObject_Updateby()
   {
-    return (EAttribute)dataAccessObjectEClass.getEStructuralFeatures().get(9);
+    return (EAttribute)dataAccessObjectEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -931,17 +1019,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getDataAccessObject_UpdateDataModel()
   {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(10);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDataAccessObject_Exception3()
-  {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(11);
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -951,7 +1029,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getDataAccessObject_UpdateMethod()
   {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(12);
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -959,9 +1037,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDataAccessObject_UpdatedDataModel()
+  public EReference getDataAccessObject_UpdateConclusion()
   {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(13);
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -971,17 +1049,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getDataAccessObject_Deleteby()
   {
-    return (EAttribute)dataAccessObjectEClass.getEStructuralFeatures().get(14);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDataAccessObject_Exception4()
-  {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(15);
+    return (EAttribute)dataAccessObjectEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -991,7 +1059,167 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getDataAccessObject_DeleteMethod()
   {
-    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(16);
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(12);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDataAccessObject_Exceptions()
+  {
+    return (EReference)dataAccessObjectEClass.getEStructuralFeatures().get(13);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDataModelMethodConclusion()
+  {
+    return dataModelMethodConclusionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDataModelMethodConclusion_DataModel()
+  {
+    return (EReference)dataModelMethodConclusionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDataModelMethodConclusion_Exceptions()
+  {
+    return (EReference)dataModelMethodConclusionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRestModelMethodConclusion()
+  {
+    return restModelMethodConclusionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRestModelMethodConclusion_RestModel()
+  {
+    return (EReference)restModelMethodConclusionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRestModelMethodConclusion_Exception()
+  {
+    return (EReference)restModelMethodConclusionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRestExceptionList()
+  {
+    return restExceptionListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRestExceptionList_Exception()
+  {
+    return (EReference)restExceptionListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBaseException()
+  {
+    return baseExceptionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBaseException_ErrorCode()
+  {
+    return (EAttribute)baseExceptionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBaseException_Message()
+  {
+    return (EAttribute)baseExceptionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExceptionMapper()
+  {
+    return exceptionMapperEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExceptionMapper_Name()
+  {
+    return (EAttribute)exceptionMapperEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExceptionMapper_RestException()
+  {
+    return (EReference)exceptionMapperEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExceptionMapper_BaseException()
+  {
+    return (EReference)exceptionMapperEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1019,9 +1247,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getJavaMethod()
+  public EAttribute getRestException_Message()
   {
-    return javaMethodEClass;
+    return (EAttribute)restExceptionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1029,9 +1257,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getJavaMethod_Code()
+  public EClass getBlock()
   {
-    return (EAttribute)javaMethodEClass.getEStructuralFeatures().get(0);
+    return blockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBlock_Code()
+  {
+    return (EAttribute)blockEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1085,19 +1323,23 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(restAPIEClass, REST_API__RESOURCE);
     createEReference(restAPIEClass, REST_API__SERVICE);
     createEReference(restAPIEClass, REST_API__DAO);
+    createEReference(restAPIEClass, REST_API__EXCEPTION_MAPPER);
 
     primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
     dataModelEClass = createEClass(DATA_MODEL);
     createEReference(dataModelEClass, DATA_MODEL__SUPER_TYPE);
+    createEAttribute(dataModelEClass, DATA_MODEL__ID);
     createEReference(dataModelEClass, DATA_MODEL__FEATURES);
 
     restModelEClass = createEClass(REST_MODEL);
     createEReference(restModelEClass, REST_MODEL__SUPER_TYPE);
+    createEAttribute(restModelEClass, REST_MODEL__ID);
     createEReference(restModelEClass, REST_MODEL__FEATURES);
+    createEAttribute(restModelEClass, REST_MODEL__SELF);
 
-    mappingModelEClass = createEClass(MAPPING_MODEL);
-    createEReference(mappingModelEClass, MAPPING_MODEL__TRANSFORMATION);
+    modelMapperEClass = createEClass(MODEL_MAPPER);
+    createEReference(modelMapperEClass, MODEL_MAPPER__TRANSFORMATION);
 
     transformationEClass = createEClass(TRANSFORMATION);
     createEReference(transformationEClass, TRANSFORMATION__DATA_MODEL);
@@ -1110,66 +1352,87 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     resourceEClass = createEClass(RESOURCE);
     createEAttribute(resourceEClass, RESOURCE__NAME);
+    createEReference(resourceEClass, RESOURCE__SERVICE);
+    createEReference(resourceEClass, RESOURCE__EXCEPTION_MAPPER);
     createEReference(resourceEClass, RESOURCE__CREATE_REST_MODEL);
-    createEReference(resourceEClass, RESOURCE__EXCEPTION1);
+    createEReference(resourceEClass, RESOURCE__CREATE_VAL_SERVICE);
     createEReference(resourceEClass, RESOURCE__CREATE_METHOD);
-    createEReference(resourceEClass, RESOURCE__CREATED_REST_MODEL);
+    createEReference(resourceEClass, RESOURCE__CREATE_CONCLUSION);
     createEAttribute(resourceEClass, RESOURCE__FINDBY);
-    createEReference(resourceEClass, RESOURCE__EXCEPTION2);
     createEReference(resourceEClass, RESOURCE__FIND_METHOD);
-    createEReference(resourceEClass, RESOURCE__FOUND_REST_MODEL);
+    createEReference(resourceEClass, RESOURCE__FIND_CONCLUSION);
     createEAttribute(resourceEClass, RESOURCE__UPDATEBY);
     createEReference(resourceEClass, RESOURCE__UPDATE_REST_MODEL);
-    createEReference(resourceEClass, RESOURCE__EXCEPTION3);
+    createEReference(resourceEClass, RESOURCE__UPDATE_VAL_SERVICE);
     createEReference(resourceEClass, RESOURCE__UPDATE_METHOD);
-    createEReference(resourceEClass, RESOURCE__UPDATED_REST_MODEL);
+    createEReference(resourceEClass, RESOURCE__UPDATE_CONCLUSION);
     createEAttribute(resourceEClass, RESOURCE__DELETEBY);
-    createEReference(resourceEClass, RESOURCE__EXCEPTION4);
     createEReference(resourceEClass, RESOURCE__DELETE_METHOD);
+    createEReference(resourceEClass, RESOURCE__EXCEPTION4);
 
     serviceEClass = createEClass(SERVICE);
     createEAttribute(serviceEClass, SERVICE__NAME);
+    createEReference(serviceEClass, SERVICE__DAO);
     createEReference(serviceEClass, SERVICE__CREATE_DATA_MODEL);
-    createEReference(serviceEClass, SERVICE__EXCEPTION1);
     createEReference(serviceEClass, SERVICE__CREATE_METHOD);
-    createEReference(serviceEClass, SERVICE__CREATED_DATA_MODEL);
+    createEReference(serviceEClass, SERVICE__CREATE_CONCLUSION);
     createEAttribute(serviceEClass, SERVICE__FINDBY);
-    createEReference(serviceEClass, SERVICE__EXCEPTION2);
     createEReference(serviceEClass, SERVICE__FIND_METHOD);
-    createEReference(serviceEClass, SERVICE__FOUND_DATA_MODEL);
+    createEReference(serviceEClass, SERVICE__FIND_CONCLUSION);
     createEAttribute(serviceEClass, SERVICE__UPDATEBY);
     createEReference(serviceEClass, SERVICE__UPDATE_DATA_MODEL);
-    createEReference(serviceEClass, SERVICE__EXCEPTION3);
     createEReference(serviceEClass, SERVICE__UPDATE_METHOD);
-    createEReference(serviceEClass, SERVICE__UPDATED_DATA_MODEL);
+    createEReference(serviceEClass, SERVICE__UPDATE_CONCLUSION);
     createEAttribute(serviceEClass, SERVICE__DELETEBY);
-    createEReference(serviceEClass, SERVICE__EXCEPTION4);
     createEReference(serviceEClass, SERVICE__DELETE_METHOD);
+    createEReference(serviceEClass, SERVICE__EXCEPTION4);
+
+    validationServiceEClass = createEClass(VALIDATION_SERVICE);
+    createEReference(validationServiceEClass, VALIDATION_SERVICE__REST_MODEL);
+    createEReference(validationServiceEClass, VALIDATION_SERVICE__BLOCK);
 
     dataAccessObjectEClass = createEClass(DATA_ACCESS_OBJECT);
     createEAttribute(dataAccessObjectEClass, DATA_ACCESS_OBJECT__NAME);
     createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__CREATE_DATA_MODEL);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__EXCEPTION1);
     createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__CREATE_METHOD);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__CREATED_DATA_MODEL);
+    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__CREATE_CONCLUSION);
     createEAttribute(dataAccessObjectEClass, DATA_ACCESS_OBJECT__FINDBY);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__EXCEPTION2);
     createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__FIND_METHOD);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__FOUND_DATA_MODEL);
+    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__FIND_CONCLUSION);
     createEAttribute(dataAccessObjectEClass, DATA_ACCESS_OBJECT__UPDATEBY);
     createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__UPDATE_DATA_MODEL);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__EXCEPTION3);
     createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__UPDATE_METHOD);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__UPDATED_DATA_MODEL);
+    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__UPDATE_CONCLUSION);
     createEAttribute(dataAccessObjectEClass, DATA_ACCESS_OBJECT__DELETEBY);
-    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__EXCEPTION4);
     createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__DELETE_METHOD);
+    createEReference(dataAccessObjectEClass, DATA_ACCESS_OBJECT__EXCEPTIONS);
+
+    dataModelMethodConclusionEClass = createEClass(DATA_MODEL_METHOD_CONCLUSION);
+    createEReference(dataModelMethodConclusionEClass, DATA_MODEL_METHOD_CONCLUSION__DATA_MODEL);
+    createEReference(dataModelMethodConclusionEClass, DATA_MODEL_METHOD_CONCLUSION__EXCEPTIONS);
+
+    restModelMethodConclusionEClass = createEClass(REST_MODEL_METHOD_CONCLUSION);
+    createEReference(restModelMethodConclusionEClass, REST_MODEL_METHOD_CONCLUSION__REST_MODEL);
+    createEReference(restModelMethodConclusionEClass, REST_MODEL_METHOD_CONCLUSION__EXCEPTION);
+
+    restExceptionListEClass = createEClass(REST_EXCEPTION_LIST);
+    createEReference(restExceptionListEClass, REST_EXCEPTION_LIST__EXCEPTION);
+
+    baseExceptionEClass = createEClass(BASE_EXCEPTION);
+    createEAttribute(baseExceptionEClass, BASE_EXCEPTION__ERROR_CODE);
+    createEAttribute(baseExceptionEClass, BASE_EXCEPTION__MESSAGE);
+
+    exceptionMapperEClass = createEClass(EXCEPTION_MAPPER);
+    createEAttribute(exceptionMapperEClass, EXCEPTION_MAPPER__NAME);
+    createEReference(exceptionMapperEClass, EXCEPTION_MAPPER__REST_EXCEPTION);
+    createEReference(exceptionMapperEClass, EXCEPTION_MAPPER__BASE_EXCEPTION);
 
     restExceptionEClass = createEClass(REST_EXCEPTION);
     createEAttribute(restExceptionEClass, REST_EXCEPTION__STATUS_CODE);
+    createEAttribute(restExceptionEClass, REST_EXCEPTION__MESSAGE);
 
-    javaMethodEClass = createEClass(JAVA_METHOD);
-    createEAttribute(javaMethodEClass, JAVA_METHOD__CODE);
+    blockEClass = createEClass(BLOCK);
+    createEAttribute(blockEClass, BLOCK__CODE);
 
     // Create enums
     restStatusCodeEEnum = createEEnum(REST_STATUS_CODE);
@@ -1207,7 +1470,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     primitiveTypeEClass.getESuperTypes().add(this.getType());
     dataModelEClass.getESuperTypes().add(this.getType());
     restModelEClass.getESuperTypes().add(this.getType());
-    mappingModelEClass.getESuperTypes().add(this.getType());
+    modelMapperEClass.getESuperTypes().add(this.getType());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainModelEClass, DomainModel.class, "DomainModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1221,19 +1484,23 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getRestAPI_Resource(), this.getResource(), null, "resource", null, 0, 1, RestAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRestAPI_Service(), this.getService(), null, "service", null, 0, -1, RestAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRestAPI_Dao(), this.getDataAccessObject(), null, "dao", null, 0, -1, RestAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRestAPI_ExceptionMapper(), this.getExceptionMapper(), null, "exceptionMapper", null, 0, -1, RestAPI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(dataModelEClass, DataModel.class, "DataModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDataModel_SuperType(), this.getDataModel(), null, "superType", null, 0, 1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDataModel_Id(), ecorePackage.getEString(), "id", null, 0, 1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDataModel_Features(), this.getFeature(), null, "features", null, 0, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(restModelEClass, RestModel.class, "RestModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRestModel_SuperType(), this.getRestModel(), null, "superType", null, 0, 1, RestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRestModel_Id(), ecorePackage.getEString(), "id", null, 0, 1, RestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRestModel_Features(), this.getFeature(), null, "features", null, 0, -1, RestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRestModel_Self(), ecorePackage.getEString(), "self", null, 0, 1, RestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMappingModel_Transformation(), this.getTransformation(), null, "transformation", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(modelMapperEClass, ModelMapper.class, "ModelMapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModelMapper_Transformation(), this.getTransformation(), null, "transformation", null, 0, -1, ModelMapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(transformationEClass, Transformation.class, "Transformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTransformation_DataModel(), this.getDataModel(), null, "dataModel", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1246,66 +1513,87 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(resourceEClass, Resource.class, "Resource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getResource_Name(), ecorePackage.getEString(), "name", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_Service(), this.getService(), null, "service", null, 0, -1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_ExceptionMapper(), this.getExceptionMapper(), null, "exceptionMapper", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getResource_CreateRestModel(), this.getRestModel(), null, "createRestModel", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_Exception1(), this.getRestException(), null, "exception1", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_CreateMethod(), this.getJavaMethod(), null, "createMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_CreatedRestModel(), this.getRestModel(), null, "createdRestModel", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_CreateValService(), this.getValidationService(), null, "createValService", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_CreateMethod(), this.getBlock(), null, "createMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_CreateConclusion(), this.getRestModelMethodConclusion(), null, "createConclusion", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getResource_Findby(), ecorePackage.getEString(), "findby", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_Exception2(), this.getRestException(), null, "exception2", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_FindMethod(), this.getJavaMethod(), null, "findMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_FoundRestModel(), this.getRestModel(), null, "foundRestModel", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_FindMethod(), this.getBlock(), null, "findMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_FindConclusion(), this.getRestModelMethodConclusion(), null, "findConclusion", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getResource_Updateby(), ecorePackage.getEString(), "updateby", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getResource_UpdateRestModel(), this.getRestModel(), null, "updateRestModel", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_Exception3(), this.getRestException(), null, "exception3", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_UpdateMethod(), this.getJavaMethod(), null, "updateMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_UpdatedRestModel(), this.getRestModel(), null, "updatedRestModel", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_UpdateValService(), this.getValidationService(), null, "updateValService", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_UpdateMethod(), this.getBlock(), null, "updateMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_UpdateConclusion(), this.getRestModelMethodConclusion(), null, "updateConclusion", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getResource_Deleteby(), ecorePackage.getEString(), "deleteby", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_Exception4(), this.getRestException(), null, "exception4", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getResource_DeleteMethod(), this.getJavaMethod(), null, "deleteMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_DeleteMethod(), this.getBlock(), null, "deleteMethod", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_Exception4(), this.getRestExceptionList(), null, "exception4", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getService_Name(), ecorePackage.getEString(), "name", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_Dao(), this.getDataAccessObject(), null, "dao", null, 0, -1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getService_CreateDataModel(), this.getDataModel(), null, "createDataModel", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_Exception1(), this.getRestException(), null, "exception1", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_CreateMethod(), this.getJavaMethod(), null, "createMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_CreatedDataModel(), this.getDataModel(), null, "createdDataModel", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_CreateMethod(), this.getBlock(), null, "createMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_CreateConclusion(), this.getDataModelMethodConclusion(), null, "createConclusion", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getService_Findby(), ecorePackage.getEString(), "findby", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_Exception2(), this.getRestException(), null, "exception2", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_FindMethod(), this.getJavaMethod(), null, "findMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_FoundDataModel(), this.getDataModel(), null, "foundDataModel", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_FindMethod(), this.getBlock(), null, "findMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_FindConclusion(), this.getDataModelMethodConclusion(), null, "findConclusion", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getService_Updateby(), ecorePackage.getEString(), "updateby", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getService_UpdateDataModel(), this.getDataModel(), null, "updateDataModel", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_Exception3(), this.getRestException(), null, "exception3", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_UpdateMethod(), this.getJavaMethod(), null, "updateMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_UpdatedDataModel(), this.getDataModel(), null, "updatedDataModel", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_UpdateMethod(), this.getBlock(), null, "updateMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_UpdateConclusion(), this.getDataModelMethodConclusion(), null, "updateConclusion", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getService_Deleteby(), ecorePackage.getEString(), "deleteby", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_Exception4(), this.getRestException(), null, "exception4", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getService_DeleteMethod(), this.getJavaMethod(), null, "deleteMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_DeleteMethod(), this.getBlock(), null, "deleteMethod", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getService_Exception4(), this.getRestExceptionList(), null, "exception4", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(validationServiceEClass, ValidationService.class, "ValidationService", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getValidationService_RestModel(), this.getRestModel(), null, "restModel", null, 0, 1, ValidationService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValidationService_Block(), this.getBlock(), null, "block", null, 0, 1, ValidationService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dataAccessObjectEClass, DataAccessObject.class, "DataAccessObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDataAccessObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDataAccessObject_CreateDataModel(), this.getDataModel(), null, "createDataModel", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_Exception1(), this.getRestException(), null, "exception1", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_CreateMethod(), this.getJavaMethod(), null, "createMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_CreatedDataModel(), this.getDataModel(), null, "createdDataModel", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_CreateMethod(), this.getBlock(), null, "createMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_CreateConclusion(), this.getDataModelMethodConclusion(), null, "createConclusion", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDataAccessObject_Findby(), ecorePackage.getEString(), "findby", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_Exception2(), this.getRestException(), null, "exception2", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_FindMethod(), this.getJavaMethod(), null, "findMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_FoundDataModel(), this.getDataModel(), null, "foundDataModel", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_FindMethod(), this.getBlock(), null, "findMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_FindConclusion(), this.getDataModelMethodConclusion(), null, "findConclusion", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDataAccessObject_Updateby(), ecorePackage.getEString(), "updateby", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDataAccessObject_UpdateDataModel(), this.getDataModel(), null, "updateDataModel", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_Exception3(), this.getRestException(), null, "exception3", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_UpdateMethod(), this.getJavaMethod(), null, "updateMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_UpdatedDataModel(), this.getDataModel(), null, "updatedDataModel", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_UpdateMethod(), this.getBlock(), null, "updateMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_UpdateConclusion(), this.getDataModelMethodConclusion(), null, "updateConclusion", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDataAccessObject_Deleteby(), ecorePackage.getEString(), "deleteby", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_Exception4(), this.getRestException(), null, "exception4", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDataAccessObject_DeleteMethod(), this.getJavaMethod(), null, "deleteMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_DeleteMethod(), this.getBlock(), null, "deleteMethod", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataAccessObject_Exceptions(), this.getRestExceptionList(), null, "exceptions", null, 0, 1, DataAccessObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dataModelMethodConclusionEClass, DataModelMethodConclusion.class, "DataModelMethodConclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDataModelMethodConclusion_DataModel(), this.getDataModel(), null, "dataModel", null, 0, 1, DataModelMethodConclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDataModelMethodConclusion_Exceptions(), this.getRestExceptionList(), null, "exceptions", null, 0, -1, DataModelMethodConclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(restModelMethodConclusionEClass, RestModelMethodConclusion.class, "RestModelMethodConclusion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRestModelMethodConclusion_RestModel(), this.getRestModel(), null, "restModel", null, 0, 1, RestModelMethodConclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRestModelMethodConclusion_Exception(), this.getRestExceptionList(), null, "exception", null, 0, -1, RestModelMethodConclusion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(restExceptionListEClass, RestExceptionList.class, "RestExceptionList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRestExceptionList_Exception(), this.getRestException(), null, "exception", null, 0, -1, RestExceptionList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(baseExceptionEClass, BaseException.class, "BaseException", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBaseException_ErrorCode(), ecorePackage.getEString(), "errorCode", null, 0, 1, BaseException.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBaseException_Message(), ecorePackage.getEString(), "message", null, 0, 1, BaseException.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exceptionMapperEClass, ExceptionMapper.class, "ExceptionMapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExceptionMapper_Name(), ecorePackage.getEString(), "name", null, 0, 1, ExceptionMapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExceptionMapper_RestException(), this.getRestException(), null, "restException", null, 0, 1, ExceptionMapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExceptionMapper_BaseException(), this.getBaseException(), null, "baseException", null, 0, 1, ExceptionMapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(restExceptionEClass, RestException.class, "RestException", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRestException_StatusCode(), this.getRestStatusCode(), "statusCode", null, 0, 1, RestException.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRestException_Message(), ecorePackage.getEString(), "message", null, 0, 1, RestException.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(javaMethodEClass, JavaMethod.class, "JavaMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getJavaMethod_Code(), ecorePackage.getEString(), "code", null, 0, 1, JavaMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBlock_Code(), ecorePackage.getEString(), "code", null, 0, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(restStatusCodeEEnum, RestStatusCode.class, "RestStatusCode");
@@ -1314,6 +1602,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     addEEnumLiteral(restStatusCodeEEnum, RestStatusCode.REDIRECTION);
     addEEnumLiteral(restStatusCodeEEnum, RestStatusCode.CLIENT_ERROR);
     addEEnumLiteral(restStatusCodeEEnum, RestStatusCode.SERVER_ERROR);
+    addEEnumLiteral(restStatusCodeEEnum, RestStatusCode.NETWORK_ERROR);
 
     // Create resource
     createResource(eNS_URI);

@@ -52,13 +52,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPrimitiveTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDataModelParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cRestModelParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cMappingModelParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cModelMapperParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Type:
-		//	PrimitiveType | DataModel | RestModel | MappingModel;
+		//	PrimitiveType | DataModel | RestModel | ModelMapper;
 		@Override public ParserRule getRule() { return rule; }
 
-		//PrimitiveType | DataModel | RestModel | MappingModel
+		//PrimitiveType | DataModel | RestModel | ModelMapper
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PrimitiveType
@@ -70,44 +70,62 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//RestModel
 		public RuleCall getRestModelParserRuleCall_2() { return cRestModelParserRuleCall_2; }
 
-		//MappingModel
-		public RuleCall getMappingModelParserRuleCall_3() { return cMappingModelParserRuleCall_3; }
+		//ModelMapper
+		public RuleCall getModelMapperParserRuleCall_3() { return cModelMapperParserRuleCall_3; }
 	}
 
 	public class RestAPIElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RestAPI");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cResourceAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cResourceResourceParserRuleCall_0_0 = (RuleCall)cResourceAssignment_0.eContents().get(0);
-		private final Assignment cServiceAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cServiceServiceParserRuleCall_1_0 = (RuleCall)cServiceAssignment_1.eContents().get(0);
-		private final Assignment cDaoAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cDaoDataAccessObjectParserRuleCall_2_0 = (RuleCall)cDaoAssignment_2.eContents().get(0);
+		private final Keyword cBEGIN_REST_APIKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cResourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cResourceResourceParserRuleCall_1_0 = (RuleCall)cResourceAssignment_1.eContents().get(0);
+		private final Assignment cServiceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cServiceServiceParserRuleCall_2_0 = (RuleCall)cServiceAssignment_2.eContents().get(0);
+		private final Assignment cDaoAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDaoDataAccessObjectParserRuleCall_3_0 = (RuleCall)cDaoAssignment_3.eContents().get(0);
+		private final Assignment cExceptionMapperAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cExceptionMapperExceptionMapperParserRuleCall_4_0 = (RuleCall)cExceptionMapperAssignment_4.eContents().get(0);
+		private final Keyword cEND_REST_APIKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//RestAPI:
-		//	resource=Resource service+=Service* dao+=DataAccessObject*;
+		//	"<BEGIN_REST_API>" resource=Resource service+=Service* dao+=DataAccessObject* exceptionMapper+=ExceptionMapper*
+		//	"<END_REST_API>";
 		@Override public ParserRule getRule() { return rule; }
 
-		//resource=Resource service+=Service* dao+=DataAccessObject*
+		//"<BEGIN_REST_API>" resource=Resource service+=Service* dao+=DataAccessObject* exceptionMapper+=ExceptionMapper*
+		//"<END_REST_API>"
 		public Group getGroup() { return cGroup; }
 
+		//"<BEGIN_REST_API>"
+		public Keyword getBEGIN_REST_APIKeyword_0() { return cBEGIN_REST_APIKeyword_0; }
+
 		//resource=Resource
-		public Assignment getResourceAssignment_0() { return cResourceAssignment_0; }
+		public Assignment getResourceAssignment_1() { return cResourceAssignment_1; }
 
 		//Resource
-		public RuleCall getResourceResourceParserRuleCall_0_0() { return cResourceResourceParserRuleCall_0_0; }
+		public RuleCall getResourceResourceParserRuleCall_1_0() { return cResourceResourceParserRuleCall_1_0; }
 
 		//service+=Service*
-		public Assignment getServiceAssignment_1() { return cServiceAssignment_1; }
+		public Assignment getServiceAssignment_2() { return cServiceAssignment_2; }
 
 		//Service
-		public RuleCall getServiceServiceParserRuleCall_1_0() { return cServiceServiceParserRuleCall_1_0; }
+		public RuleCall getServiceServiceParserRuleCall_2_0() { return cServiceServiceParserRuleCall_2_0; }
 
 		//dao+=DataAccessObject*
-		public Assignment getDaoAssignment_2() { return cDaoAssignment_2; }
+		public Assignment getDaoAssignment_3() { return cDaoAssignment_3; }
 
 		//DataAccessObject
-		public RuleCall getDaoDataAccessObjectParserRuleCall_2_0() { return cDaoDataAccessObjectParserRuleCall_2_0; }
+		public RuleCall getDaoDataAccessObjectParserRuleCall_3_0() { return cDaoDataAccessObjectParserRuleCall_3_0; }
+
+		//exceptionMapper+=ExceptionMapper*
+		public Assignment getExceptionMapperAssignment_4() { return cExceptionMapperAssignment_4; }
+
+		//ExceptionMapper
+		public RuleCall getExceptionMapperExceptionMapperParserRuleCall_4_0() { return cExceptionMapperExceptionMapperParserRuleCall_4_0; }
+
+		//"<END_REST_API>"
+		public Keyword getEND_REST_APIKeyword_5() { return cEND_REST_APIKeyword_5; }
 	}
 
 	public class PrimitiveTypeElements extends AbstractParserRuleElementFinder {
@@ -146,18 +164,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cSuperTypeDataModelCrossReference_2_1_0 = (CrossReference)cSuperTypeAssignment_2_1.eContents().get(0);
 		private final RuleCall cSuperTypeDataModelIDTerminalRuleCall_2_1_0_1 = (RuleCall)cSuperTypeDataModelCrossReference_2_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cFeaturesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cFeaturesFeatureParserRuleCall_4_0 = (RuleCall)cFeaturesAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cIdKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cIdAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cIdINTEGERTerminalRuleCall_6_0 = (RuleCall)cIdAssignment_6.eContents().get(0);
+		private final Assignment cFeaturesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cFeaturesFeatureParserRuleCall_7_0 = (RuleCall)cFeaturesAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//DataModel:
-		//	"dataModel" name=ID ("extends" superType=[DataModel])? "{" features+=Feature* "}";
+		//	"DataModel" name=ID ("extends" superType=[DataModel])? "{" "id" ":" id=INTEGER features+=Feature* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"dataModel" name=ID ("extends" superType=[DataModel])? "{" features+=Feature* "}"
+		//"DataModel" name=ID ("extends" superType=[DataModel])? "{" "id" ":" id=INTEGER features+=Feature* "}"
 		public Group getGroup() { return cGroup; }
 
-		//"dataModel"
+		//"DataModel"
 		public Keyword getDataModelKeyword_0() { return cDataModelKeyword_0; }
 
 		//name=ID
@@ -184,14 +206,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
+		//"id"
+		public Keyword getIdKeyword_4() { return cIdKeyword_4; }
+
+		//":"
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+
+		//id=INTEGER
+		public Assignment getIdAssignment_6() { return cIdAssignment_6; }
+
+		//INTEGER
+		public RuleCall getIdINTEGERTerminalRuleCall_6_0() { return cIdINTEGERTerminalRuleCall_6_0; }
+
 		//features+=Feature*
-		public Assignment getFeaturesAssignment_4() { return cFeaturesAssignment_4; }
+		public Assignment getFeaturesAssignment_7() { return cFeaturesAssignment_7; }
 
 		//Feature
-		public RuleCall getFeaturesFeatureParserRuleCall_4_0() { return cFeaturesFeatureParserRuleCall_4_0; }
+		public RuleCall getFeaturesFeatureParserRuleCall_7_0() { return cFeaturesFeatureParserRuleCall_7_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class RestModelElements extends AbstractParserRuleElementFinder {
@@ -206,18 +240,28 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cSuperTypeRestModelCrossReference_2_1_0 = (CrossReference)cSuperTypeAssignment_2_1.eContents().get(0);
 		private final RuleCall cSuperTypeRestModelIDTerminalRuleCall_2_1_0_1 = (RuleCall)cSuperTypeRestModelCrossReference_2_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cFeaturesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cFeaturesFeatureParserRuleCall_4_0 = (RuleCall)cFeaturesAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cIdKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cIdAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cIdINTEGERTerminalRuleCall_6_0 = (RuleCall)cIdAssignment_6.eContents().get(0);
+		private final Assignment cFeaturesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cFeaturesFeatureParserRuleCall_7_0 = (RuleCall)cFeaturesAssignment_7.eContents().get(0);
+		private final Keyword cSelfKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cColonKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cSelfAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cSelfSTRINGTerminalRuleCall_10_0 = (RuleCall)cSelfAssignment_10.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//RestModel:
-		//	"restModel" name=ID ("extends" superType=[RestModel])? "{" features+=Feature* "}";
+		//	"RestModel" name=ID ("extends" superType=[RestModel])? "{" "id" ":" id=INTEGER features+=Feature* "self" ":"
+		//	self=STRING "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"restModel" name=ID ("extends" superType=[RestModel])? "{" features+=Feature* "}"
+		//"RestModel" name=ID ("extends" superType=[RestModel])? "{" "id" ":" id=INTEGER features+=Feature* "self" ":" self=STRING
+		//"}"
 		public Group getGroup() { return cGroup; }
 
-		//"restModel"
+		//"RestModel"
 		public Keyword getRestModelKeyword_0() { return cRestModelKeyword_0; }
 
 		//name=ID
@@ -244,20 +288,44 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
+		//"id"
+		public Keyword getIdKeyword_4() { return cIdKeyword_4; }
+
+		//":"
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+
+		//id=INTEGER
+		public Assignment getIdAssignment_6() { return cIdAssignment_6; }
+
+		//INTEGER
+		public RuleCall getIdINTEGERTerminalRuleCall_6_0() { return cIdINTEGERTerminalRuleCall_6_0; }
+
 		//features+=Feature*
-		public Assignment getFeaturesAssignment_4() { return cFeaturesAssignment_4; }
+		public Assignment getFeaturesAssignment_7() { return cFeaturesAssignment_7; }
 
 		//Feature
-		public RuleCall getFeaturesFeatureParserRuleCall_4_0() { return cFeaturesFeatureParserRuleCall_4_0; }
+		public RuleCall getFeaturesFeatureParserRuleCall_7_0() { return cFeaturesFeatureParserRuleCall_7_0; }
+
+		//"self"
+		public Keyword getSelfKeyword_8() { return cSelfKeyword_8; }
+
+		//":"
+		public Keyword getColonKeyword_9() { return cColonKeyword_9; }
+
+		//self=STRING
+		public Assignment getSelfAssignment_10() { return cSelfAssignment_10; }
+
+		//STRING
+		public RuleCall getSelfSTRINGTerminalRuleCall_10_0() { return cSelfSTRINGTerminalRuleCall_10_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 	}
 
-	public class MappingModelElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MappingModel");
+	public class ModelMapperElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ModelMapper");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cMappingModelKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cModelMapperKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -265,15 +333,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTransformationTransformationParserRuleCall_3_0 = (RuleCall)cTransformationAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//MappingModel:
-		//	"mappingModel" name=ID "{" transformation+=Transformation* "}";
+		//ModelMapper:
+		//	"ModelMapper" name=ID "{" transformation+=Transformation* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"mappingModel" name=ID "{" transformation+=Transformation* "}"
+		//"ModelMapper" name=ID "{" transformation+=Transformation* "}"
 		public Group getGroup() { return cGroup; }
 
-		//"mappingModel"
-		public Keyword getMappingModelKeyword_0() { return cMappingModelKeyword_0; }
+		//"ModelMapper"
+		public Keyword getModelMapperKeyword_0() { return cModelMapperKeyword_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -392,87 +460,85 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cResourceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cCreateKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cCreateRestModelAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cCreateRestModelRestModelCrossReference_4_0 = (CrossReference)cCreateRestModelAssignment_4.eContents().get(0);
-		private final RuleCall cCreateRestModelRestModelIDTerminalRuleCall_4_0_1 = (RuleCall)cCreateRestModelRestModelCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cThrowsKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cException1Assignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cException1RestExceptionParserRuleCall_7_0 = (RuleCall)cException1Assignment_7.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cCreateMethodAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cCreateMethodJavaMethodParserRuleCall_9_0 = (RuleCall)cCreateMethodAssignment_9.eContents().get(0);
-		private final Keyword cReturnKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cCreatedRestModelAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final CrossReference cCreatedRestModelRestModelCrossReference_11_0 = (CrossReference)cCreatedRestModelAssignment_11.eContents().get(0);
-		private final RuleCall cCreatedRestModelRestModelIDTerminalRuleCall_11_0_1 = (RuleCall)cCreatedRestModelRestModelCrossReference_11_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Keyword cFindKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Keyword cLeftParenthesisKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Assignment cFindbyAssignment_15 = (Assignment)cGroup.eContents().get(15);
-		private final RuleCall cFindbyINTEGERTerminalRuleCall_15_0 = (RuleCall)cFindbyAssignment_15.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_16 = (Keyword)cGroup.eContents().get(16);
-		private final Keyword cThrowsKeyword_17 = (Keyword)cGroup.eContents().get(17);
-		private final Assignment cException2Assignment_18 = (Assignment)cGroup.eContents().get(18);
-		private final RuleCall cException2RestExceptionParserRuleCall_18_0 = (RuleCall)cException2Assignment_18.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
-		private final Assignment cFindMethodAssignment_20 = (Assignment)cGroup.eContents().get(20);
-		private final RuleCall cFindMethodJavaMethodParserRuleCall_20_0 = (RuleCall)cFindMethodAssignment_20.eContents().get(0);
-		private final Keyword cReturnKeyword_21 = (Keyword)cGroup.eContents().get(21);
-		private final Assignment cFoundRestModelAssignment_22 = (Assignment)cGroup.eContents().get(22);
-		private final CrossReference cFoundRestModelRestModelCrossReference_22_0 = (CrossReference)cFoundRestModelAssignment_22.eContents().get(0);
-		private final RuleCall cFoundRestModelRestModelIDTerminalRuleCall_22_0_1 = (RuleCall)cFoundRestModelRestModelCrossReference_22_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_23 = (Keyword)cGroup.eContents().get(23);
-		private final Keyword cUpdateKeyword_24 = (Keyword)cGroup.eContents().get(24);
-		private final Keyword cLeftParenthesisKeyword_25 = (Keyword)cGroup.eContents().get(25);
-		private final Assignment cUpdatebyAssignment_26 = (Assignment)cGroup.eContents().get(26);
-		private final RuleCall cUpdatebyINTEGERTerminalRuleCall_26_0 = (RuleCall)cUpdatebyAssignment_26.eContents().get(0);
-		private final Keyword cCommaKeyword_27 = (Keyword)cGroup.eContents().get(27);
-		private final Assignment cUpdateRestModelAssignment_28 = (Assignment)cGroup.eContents().get(28);
-		private final CrossReference cUpdateRestModelRestModelCrossReference_28_0 = (CrossReference)cUpdateRestModelAssignment_28.eContents().get(0);
-		private final RuleCall cUpdateRestModelRestModelIDTerminalRuleCall_28_0_1 = (RuleCall)cUpdateRestModelRestModelCrossReference_28_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_29 = (Keyword)cGroup.eContents().get(29);
-		private final Keyword cThrowsKeyword_30 = (Keyword)cGroup.eContents().get(30);
-		private final Assignment cException3Assignment_31 = (Assignment)cGroup.eContents().get(31);
-		private final RuleCall cException3RestExceptionParserRuleCall_31_0 = (RuleCall)cException3Assignment_31.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_32 = (Keyword)cGroup.eContents().get(32);
-		private final Assignment cUpdateMethodAssignment_33 = (Assignment)cGroup.eContents().get(33);
-		private final RuleCall cUpdateMethodJavaMethodParserRuleCall_33_0 = (RuleCall)cUpdateMethodAssignment_33.eContents().get(0);
-		private final Keyword cReturnKeyword_34 = (Keyword)cGroup.eContents().get(34);
-		private final Assignment cUpdatedRestModelAssignment_35 = (Assignment)cGroup.eContents().get(35);
-		private final CrossReference cUpdatedRestModelRestModelCrossReference_35_0 = (CrossReference)cUpdatedRestModelAssignment_35.eContents().get(0);
-		private final RuleCall cUpdatedRestModelRestModelIDTerminalRuleCall_35_0_1 = (RuleCall)cUpdatedRestModelRestModelCrossReference_35_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_36 = (Keyword)cGroup.eContents().get(36);
-		private final Keyword cDeleteKeyword_37 = (Keyword)cGroup.eContents().get(37);
-		private final Keyword cLeftParenthesisKeyword_38 = (Keyword)cGroup.eContents().get(38);
-		private final Assignment cDeletebyAssignment_39 = (Assignment)cGroup.eContents().get(39);
-		private final RuleCall cDeletebyINTEGERTerminalRuleCall_39_0 = (RuleCall)cDeletebyAssignment_39.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_40 = (Keyword)cGroup.eContents().get(40);
-		private final Keyword cThrowsKeyword_41 = (Keyword)cGroup.eContents().get(41);
-		private final Assignment cException4Assignment_42 = (Assignment)cGroup.eContents().get(42);
-		private final RuleCall cException4RestExceptionParserRuleCall_42_0 = (RuleCall)cException4Assignment_42.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_43 = (Keyword)cGroup.eContents().get(43);
-		private final Assignment cDeleteMethodAssignment_44 = (Assignment)cGroup.eContents().get(44);
-		private final RuleCall cDeleteMethodJavaMethodParserRuleCall_44_0 = (RuleCall)cDeleteMethodAssignment_44.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_45 = (Keyword)cGroup.eContents().get(45);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cServiceAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cServiceServiceCrossReference_3_0 = (CrossReference)cServiceAssignment_3.eContents().get(0);
+		private final RuleCall cServiceServiceIDTerminalRuleCall_3_0_1 = (RuleCall)cServiceServiceCrossReference_3_0.eContents().get(1);
+		private final Assignment cExceptionMapperAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cExceptionMapperExceptionMapperCrossReference_4_0 = (CrossReference)cExceptionMapperAssignment_4.eContents().get(0);
+		private final RuleCall cExceptionMapperExceptionMapperIDTerminalRuleCall_4_0_1 = (RuleCall)cExceptionMapperExceptionMapperCrossReference_4_0.eContents().get(1);
+		private final Keyword cCreateKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cCreateRestModelAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final CrossReference cCreateRestModelRestModelCrossReference_7_0 = (CrossReference)cCreateRestModelAssignment_7.eContents().get(0);
+		private final RuleCall cCreateRestModelRestModelIDTerminalRuleCall_7_0_1 = (RuleCall)cCreateRestModelRestModelCrossReference_7_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cLeftCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cCreateValServiceAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cCreateValServiceValidationServiceParserRuleCall_10_0 = (RuleCall)cCreateValServiceAssignment_10.eContents().get(0);
+		private final Assignment cCreateMethodAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cCreateMethodBlockParserRuleCall_11_0 = (RuleCall)cCreateMethodAssignment_11.eContents().get(0);
+		private final Assignment cCreateConclusionAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cCreateConclusionRestModelMethodConclusionParserRuleCall_12_0 = (RuleCall)cCreateConclusionAssignment_12.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Keyword cFindKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cLeftParenthesisKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Assignment cFindbyAssignment_16 = (Assignment)cGroup.eContents().get(16);
+		private final RuleCall cFindbyINTEGERTerminalRuleCall_16_0 = (RuleCall)cFindbyAssignment_16.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_17 = (Keyword)cGroup.eContents().get(17);
+		private final Keyword cLeftCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Assignment cFindMethodAssignment_19 = (Assignment)cGroup.eContents().get(19);
+		private final RuleCall cFindMethodBlockParserRuleCall_19_0 = (RuleCall)cFindMethodAssignment_19.eContents().get(0);
+		private final Assignment cFindConclusionAssignment_20 = (Assignment)cGroup.eContents().get(20);
+		private final RuleCall cFindConclusionRestModelMethodConclusionParserRuleCall_20_0 = (RuleCall)cFindConclusionAssignment_20.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_21 = (Keyword)cGroup.eContents().get(21);
+		private final Keyword cUpdateKeyword_22 = (Keyword)cGroup.eContents().get(22);
+		private final Keyword cLeftParenthesisKeyword_23 = (Keyword)cGroup.eContents().get(23);
+		private final Assignment cUpdatebyAssignment_24 = (Assignment)cGroup.eContents().get(24);
+		private final RuleCall cUpdatebyINTEGERTerminalRuleCall_24_0 = (RuleCall)cUpdatebyAssignment_24.eContents().get(0);
+		private final Keyword cCommaKeyword_25 = (Keyword)cGroup.eContents().get(25);
+		private final Assignment cUpdateRestModelAssignment_26 = (Assignment)cGroup.eContents().get(26);
+		private final CrossReference cUpdateRestModelRestModelCrossReference_26_0 = (CrossReference)cUpdateRestModelAssignment_26.eContents().get(0);
+		private final RuleCall cUpdateRestModelRestModelIDTerminalRuleCall_26_0_1 = (RuleCall)cUpdateRestModelRestModelCrossReference_26_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_27 = (Keyword)cGroup.eContents().get(27);
+		private final Keyword cLeftCurlyBracketKeyword_28 = (Keyword)cGroup.eContents().get(28);
+		private final Assignment cUpdateValServiceAssignment_29 = (Assignment)cGroup.eContents().get(29);
+		private final RuleCall cUpdateValServiceValidationServiceParserRuleCall_29_0 = (RuleCall)cUpdateValServiceAssignment_29.eContents().get(0);
+		private final Assignment cUpdateMethodAssignment_30 = (Assignment)cGroup.eContents().get(30);
+		private final RuleCall cUpdateMethodBlockParserRuleCall_30_0 = (RuleCall)cUpdateMethodAssignment_30.eContents().get(0);
+		private final Assignment cUpdateConclusionAssignment_31 = (Assignment)cGroup.eContents().get(31);
+		private final RuleCall cUpdateConclusionRestModelMethodConclusionParserRuleCall_31_0 = (RuleCall)cUpdateConclusionAssignment_31.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_32 = (Keyword)cGroup.eContents().get(32);
+		private final Keyword cDeleteKeyword_33 = (Keyword)cGroup.eContents().get(33);
+		private final Keyword cLeftParenthesisKeyword_34 = (Keyword)cGroup.eContents().get(34);
+		private final Assignment cDeletebyAssignment_35 = (Assignment)cGroup.eContents().get(35);
+		private final RuleCall cDeletebyINTEGERTerminalRuleCall_35_0 = (RuleCall)cDeletebyAssignment_35.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_36 = (Keyword)cGroup.eContents().get(36);
+		private final Keyword cLeftCurlyBracketKeyword_37 = (Keyword)cGroup.eContents().get(37);
+		private final Assignment cDeleteMethodAssignment_38 = (Assignment)cGroup.eContents().get(38);
+		private final RuleCall cDeleteMethodBlockParserRuleCall_38_0 = (RuleCall)cDeleteMethodAssignment_38.eContents().get(0);
+		private final Group cGroup_39 = (Group)cGroup.eContents().get(39);
+		private final Keyword cThrowKeyword_39_0 = (Keyword)cGroup_39.eContents().get(0);
+		private final Assignment cException4Assignment_39_1 = (Assignment)cGroup_39.eContents().get(1);
+		private final RuleCall cException4RestExceptionListParserRuleCall_39_1_0 = (RuleCall)cException4Assignment_39_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_40 = (Keyword)cGroup.eContents().get(40);
+		private final Keyword cRightCurlyBracketKeyword_41 = (Keyword)cGroup.eContents().get(41);
 		
 		//Resource:
-		//	"Resource" name=ID "create" "(" createRestModel=[RestModel] ")" "throws" exception1=RestException "{"
-		//	createMethod=JavaMethod "return" createdRestModel=[RestModel] "}" "find" "(" findby=INTEGER ")" "throws"
-		//	exception2=RestException "{" findMethod=JavaMethod "return" foundRestModel=[RestModel] "}" "update" "("
-		//	updateby=INTEGER "," updateRestModel=[RestModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-		//	"return" updatedRestModel=[RestModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-		//	deleteMethod=JavaMethod "}";
+		//	"Resource" name=ID "{" service+=[Service]+ exceptionMapper=[ExceptionMapper] "create" "(" createRestModel=[RestModel]
+		//	")" "{" createValService=ValidationService createMethod=Block createConclusion=RestModelMethodConclusion "}" "find"
+		//	"(" findby=INTEGER ")" "{" findMethod=Block findConclusion=RestModelMethodConclusion "}" "update" "(" updateby=INTEGER
+		//	"," updateRestModel=[RestModel] ")" "{" updateValService=ValidationService updateMethod=Block
+		//	updateConclusion=RestModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{" deleteMethod=Block ("throw"
+		//	exception4=RestExceptionList)? "}" "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"Resource" name=ID "create" "(" createRestModel=[RestModel] ")" "throws" exception1=RestException "{"
-		//createMethod=JavaMethod "return" createdRestModel=[RestModel] "}" "find" "(" findby=INTEGER ")" "throws"
-		//exception2=RestException "{" findMethod=JavaMethod "return" foundRestModel=[RestModel] "}" "update" "("
-		//updateby=INTEGER "," updateRestModel=[RestModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-		//"return" updatedRestModel=[RestModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-		//deleteMethod=JavaMethod "}"
+		//"Resource" name=ID "{" service+=[Service]+ exceptionMapper=[ExceptionMapper] "create" "(" createRestModel=[RestModel]
+		//")" "{" createValService=ValidationService createMethod=Block createConclusion=RestModelMethodConclusion "}" "find" "("
+		//findby=INTEGER ")" "{" findMethod=Block findConclusion=RestModelMethodConclusion "}" "update" "(" updateby=INTEGER ","
+		//updateRestModel=[RestModel] ")" "{" updateValService=ValidationService updateMethod=Block
+		//updateConclusion=RestModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{" deleteMethod=Block ("throw"
+		//exception4=RestExceptionList)? "}" "}"
 		public Group getGroup() { return cGroup; }
 
 		//"Resource"
@@ -484,200 +550,194 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
+		//service+=[Service]+
+		public Assignment getServiceAssignment_3() { return cServiceAssignment_3; }
+
+		//[Service]
+		public CrossReference getServiceServiceCrossReference_3_0() { return cServiceServiceCrossReference_3_0; }
+
+		//ID
+		public RuleCall getServiceServiceIDTerminalRuleCall_3_0_1() { return cServiceServiceIDTerminalRuleCall_3_0_1; }
+
+		//exceptionMapper=[ExceptionMapper]
+		public Assignment getExceptionMapperAssignment_4() { return cExceptionMapperAssignment_4; }
+
+		//[ExceptionMapper]
+		public CrossReference getExceptionMapperExceptionMapperCrossReference_4_0() { return cExceptionMapperExceptionMapperCrossReference_4_0; }
+
+		//ID
+		public RuleCall getExceptionMapperExceptionMapperIDTerminalRuleCall_4_0_1() { return cExceptionMapperExceptionMapperIDTerminalRuleCall_4_0_1; }
+
 		//"create"
-		public Keyword getCreateKeyword_2() { return cCreateKeyword_2; }
+		public Keyword getCreateKeyword_5() { return cCreateKeyword_5; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
+		public Keyword getLeftParenthesisKeyword_6() { return cLeftParenthesisKeyword_6; }
 
 		//createRestModel=[RestModel]
-		public Assignment getCreateRestModelAssignment_4() { return cCreateRestModelAssignment_4; }
+		public Assignment getCreateRestModelAssignment_7() { return cCreateRestModelAssignment_7; }
 
 		//[RestModel]
-		public CrossReference getCreateRestModelRestModelCrossReference_4_0() { return cCreateRestModelRestModelCrossReference_4_0; }
+		public CrossReference getCreateRestModelRestModelCrossReference_7_0() { return cCreateRestModelRestModelCrossReference_7_0; }
 
 		//ID
-		public RuleCall getCreateRestModelRestModelIDTerminalRuleCall_4_0_1() { return cCreateRestModelRestModelIDTerminalRuleCall_4_0_1; }
+		public RuleCall getCreateRestModelRestModelIDTerminalRuleCall_7_0_1() { return cCreateRestModelRestModelIDTerminalRuleCall_7_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_6() { return cThrowsKeyword_6; }
-
-		//exception1=RestException
-		public Assignment getException1Assignment_7() { return cException1Assignment_7; }
-
-		//RestException
-		public RuleCall getException1RestExceptionParserRuleCall_7_0() { return cException1RestExceptionParserRuleCall_7_0; }
+		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
+		public Keyword getLeftCurlyBracketKeyword_9() { return cLeftCurlyBracketKeyword_9; }
 
-		//createMethod=JavaMethod
-		public Assignment getCreateMethodAssignment_9() { return cCreateMethodAssignment_9; }
+		//createValService=ValidationService
+		public Assignment getCreateValServiceAssignment_10() { return cCreateValServiceAssignment_10; }
 
-		//JavaMethod
-		public RuleCall getCreateMethodJavaMethodParserRuleCall_9_0() { return cCreateMethodJavaMethodParserRuleCall_9_0; }
+		//ValidationService
+		public RuleCall getCreateValServiceValidationServiceParserRuleCall_10_0() { return cCreateValServiceValidationServiceParserRuleCall_10_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_10() { return cReturnKeyword_10; }
+		//createMethod=Block
+		public Assignment getCreateMethodAssignment_11() { return cCreateMethodAssignment_11; }
 
-		//createdRestModel=[RestModel]
-		public Assignment getCreatedRestModelAssignment_11() { return cCreatedRestModelAssignment_11; }
+		//Block
+		public RuleCall getCreateMethodBlockParserRuleCall_11_0() { return cCreateMethodBlockParserRuleCall_11_0; }
 
-		//[RestModel]
-		public CrossReference getCreatedRestModelRestModelCrossReference_11_0() { return cCreatedRestModelRestModelCrossReference_11_0; }
+		//createConclusion=RestModelMethodConclusion
+		public Assignment getCreateConclusionAssignment_12() { return cCreateConclusionAssignment_12; }
 
-		//ID
-		public RuleCall getCreatedRestModelRestModelIDTerminalRuleCall_11_0_1() { return cCreatedRestModelRestModelIDTerminalRuleCall_11_0_1; }
+		//RestModelMethodConclusion
+		public RuleCall getCreateConclusionRestModelMethodConclusionParserRuleCall_12_0() { return cCreateConclusionRestModelMethodConclusionParserRuleCall_12_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
+		public Keyword getRightCurlyBracketKeyword_13() { return cRightCurlyBracketKeyword_13; }
 
 		//"find"
-		public Keyword getFindKeyword_13() { return cFindKeyword_13; }
+		public Keyword getFindKeyword_14() { return cFindKeyword_14; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_14() { return cLeftParenthesisKeyword_14; }
+		public Keyword getLeftParenthesisKeyword_15() { return cLeftParenthesisKeyword_15; }
 
 		//findby=INTEGER
-		public Assignment getFindbyAssignment_15() { return cFindbyAssignment_15; }
+		public Assignment getFindbyAssignment_16() { return cFindbyAssignment_16; }
 
 		//INTEGER
-		public RuleCall getFindbyINTEGERTerminalRuleCall_15_0() { return cFindbyINTEGERTerminalRuleCall_15_0; }
+		public RuleCall getFindbyINTEGERTerminalRuleCall_16_0() { return cFindbyINTEGERTerminalRuleCall_16_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_16() { return cRightParenthesisKeyword_16; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_17() { return cThrowsKeyword_17; }
-
-		//exception2=RestException
-		public Assignment getException2Assignment_18() { return cException2Assignment_18; }
-
-		//RestException
-		public RuleCall getException2RestExceptionParserRuleCall_18_0() { return cException2RestExceptionParserRuleCall_18_0; }
+		public Keyword getRightParenthesisKeyword_17() { return cRightParenthesisKeyword_17; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_19() { return cLeftCurlyBracketKeyword_19; }
+		public Keyword getLeftCurlyBracketKeyword_18() { return cLeftCurlyBracketKeyword_18; }
 
-		//findMethod=JavaMethod
-		public Assignment getFindMethodAssignment_20() { return cFindMethodAssignment_20; }
+		//findMethod=Block
+		public Assignment getFindMethodAssignment_19() { return cFindMethodAssignment_19; }
 
-		//JavaMethod
-		public RuleCall getFindMethodJavaMethodParserRuleCall_20_0() { return cFindMethodJavaMethodParserRuleCall_20_0; }
+		//Block
+		public RuleCall getFindMethodBlockParserRuleCall_19_0() { return cFindMethodBlockParserRuleCall_19_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_21() { return cReturnKeyword_21; }
+		//findConclusion=RestModelMethodConclusion
+		public Assignment getFindConclusionAssignment_20() { return cFindConclusionAssignment_20; }
 
-		//foundRestModel=[RestModel]
-		public Assignment getFoundRestModelAssignment_22() { return cFoundRestModelAssignment_22; }
-
-		//[RestModel]
-		public CrossReference getFoundRestModelRestModelCrossReference_22_0() { return cFoundRestModelRestModelCrossReference_22_0; }
-
-		//ID
-		public RuleCall getFoundRestModelRestModelIDTerminalRuleCall_22_0_1() { return cFoundRestModelRestModelIDTerminalRuleCall_22_0_1; }
+		//RestModelMethodConclusion
+		public RuleCall getFindConclusionRestModelMethodConclusionParserRuleCall_20_0() { return cFindConclusionRestModelMethodConclusionParserRuleCall_20_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_23() { return cRightCurlyBracketKeyword_23; }
+		public Keyword getRightCurlyBracketKeyword_21() { return cRightCurlyBracketKeyword_21; }
 
 		//"update"
-		public Keyword getUpdateKeyword_24() { return cUpdateKeyword_24; }
+		public Keyword getUpdateKeyword_22() { return cUpdateKeyword_22; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_25() { return cLeftParenthesisKeyword_25; }
+		public Keyword getLeftParenthesisKeyword_23() { return cLeftParenthesisKeyword_23; }
 
 		//updateby=INTEGER
-		public Assignment getUpdatebyAssignment_26() { return cUpdatebyAssignment_26; }
+		public Assignment getUpdatebyAssignment_24() { return cUpdatebyAssignment_24; }
 
 		//INTEGER
-		public RuleCall getUpdatebyINTEGERTerminalRuleCall_26_0() { return cUpdatebyINTEGERTerminalRuleCall_26_0; }
+		public RuleCall getUpdatebyINTEGERTerminalRuleCall_24_0() { return cUpdatebyINTEGERTerminalRuleCall_24_0; }
 
 		//","
-		public Keyword getCommaKeyword_27() { return cCommaKeyword_27; }
+		public Keyword getCommaKeyword_25() { return cCommaKeyword_25; }
 
 		//updateRestModel=[RestModel]
-		public Assignment getUpdateRestModelAssignment_28() { return cUpdateRestModelAssignment_28; }
+		public Assignment getUpdateRestModelAssignment_26() { return cUpdateRestModelAssignment_26; }
 
 		//[RestModel]
-		public CrossReference getUpdateRestModelRestModelCrossReference_28_0() { return cUpdateRestModelRestModelCrossReference_28_0; }
+		public CrossReference getUpdateRestModelRestModelCrossReference_26_0() { return cUpdateRestModelRestModelCrossReference_26_0; }
 
 		//ID
-		public RuleCall getUpdateRestModelRestModelIDTerminalRuleCall_28_0_1() { return cUpdateRestModelRestModelIDTerminalRuleCall_28_0_1; }
+		public RuleCall getUpdateRestModelRestModelIDTerminalRuleCall_26_0_1() { return cUpdateRestModelRestModelIDTerminalRuleCall_26_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_29() { return cRightParenthesisKeyword_29; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_30() { return cThrowsKeyword_30; }
-
-		//exception3=RestException
-		public Assignment getException3Assignment_31() { return cException3Assignment_31; }
-
-		//RestException
-		public RuleCall getException3RestExceptionParserRuleCall_31_0() { return cException3RestExceptionParserRuleCall_31_0; }
+		public Keyword getRightParenthesisKeyword_27() { return cRightParenthesisKeyword_27; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_32() { return cLeftCurlyBracketKeyword_32; }
+		public Keyword getLeftCurlyBracketKeyword_28() { return cLeftCurlyBracketKeyword_28; }
 
-		//updateMethod=JavaMethod
-		public Assignment getUpdateMethodAssignment_33() { return cUpdateMethodAssignment_33; }
+		//updateValService=ValidationService
+		public Assignment getUpdateValServiceAssignment_29() { return cUpdateValServiceAssignment_29; }
 
-		//JavaMethod
-		public RuleCall getUpdateMethodJavaMethodParserRuleCall_33_0() { return cUpdateMethodJavaMethodParserRuleCall_33_0; }
+		//ValidationService
+		public RuleCall getUpdateValServiceValidationServiceParserRuleCall_29_0() { return cUpdateValServiceValidationServiceParserRuleCall_29_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_34() { return cReturnKeyword_34; }
+		//updateMethod=Block
+		public Assignment getUpdateMethodAssignment_30() { return cUpdateMethodAssignment_30; }
 
-		//updatedRestModel=[RestModel]
-		public Assignment getUpdatedRestModelAssignment_35() { return cUpdatedRestModelAssignment_35; }
+		//Block
+		public RuleCall getUpdateMethodBlockParserRuleCall_30_0() { return cUpdateMethodBlockParserRuleCall_30_0; }
 
-		//[RestModel]
-		public CrossReference getUpdatedRestModelRestModelCrossReference_35_0() { return cUpdatedRestModelRestModelCrossReference_35_0; }
+		//updateConclusion=RestModelMethodConclusion
+		public Assignment getUpdateConclusionAssignment_31() { return cUpdateConclusionAssignment_31; }
 
-		//ID
-		public RuleCall getUpdatedRestModelRestModelIDTerminalRuleCall_35_0_1() { return cUpdatedRestModelRestModelIDTerminalRuleCall_35_0_1; }
+		//RestModelMethodConclusion
+		public RuleCall getUpdateConclusionRestModelMethodConclusionParserRuleCall_31_0() { return cUpdateConclusionRestModelMethodConclusionParserRuleCall_31_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_36() { return cRightCurlyBracketKeyword_36; }
+		public Keyword getRightCurlyBracketKeyword_32() { return cRightCurlyBracketKeyword_32; }
 
 		//"delete"
-		public Keyword getDeleteKeyword_37() { return cDeleteKeyword_37; }
+		public Keyword getDeleteKeyword_33() { return cDeleteKeyword_33; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_38() { return cLeftParenthesisKeyword_38; }
+		public Keyword getLeftParenthesisKeyword_34() { return cLeftParenthesisKeyword_34; }
 
 		//deleteby=INTEGER
-		public Assignment getDeletebyAssignment_39() { return cDeletebyAssignment_39; }
+		public Assignment getDeletebyAssignment_35() { return cDeletebyAssignment_35; }
 
 		//INTEGER
-		public RuleCall getDeletebyINTEGERTerminalRuleCall_39_0() { return cDeletebyINTEGERTerminalRuleCall_39_0; }
+		public RuleCall getDeletebyINTEGERTerminalRuleCall_35_0() { return cDeletebyINTEGERTerminalRuleCall_35_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_40() { return cRightParenthesisKeyword_40; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_41() { return cThrowsKeyword_41; }
-
-		//exception4=RestException
-		public Assignment getException4Assignment_42() { return cException4Assignment_42; }
-
-		//RestException
-		public RuleCall getException4RestExceptionParserRuleCall_42_0() { return cException4RestExceptionParserRuleCall_42_0; }
+		public Keyword getRightParenthesisKeyword_36() { return cRightParenthesisKeyword_36; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_43() { return cLeftCurlyBracketKeyword_43; }
+		public Keyword getLeftCurlyBracketKeyword_37() { return cLeftCurlyBracketKeyword_37; }
 
-		//deleteMethod=JavaMethod
-		public Assignment getDeleteMethodAssignment_44() { return cDeleteMethodAssignment_44; }
+		//deleteMethod=Block
+		public Assignment getDeleteMethodAssignment_38() { return cDeleteMethodAssignment_38; }
 
-		//JavaMethod
-		public RuleCall getDeleteMethodJavaMethodParserRuleCall_44_0() { return cDeleteMethodJavaMethodParserRuleCall_44_0; }
+		//Block
+		public RuleCall getDeleteMethodBlockParserRuleCall_38_0() { return cDeleteMethodBlockParserRuleCall_38_0; }
+
+		//("throw" exception4=RestExceptionList)?
+		public Group getGroup_39() { return cGroup_39; }
+
+		//"throw"
+		public Keyword getThrowKeyword_39_0() { return cThrowKeyword_39_0; }
+
+		//exception4=RestExceptionList
+		public Assignment getException4Assignment_39_1() { return cException4Assignment_39_1; }
+
+		//RestExceptionList
+		public RuleCall getException4RestExceptionListParserRuleCall_39_1_0() { return cException4RestExceptionListParserRuleCall_39_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_45() { return cRightCurlyBracketKeyword_45; }
+		public Keyword getRightCurlyBracketKeyword_40() { return cRightCurlyBracketKeyword_40; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_41() { return cRightCurlyBracketKeyword_41; }
 	}
 
 	public class ServiceElements extends AbstractParserRuleElementFinder {
@@ -686,87 +746,76 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cServiceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cCreateKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cCreateDataModelAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cCreateDataModelDataModelCrossReference_4_0 = (CrossReference)cCreateDataModelAssignment_4.eContents().get(0);
-		private final RuleCall cCreateDataModelDataModelIDTerminalRuleCall_4_0_1 = (RuleCall)cCreateDataModelDataModelCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cThrowsKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cException1Assignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cException1RestExceptionParserRuleCall_7_0 = (RuleCall)cException1Assignment_7.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cDaoAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cDaoDataAccessObjectCrossReference_3_0 = (CrossReference)cDaoAssignment_3.eContents().get(0);
+		private final RuleCall cDaoDataAccessObjectIDTerminalRuleCall_3_0_1 = (RuleCall)cDaoDataAccessObjectCrossReference_3_0.eContents().get(1);
+		private final Keyword cCreateKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCreateDataModelAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final CrossReference cCreateDataModelDataModelCrossReference_6_0 = (CrossReference)cCreateDataModelAssignment_6.eContents().get(0);
+		private final RuleCall cCreateDataModelDataModelIDTerminalRuleCall_6_0_1 = (RuleCall)cCreateDataModelDataModelCrossReference_6_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Assignment cCreateMethodAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cCreateMethodJavaMethodParserRuleCall_9_0 = (RuleCall)cCreateMethodAssignment_9.eContents().get(0);
-		private final Keyword cReturnKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cCreatedDataModelAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final CrossReference cCreatedDataModelDataModelCrossReference_11_0 = (CrossReference)cCreatedDataModelAssignment_11.eContents().get(0);
-		private final RuleCall cCreatedDataModelDataModelIDTerminalRuleCall_11_0_1 = (RuleCall)cCreatedDataModelDataModelCrossReference_11_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Keyword cFindKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Keyword cLeftParenthesisKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Assignment cFindbyAssignment_15 = (Assignment)cGroup.eContents().get(15);
-		private final RuleCall cFindbyINTEGERTerminalRuleCall_15_0 = (RuleCall)cFindbyAssignment_15.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_16 = (Keyword)cGroup.eContents().get(16);
-		private final Keyword cThrowsKeyword_17 = (Keyword)cGroup.eContents().get(17);
-		private final Assignment cException2Assignment_18 = (Assignment)cGroup.eContents().get(18);
-		private final RuleCall cException2RestExceptionParserRuleCall_18_0 = (RuleCall)cException2Assignment_18.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
-		private final Assignment cFindMethodAssignment_20 = (Assignment)cGroup.eContents().get(20);
-		private final RuleCall cFindMethodJavaMethodParserRuleCall_20_0 = (RuleCall)cFindMethodAssignment_20.eContents().get(0);
-		private final Keyword cReturnKeyword_21 = (Keyword)cGroup.eContents().get(21);
-		private final Assignment cFoundDataModelAssignment_22 = (Assignment)cGroup.eContents().get(22);
-		private final CrossReference cFoundDataModelDataModelCrossReference_22_0 = (CrossReference)cFoundDataModelAssignment_22.eContents().get(0);
-		private final RuleCall cFoundDataModelDataModelIDTerminalRuleCall_22_0_1 = (RuleCall)cFoundDataModelDataModelCrossReference_22_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_23 = (Keyword)cGroup.eContents().get(23);
-		private final Keyword cUpdateKeyword_24 = (Keyword)cGroup.eContents().get(24);
-		private final Keyword cLeftParenthesisKeyword_25 = (Keyword)cGroup.eContents().get(25);
-		private final Assignment cUpdatebyAssignment_26 = (Assignment)cGroup.eContents().get(26);
-		private final RuleCall cUpdatebyINTEGERTerminalRuleCall_26_0 = (RuleCall)cUpdatebyAssignment_26.eContents().get(0);
-		private final Keyword cCommaKeyword_27 = (Keyword)cGroup.eContents().get(27);
-		private final Assignment cUpdateDataModelAssignment_28 = (Assignment)cGroup.eContents().get(28);
-		private final CrossReference cUpdateDataModelDataModelCrossReference_28_0 = (CrossReference)cUpdateDataModelAssignment_28.eContents().get(0);
-		private final RuleCall cUpdateDataModelDataModelIDTerminalRuleCall_28_0_1 = (RuleCall)cUpdateDataModelDataModelCrossReference_28_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_29 = (Keyword)cGroup.eContents().get(29);
-		private final Keyword cThrowsKeyword_30 = (Keyword)cGroup.eContents().get(30);
-		private final Assignment cException3Assignment_31 = (Assignment)cGroup.eContents().get(31);
-		private final RuleCall cException3RestExceptionParserRuleCall_31_0 = (RuleCall)cException3Assignment_31.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_32 = (Keyword)cGroup.eContents().get(32);
-		private final Assignment cUpdateMethodAssignment_33 = (Assignment)cGroup.eContents().get(33);
-		private final RuleCall cUpdateMethodJavaMethodParserRuleCall_33_0 = (RuleCall)cUpdateMethodAssignment_33.eContents().get(0);
-		private final Keyword cReturnKeyword_34 = (Keyword)cGroup.eContents().get(34);
-		private final Assignment cUpdatedDataModelAssignment_35 = (Assignment)cGroup.eContents().get(35);
-		private final CrossReference cUpdatedDataModelDataModelCrossReference_35_0 = (CrossReference)cUpdatedDataModelAssignment_35.eContents().get(0);
-		private final RuleCall cUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1 = (RuleCall)cUpdatedDataModelDataModelCrossReference_35_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_36 = (Keyword)cGroup.eContents().get(36);
-		private final Keyword cDeleteKeyword_37 = (Keyword)cGroup.eContents().get(37);
-		private final Keyword cLeftParenthesisKeyword_38 = (Keyword)cGroup.eContents().get(38);
-		private final Assignment cDeletebyAssignment_39 = (Assignment)cGroup.eContents().get(39);
-		private final RuleCall cDeletebyINTEGERTerminalRuleCall_39_0 = (RuleCall)cDeletebyAssignment_39.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_40 = (Keyword)cGroup.eContents().get(40);
-		private final Keyword cThrowsKeyword_41 = (Keyword)cGroup.eContents().get(41);
-		private final Assignment cException4Assignment_42 = (Assignment)cGroup.eContents().get(42);
-		private final RuleCall cException4RestExceptionParserRuleCall_42_0 = (RuleCall)cException4Assignment_42.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_43 = (Keyword)cGroup.eContents().get(43);
-		private final Assignment cDeleteMethodAssignment_44 = (Assignment)cGroup.eContents().get(44);
-		private final RuleCall cDeleteMethodJavaMethodParserRuleCall_44_0 = (RuleCall)cDeleteMethodAssignment_44.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_45 = (Keyword)cGroup.eContents().get(45);
+		private final RuleCall cCreateMethodBlockParserRuleCall_9_0 = (RuleCall)cCreateMethodAssignment_9.eContents().get(0);
+		private final Assignment cCreateConclusionAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cCreateConclusionDataModelMethodConclusionParserRuleCall_10_0 = (RuleCall)cCreateConclusionAssignment_10.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cFindKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cLeftParenthesisKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Assignment cFindbyAssignment_14 = (Assignment)cGroup.eContents().get(14);
+		private final RuleCall cFindbyINTEGERTerminalRuleCall_14_0 = (RuleCall)cFindbyAssignment_14.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Keyword cLeftCurlyBracketKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Assignment cFindMethodAssignment_17 = (Assignment)cGroup.eContents().get(17);
+		private final RuleCall cFindMethodBlockParserRuleCall_17_0 = (RuleCall)cFindMethodAssignment_17.eContents().get(0);
+		private final Assignment cFindConclusionAssignment_18 = (Assignment)cGroup.eContents().get(18);
+		private final RuleCall cFindConclusionDataModelMethodConclusionParserRuleCall_18_0 = (RuleCall)cFindConclusionAssignment_18.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
+		private final Keyword cUpdateKeyword_20 = (Keyword)cGroup.eContents().get(20);
+		private final Keyword cLeftParenthesisKeyword_21 = (Keyword)cGroup.eContents().get(21);
+		private final Assignment cUpdatebyAssignment_22 = (Assignment)cGroup.eContents().get(22);
+		private final RuleCall cUpdatebyINTEGERTerminalRuleCall_22_0 = (RuleCall)cUpdatebyAssignment_22.eContents().get(0);
+		private final Keyword cCommaKeyword_23 = (Keyword)cGroup.eContents().get(23);
+		private final Assignment cUpdateDataModelAssignment_24 = (Assignment)cGroup.eContents().get(24);
+		private final CrossReference cUpdateDataModelDataModelCrossReference_24_0 = (CrossReference)cUpdateDataModelAssignment_24.eContents().get(0);
+		private final RuleCall cUpdateDataModelDataModelIDTerminalRuleCall_24_0_1 = (RuleCall)cUpdateDataModelDataModelCrossReference_24_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_25 = (Keyword)cGroup.eContents().get(25);
+		private final Keyword cLeftCurlyBracketKeyword_26 = (Keyword)cGroup.eContents().get(26);
+		private final Assignment cUpdateMethodAssignment_27 = (Assignment)cGroup.eContents().get(27);
+		private final RuleCall cUpdateMethodBlockParserRuleCall_27_0 = (RuleCall)cUpdateMethodAssignment_27.eContents().get(0);
+		private final Assignment cUpdateConclusionAssignment_28 = (Assignment)cGroup.eContents().get(28);
+		private final RuleCall cUpdateConclusionDataModelMethodConclusionParserRuleCall_28_0 = (RuleCall)cUpdateConclusionAssignment_28.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_29 = (Keyword)cGroup.eContents().get(29);
+		private final Keyword cDeleteKeyword_30 = (Keyword)cGroup.eContents().get(30);
+		private final Keyword cLeftParenthesisKeyword_31 = (Keyword)cGroup.eContents().get(31);
+		private final Assignment cDeletebyAssignment_32 = (Assignment)cGroup.eContents().get(32);
+		private final RuleCall cDeletebyINTEGERTerminalRuleCall_32_0 = (RuleCall)cDeletebyAssignment_32.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_33 = (Keyword)cGroup.eContents().get(33);
+		private final Keyword cLeftCurlyBracketKeyword_34 = (Keyword)cGroup.eContents().get(34);
+		private final Assignment cDeleteMethodAssignment_35 = (Assignment)cGroup.eContents().get(35);
+		private final RuleCall cDeleteMethodBlockParserRuleCall_35_0 = (RuleCall)cDeleteMethodAssignment_35.eContents().get(0);
+		private final Group cGroup_36 = (Group)cGroup.eContents().get(36);
+		private final Keyword cThrowKeyword_36_0 = (Keyword)cGroup_36.eContents().get(0);
+		private final Assignment cException4Assignment_36_1 = (Assignment)cGroup_36.eContents().get(1);
+		private final RuleCall cException4RestExceptionListParserRuleCall_36_1_0 = (RuleCall)cException4Assignment_36_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_37 = (Keyword)cGroup.eContents().get(37);
+		private final Keyword cRightCurlyBracketKeyword_38 = (Keyword)cGroup.eContents().get(38);
 		
 		//Service:
-		//	"Service" name=ID "create" "(" createDataModel=[DataModel] ")" "throws" exception1=RestException "{"
-		//	createMethod=JavaMethod "return" createdDataModel=[DataModel] "}" "find" "(" findby=INTEGER ")" "throws"
-		//	exception2=RestException "{" findMethod=JavaMethod "return" foundDataModel=[DataModel] "}" "update" "("
-		//	updateby=INTEGER "," updateDataModel=[DataModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-		//	"return" updatedDataModel=[DataModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-		//	deleteMethod=JavaMethod "}";
+		//	"Service" name=ID "{" dao+=[DataAccessObject]+ "create" "(" createDataModel=[DataModel] ")" "{" createMethod=Block
+		//	createConclusion=DataModelMethodConclusion "}" "find" "(" findby=INTEGER ")" "{" findMethod=Block
+		//	findConclusion=DataModelMethodConclusion "}" "update" "(" updateby=INTEGER "," updateDataModel=[DataModel] ")" "{"
+		//	updateMethod=Block updateConclusion=DataModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{"
+		//	deleteMethod=Block ("throw" exception4=RestExceptionList)? "}" "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"Service" name=ID "create" "(" createDataModel=[DataModel] ")" "throws" exception1=RestException "{"
-		//createMethod=JavaMethod "return" createdDataModel=[DataModel] "}" "find" "(" findby=INTEGER ")" "throws"
-		//exception2=RestException "{" findMethod=JavaMethod "return" foundDataModel=[DataModel] "}" "update" "("
-		//updateby=INTEGER "," updateDataModel=[DataModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-		//"return" updatedDataModel=[DataModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-		//deleteMethod=JavaMethod "}"
+		//"Service" name=ID "{" dao+=[DataAccessObject]+ "create" "(" createDataModel=[DataModel] ")" "{" createMethod=Block
+		//createConclusion=DataModelMethodConclusion "}" "find" "(" findby=INTEGER ")" "{" findMethod=Block
+		//findConclusion=DataModelMethodConclusion "}" "update" "(" updateby=INTEGER "," updateDataModel=[DataModel] ")" "{"
+		//updateMethod=Block updateConclusion=DataModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{"
+		//deleteMethod=Block ("throw" exception4=RestExceptionList)? "}" "}"
 		public Group getGroup() { return cGroup; }
 
 		//"Service"
@@ -778,200 +827,225 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//"create"
-		public Keyword getCreateKeyword_2() { return cCreateKeyword_2; }
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
+		//dao+=[DataAccessObject]+
+		public Assignment getDaoAssignment_3() { return cDaoAssignment_3; }
 
-		//createDataModel=[DataModel]
-		public Assignment getCreateDataModelAssignment_4() { return cCreateDataModelAssignment_4; }
-
-		//[DataModel]
-		public CrossReference getCreateDataModelDataModelCrossReference_4_0() { return cCreateDataModelDataModelCrossReference_4_0; }
+		//[DataAccessObject]
+		public CrossReference getDaoDataAccessObjectCrossReference_3_0() { return cDaoDataAccessObjectCrossReference_3_0; }
 
 		//ID
-		public RuleCall getCreateDataModelDataModelIDTerminalRuleCall_4_0_1() { return cCreateDataModelDataModelIDTerminalRuleCall_4_0_1; }
+		public RuleCall getDaoDataAccessObjectIDTerminalRuleCall_3_0_1() { return cDaoDataAccessObjectIDTerminalRuleCall_3_0_1; }
+
+		//"create"
+		public Keyword getCreateKeyword_4() { return cCreateKeyword_4; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_5() { return cLeftParenthesisKeyword_5; }
+
+		//createDataModel=[DataModel]
+		public Assignment getCreateDataModelAssignment_6() { return cCreateDataModelAssignment_6; }
+
+		//[DataModel]
+		public CrossReference getCreateDataModelDataModelCrossReference_6_0() { return cCreateDataModelDataModelCrossReference_6_0; }
+
+		//ID
+		public RuleCall getCreateDataModelDataModelIDTerminalRuleCall_6_0_1() { return cCreateDataModelDataModelIDTerminalRuleCall_6_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_6() { return cThrowsKeyword_6; }
-
-		//exception1=RestException
-		public Assignment getException1Assignment_7() { return cException1Assignment_7; }
-
-		//RestException
-		public RuleCall getException1RestExceptionParserRuleCall_7_0() { return cException1RestExceptionParserRuleCall_7_0; }
+		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
 
-		//createMethod=JavaMethod
+		//createMethod=Block
 		public Assignment getCreateMethodAssignment_9() { return cCreateMethodAssignment_9; }
 
-		//JavaMethod
-		public RuleCall getCreateMethodJavaMethodParserRuleCall_9_0() { return cCreateMethodJavaMethodParserRuleCall_9_0; }
+		//Block
+		public RuleCall getCreateMethodBlockParserRuleCall_9_0() { return cCreateMethodBlockParserRuleCall_9_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_10() { return cReturnKeyword_10; }
+		//createConclusion=DataModelMethodConclusion
+		public Assignment getCreateConclusionAssignment_10() { return cCreateConclusionAssignment_10; }
 
-		//createdDataModel=[DataModel]
-		public Assignment getCreatedDataModelAssignment_11() { return cCreatedDataModelAssignment_11; }
-
-		//[DataModel]
-		public CrossReference getCreatedDataModelDataModelCrossReference_11_0() { return cCreatedDataModelDataModelCrossReference_11_0; }
-
-		//ID
-		public RuleCall getCreatedDataModelDataModelIDTerminalRuleCall_11_0_1() { return cCreatedDataModelDataModelIDTerminalRuleCall_11_0_1; }
+		//DataModelMethodConclusion
+		public RuleCall getCreateConclusionDataModelMethodConclusionParserRuleCall_10_0() { return cCreateConclusionDataModelMethodConclusionParserRuleCall_10_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 
 		//"find"
-		public Keyword getFindKeyword_13() { return cFindKeyword_13; }
+		public Keyword getFindKeyword_12() { return cFindKeyword_12; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_14() { return cLeftParenthesisKeyword_14; }
+		public Keyword getLeftParenthesisKeyword_13() { return cLeftParenthesisKeyword_13; }
 
 		//findby=INTEGER
-		public Assignment getFindbyAssignment_15() { return cFindbyAssignment_15; }
+		public Assignment getFindbyAssignment_14() { return cFindbyAssignment_14; }
 
 		//INTEGER
-		public RuleCall getFindbyINTEGERTerminalRuleCall_15_0() { return cFindbyINTEGERTerminalRuleCall_15_0; }
+		public RuleCall getFindbyINTEGERTerminalRuleCall_14_0() { return cFindbyINTEGERTerminalRuleCall_14_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_16() { return cRightParenthesisKeyword_16; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_17() { return cThrowsKeyword_17; }
-
-		//exception2=RestException
-		public Assignment getException2Assignment_18() { return cException2Assignment_18; }
-
-		//RestException
-		public RuleCall getException2RestExceptionParserRuleCall_18_0() { return cException2RestExceptionParserRuleCall_18_0; }
+		public Keyword getRightParenthesisKeyword_15() { return cRightParenthesisKeyword_15; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_19() { return cLeftCurlyBracketKeyword_19; }
+		public Keyword getLeftCurlyBracketKeyword_16() { return cLeftCurlyBracketKeyword_16; }
 
-		//findMethod=JavaMethod
-		public Assignment getFindMethodAssignment_20() { return cFindMethodAssignment_20; }
+		//findMethod=Block
+		public Assignment getFindMethodAssignment_17() { return cFindMethodAssignment_17; }
 
-		//JavaMethod
-		public RuleCall getFindMethodJavaMethodParserRuleCall_20_0() { return cFindMethodJavaMethodParserRuleCall_20_0; }
+		//Block
+		public RuleCall getFindMethodBlockParserRuleCall_17_0() { return cFindMethodBlockParserRuleCall_17_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_21() { return cReturnKeyword_21; }
+		//findConclusion=DataModelMethodConclusion
+		public Assignment getFindConclusionAssignment_18() { return cFindConclusionAssignment_18; }
 
-		//foundDataModel=[DataModel]
-		public Assignment getFoundDataModelAssignment_22() { return cFoundDataModelAssignment_22; }
-
-		//[DataModel]
-		public CrossReference getFoundDataModelDataModelCrossReference_22_0() { return cFoundDataModelDataModelCrossReference_22_0; }
-
-		//ID
-		public RuleCall getFoundDataModelDataModelIDTerminalRuleCall_22_0_1() { return cFoundDataModelDataModelIDTerminalRuleCall_22_0_1; }
+		//DataModelMethodConclusion
+		public RuleCall getFindConclusionDataModelMethodConclusionParserRuleCall_18_0() { return cFindConclusionDataModelMethodConclusionParserRuleCall_18_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_23() { return cRightCurlyBracketKeyword_23; }
+		public Keyword getRightCurlyBracketKeyword_19() { return cRightCurlyBracketKeyword_19; }
 
 		//"update"
-		public Keyword getUpdateKeyword_24() { return cUpdateKeyword_24; }
+		public Keyword getUpdateKeyword_20() { return cUpdateKeyword_20; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_25() { return cLeftParenthesisKeyword_25; }
+		public Keyword getLeftParenthesisKeyword_21() { return cLeftParenthesisKeyword_21; }
 
 		//updateby=INTEGER
-		public Assignment getUpdatebyAssignment_26() { return cUpdatebyAssignment_26; }
+		public Assignment getUpdatebyAssignment_22() { return cUpdatebyAssignment_22; }
 
 		//INTEGER
-		public RuleCall getUpdatebyINTEGERTerminalRuleCall_26_0() { return cUpdatebyINTEGERTerminalRuleCall_26_0; }
+		public RuleCall getUpdatebyINTEGERTerminalRuleCall_22_0() { return cUpdatebyINTEGERTerminalRuleCall_22_0; }
 
 		//","
-		public Keyword getCommaKeyword_27() { return cCommaKeyword_27; }
+		public Keyword getCommaKeyword_23() { return cCommaKeyword_23; }
 
 		//updateDataModel=[DataModel]
-		public Assignment getUpdateDataModelAssignment_28() { return cUpdateDataModelAssignment_28; }
+		public Assignment getUpdateDataModelAssignment_24() { return cUpdateDataModelAssignment_24; }
 
 		//[DataModel]
-		public CrossReference getUpdateDataModelDataModelCrossReference_28_0() { return cUpdateDataModelDataModelCrossReference_28_0; }
+		public CrossReference getUpdateDataModelDataModelCrossReference_24_0() { return cUpdateDataModelDataModelCrossReference_24_0; }
 
 		//ID
-		public RuleCall getUpdateDataModelDataModelIDTerminalRuleCall_28_0_1() { return cUpdateDataModelDataModelIDTerminalRuleCall_28_0_1; }
+		public RuleCall getUpdateDataModelDataModelIDTerminalRuleCall_24_0_1() { return cUpdateDataModelDataModelIDTerminalRuleCall_24_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_29() { return cRightParenthesisKeyword_29; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_30() { return cThrowsKeyword_30; }
-
-		//exception3=RestException
-		public Assignment getException3Assignment_31() { return cException3Assignment_31; }
-
-		//RestException
-		public RuleCall getException3RestExceptionParserRuleCall_31_0() { return cException3RestExceptionParserRuleCall_31_0; }
+		public Keyword getRightParenthesisKeyword_25() { return cRightParenthesisKeyword_25; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_32() { return cLeftCurlyBracketKeyword_32; }
+		public Keyword getLeftCurlyBracketKeyword_26() { return cLeftCurlyBracketKeyword_26; }
 
-		//updateMethod=JavaMethod
-		public Assignment getUpdateMethodAssignment_33() { return cUpdateMethodAssignment_33; }
+		//updateMethod=Block
+		public Assignment getUpdateMethodAssignment_27() { return cUpdateMethodAssignment_27; }
 
-		//JavaMethod
-		public RuleCall getUpdateMethodJavaMethodParserRuleCall_33_0() { return cUpdateMethodJavaMethodParserRuleCall_33_0; }
+		//Block
+		public RuleCall getUpdateMethodBlockParserRuleCall_27_0() { return cUpdateMethodBlockParserRuleCall_27_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_34() { return cReturnKeyword_34; }
+		//updateConclusion=DataModelMethodConclusion
+		public Assignment getUpdateConclusionAssignment_28() { return cUpdateConclusionAssignment_28; }
 
-		//updatedDataModel=[DataModel]
-		public Assignment getUpdatedDataModelAssignment_35() { return cUpdatedDataModelAssignment_35; }
-
-		//[DataModel]
-		public CrossReference getUpdatedDataModelDataModelCrossReference_35_0() { return cUpdatedDataModelDataModelCrossReference_35_0; }
-
-		//ID
-		public RuleCall getUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1() { return cUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1; }
+		//DataModelMethodConclusion
+		public RuleCall getUpdateConclusionDataModelMethodConclusionParserRuleCall_28_0() { return cUpdateConclusionDataModelMethodConclusionParserRuleCall_28_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_36() { return cRightCurlyBracketKeyword_36; }
+		public Keyword getRightCurlyBracketKeyword_29() { return cRightCurlyBracketKeyword_29; }
 
 		//"delete"
-		public Keyword getDeleteKeyword_37() { return cDeleteKeyword_37; }
+		public Keyword getDeleteKeyword_30() { return cDeleteKeyword_30; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_38() { return cLeftParenthesisKeyword_38; }
+		public Keyword getLeftParenthesisKeyword_31() { return cLeftParenthesisKeyword_31; }
 
 		//deleteby=INTEGER
-		public Assignment getDeletebyAssignment_39() { return cDeletebyAssignment_39; }
+		public Assignment getDeletebyAssignment_32() { return cDeletebyAssignment_32; }
 
 		//INTEGER
-		public RuleCall getDeletebyINTEGERTerminalRuleCall_39_0() { return cDeletebyINTEGERTerminalRuleCall_39_0; }
+		public RuleCall getDeletebyINTEGERTerminalRuleCall_32_0() { return cDeletebyINTEGERTerminalRuleCall_32_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_40() { return cRightParenthesisKeyword_40; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_41() { return cThrowsKeyword_41; }
-
-		//exception4=RestException
-		public Assignment getException4Assignment_42() { return cException4Assignment_42; }
-
-		//RestException
-		public RuleCall getException4RestExceptionParserRuleCall_42_0() { return cException4RestExceptionParserRuleCall_42_0; }
+		public Keyword getRightParenthesisKeyword_33() { return cRightParenthesisKeyword_33; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_43() { return cLeftCurlyBracketKeyword_43; }
+		public Keyword getLeftCurlyBracketKeyword_34() { return cLeftCurlyBracketKeyword_34; }
 
-		//deleteMethod=JavaMethod
-		public Assignment getDeleteMethodAssignment_44() { return cDeleteMethodAssignment_44; }
+		//deleteMethod=Block
+		public Assignment getDeleteMethodAssignment_35() { return cDeleteMethodAssignment_35; }
 
-		//JavaMethod
-		public RuleCall getDeleteMethodJavaMethodParserRuleCall_44_0() { return cDeleteMethodJavaMethodParserRuleCall_44_0; }
+		//Block
+		public RuleCall getDeleteMethodBlockParserRuleCall_35_0() { return cDeleteMethodBlockParserRuleCall_35_0; }
+
+		//("throw" exception4=RestExceptionList)?
+		public Group getGroup_36() { return cGroup_36; }
+
+		//"throw"
+		public Keyword getThrowKeyword_36_0() { return cThrowKeyword_36_0; }
+
+		//exception4=RestExceptionList
+		public Assignment getException4Assignment_36_1() { return cException4Assignment_36_1; }
+
+		//RestExceptionList
+		public RuleCall getException4RestExceptionListParserRuleCall_36_1_0() { return cException4RestExceptionListParserRuleCall_36_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_45() { return cRightCurlyBracketKeyword_45; }
+		public Keyword getRightCurlyBracketKeyword_37() { return cRightCurlyBracketKeyword_37; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_38() { return cRightCurlyBracketKeyword_38; }
+	}
+
+	public class ValidationServiceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidationService");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cValidateKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRestModelAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cRestModelRestModelCrossReference_2_0 = (CrossReference)cRestModelAssignment_2.eContents().get(0);
+		private final RuleCall cRestModelRestModelIDTerminalRuleCall_2_0_1 = (RuleCall)cRestModelRestModelCrossReference_2_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cBlockAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBlockBlockParserRuleCall_5_0 = (RuleCall)cBlockAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//ValidationService:
+		//	"validate" "(" restModel=[RestModel] ")" "{" block=Block "}";
+		@Override public ParserRule getRule() { return rule; }
+
+		//"validate" "(" restModel=[RestModel] ")" "{" block=Block "}"
+		public Group getGroup() { return cGroup; }
+
+		//"validate"
+		public Keyword getValidateKeyword_0() { return cValidateKeyword_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//restModel=[RestModel]
+		public Assignment getRestModelAssignment_2() { return cRestModelAssignment_2; }
+
+		//[RestModel]
+		public CrossReference getRestModelRestModelCrossReference_2_0() { return cRestModelRestModelCrossReference_2_0; }
+
+		//ID
+		public RuleCall getRestModelRestModelIDTerminalRuleCall_2_0_1() { return cRestModelRestModelIDTerminalRuleCall_2_0_1; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+
+		//block=Block
+		public Assignment getBlockAssignment_5() { return cBlockAssignment_5; }
+
+		//Block
+		public RuleCall getBlockBlockParserRuleCall_5_0() { return cBlockBlockParserRuleCall_5_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
 	public class DataAccessObjectElements extends AbstractParserRuleElementFinder {
@@ -980,87 +1054,73 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDAOKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cCreateKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cCreateDataModelAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cCreateDataModelDataModelCrossReference_4_0 = (CrossReference)cCreateDataModelAssignment_4.eContents().get(0);
-		private final RuleCall cCreateDataModelDataModelIDTerminalRuleCall_4_0_1 = (RuleCall)cCreateDataModelDataModelCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cThrowsKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cException1Assignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cException1RestExceptionParserRuleCall_7_0 = (RuleCall)cException1Assignment_7.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cCreateMethodAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cCreateMethodJavaMethodParserRuleCall_9_0 = (RuleCall)cCreateMethodAssignment_9.eContents().get(0);
-		private final Keyword cReturnKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Assignment cCreatedDataModelAssignment_11 = (Assignment)cGroup.eContents().get(11);
-		private final CrossReference cCreatedDataModelDataModelCrossReference_11_0 = (CrossReference)cCreatedDataModelAssignment_11.eContents().get(0);
-		private final RuleCall cCreatedDataModelDataModelIDTerminalRuleCall_11_0_1 = (RuleCall)cCreatedDataModelDataModelCrossReference_11_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Keyword cFindKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Keyword cLeftParenthesisKeyword_14 = (Keyword)cGroup.eContents().get(14);
-		private final Assignment cFindbyAssignment_15 = (Assignment)cGroup.eContents().get(15);
-		private final RuleCall cFindbyINTEGERTerminalRuleCall_15_0 = (RuleCall)cFindbyAssignment_15.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_16 = (Keyword)cGroup.eContents().get(16);
-		private final Keyword cThrowsKeyword_17 = (Keyword)cGroup.eContents().get(17);
-		private final Assignment cException2Assignment_18 = (Assignment)cGroup.eContents().get(18);
-		private final RuleCall cException2RestExceptionParserRuleCall_18_0 = (RuleCall)cException2Assignment_18.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
-		private final Assignment cFindMethodAssignment_20 = (Assignment)cGroup.eContents().get(20);
-		private final RuleCall cFindMethodJavaMethodParserRuleCall_20_0 = (RuleCall)cFindMethodAssignment_20.eContents().get(0);
-		private final Keyword cReturnKeyword_21 = (Keyword)cGroup.eContents().get(21);
-		private final Assignment cFoundDataModelAssignment_22 = (Assignment)cGroup.eContents().get(22);
-		private final CrossReference cFoundDataModelDataModelCrossReference_22_0 = (CrossReference)cFoundDataModelAssignment_22.eContents().get(0);
-		private final RuleCall cFoundDataModelDataModelIDTerminalRuleCall_22_0_1 = (RuleCall)cFoundDataModelDataModelCrossReference_22_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_23 = (Keyword)cGroup.eContents().get(23);
-		private final Keyword cUpdateKeyword_24 = (Keyword)cGroup.eContents().get(24);
-		private final Keyword cLeftParenthesisKeyword_25 = (Keyword)cGroup.eContents().get(25);
-		private final Assignment cUpdatebyAssignment_26 = (Assignment)cGroup.eContents().get(26);
-		private final RuleCall cUpdatebyINTEGERTerminalRuleCall_26_0 = (RuleCall)cUpdatebyAssignment_26.eContents().get(0);
-		private final Keyword cCommaKeyword_27 = (Keyword)cGroup.eContents().get(27);
-		private final Assignment cUpdateDataModelAssignment_28 = (Assignment)cGroup.eContents().get(28);
-		private final CrossReference cUpdateDataModelDataModelCrossReference_28_0 = (CrossReference)cUpdateDataModelAssignment_28.eContents().get(0);
-		private final RuleCall cUpdateDataModelDataModelIDTerminalRuleCall_28_0_1 = (RuleCall)cUpdateDataModelDataModelCrossReference_28_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_29 = (Keyword)cGroup.eContents().get(29);
-		private final Keyword cThrowsKeyword_30 = (Keyword)cGroup.eContents().get(30);
-		private final Assignment cException3Assignment_31 = (Assignment)cGroup.eContents().get(31);
-		private final RuleCall cException3RestExceptionParserRuleCall_31_0 = (RuleCall)cException3Assignment_31.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_32 = (Keyword)cGroup.eContents().get(32);
-		private final Assignment cUpdateMethodAssignment_33 = (Assignment)cGroup.eContents().get(33);
-		private final RuleCall cUpdateMethodJavaMethodParserRuleCall_33_0 = (RuleCall)cUpdateMethodAssignment_33.eContents().get(0);
-		private final Keyword cReturnKeyword_34 = (Keyword)cGroup.eContents().get(34);
-		private final Assignment cUpdatedDataModelAssignment_35 = (Assignment)cGroup.eContents().get(35);
-		private final CrossReference cUpdatedDataModelDataModelCrossReference_35_0 = (CrossReference)cUpdatedDataModelAssignment_35.eContents().get(0);
-		private final RuleCall cUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1 = (RuleCall)cUpdatedDataModelDataModelCrossReference_35_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cCreateKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cCreateDataModelAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cCreateDataModelDataModelCrossReference_5_0 = (CrossReference)cCreateDataModelAssignment_5.eContents().get(0);
+		private final RuleCall cCreateDataModelDataModelIDTerminalRuleCall_5_0_1 = (RuleCall)cCreateDataModelDataModelCrossReference_5_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cLeftCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cCreateMethodAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cCreateMethodBlockParserRuleCall_8_0 = (RuleCall)cCreateMethodAssignment_8.eContents().get(0);
+		private final Assignment cCreateConclusionAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cCreateConclusionDataModelMethodConclusionParserRuleCall_9_0 = (RuleCall)cCreateConclusionAssignment_9.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cFindKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cLeftParenthesisKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Assignment cFindbyAssignment_13 = (Assignment)cGroup.eContents().get(13);
+		private final RuleCall cFindbyINTEGERTerminalRuleCall_13_0 = (RuleCall)cFindbyAssignment_13.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Keyword cLeftCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
+		private final Assignment cFindMethodAssignment_16 = (Assignment)cGroup.eContents().get(16);
+		private final RuleCall cFindMethodBlockParserRuleCall_16_0 = (RuleCall)cFindMethodAssignment_16.eContents().get(0);
+		private final Assignment cFindConclusionAssignment_17 = (Assignment)cGroup.eContents().get(17);
+		private final RuleCall cFindConclusionDataModelMethodConclusionParserRuleCall_17_0 = (RuleCall)cFindConclusionAssignment_17.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Keyword cUpdateKeyword_19 = (Keyword)cGroup.eContents().get(19);
+		private final Keyword cLeftParenthesisKeyword_20 = (Keyword)cGroup.eContents().get(20);
+		private final Assignment cUpdatebyAssignment_21 = (Assignment)cGroup.eContents().get(21);
+		private final RuleCall cUpdatebyINTEGERTerminalRuleCall_21_0 = (RuleCall)cUpdatebyAssignment_21.eContents().get(0);
+		private final Keyword cCommaKeyword_22 = (Keyword)cGroup.eContents().get(22);
+		private final Assignment cUpdateDataModelAssignment_23 = (Assignment)cGroup.eContents().get(23);
+		private final CrossReference cUpdateDataModelDataModelCrossReference_23_0 = (CrossReference)cUpdateDataModelAssignment_23.eContents().get(0);
+		private final RuleCall cUpdateDataModelDataModelIDTerminalRuleCall_23_0_1 = (RuleCall)cUpdateDataModelDataModelCrossReference_23_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_24 = (Keyword)cGroup.eContents().get(24);
+		private final Keyword cLeftCurlyBracketKeyword_25 = (Keyword)cGroup.eContents().get(25);
+		private final Assignment cUpdateMethodAssignment_26 = (Assignment)cGroup.eContents().get(26);
+		private final RuleCall cUpdateMethodBlockParserRuleCall_26_0 = (RuleCall)cUpdateMethodAssignment_26.eContents().get(0);
+		private final Assignment cUpdateConclusionAssignment_27 = (Assignment)cGroup.eContents().get(27);
+		private final RuleCall cUpdateConclusionDataModelMethodConclusionParserRuleCall_27_0 = (RuleCall)cUpdateConclusionAssignment_27.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_28 = (Keyword)cGroup.eContents().get(28);
+		private final Keyword cDeleteKeyword_29 = (Keyword)cGroup.eContents().get(29);
+		private final Keyword cLeftParenthesisKeyword_30 = (Keyword)cGroup.eContents().get(30);
+		private final Assignment cDeletebyAssignment_31 = (Assignment)cGroup.eContents().get(31);
+		private final RuleCall cDeletebyINTEGERTerminalRuleCall_31_0 = (RuleCall)cDeletebyAssignment_31.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_32 = (Keyword)cGroup.eContents().get(32);
+		private final Keyword cLeftCurlyBracketKeyword_33 = (Keyword)cGroup.eContents().get(33);
+		private final Assignment cDeleteMethodAssignment_34 = (Assignment)cGroup.eContents().get(34);
+		private final RuleCall cDeleteMethodBlockParserRuleCall_34_0 = (RuleCall)cDeleteMethodAssignment_34.eContents().get(0);
+		private final Group cGroup_35 = (Group)cGroup.eContents().get(35);
+		private final Keyword cThrowKeyword_35_0 = (Keyword)cGroup_35.eContents().get(0);
+		private final Assignment cExceptionsAssignment_35_1 = (Assignment)cGroup_35.eContents().get(1);
+		private final RuleCall cExceptionsRestExceptionListParserRuleCall_35_1_0 = (RuleCall)cExceptionsAssignment_35_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_36 = (Keyword)cGroup.eContents().get(36);
-		private final Keyword cDeleteKeyword_37 = (Keyword)cGroup.eContents().get(37);
-		private final Keyword cLeftParenthesisKeyword_38 = (Keyword)cGroup.eContents().get(38);
-		private final Assignment cDeletebyAssignment_39 = (Assignment)cGroup.eContents().get(39);
-		private final RuleCall cDeletebyINTEGERTerminalRuleCall_39_0 = (RuleCall)cDeletebyAssignment_39.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_40 = (Keyword)cGroup.eContents().get(40);
-		private final Keyword cThrowsKeyword_41 = (Keyword)cGroup.eContents().get(41);
-		private final Assignment cException4Assignment_42 = (Assignment)cGroup.eContents().get(42);
-		private final RuleCall cException4RestExceptionParserRuleCall_42_0 = (RuleCall)cException4Assignment_42.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_43 = (Keyword)cGroup.eContents().get(43);
-		private final Assignment cDeleteMethodAssignment_44 = (Assignment)cGroup.eContents().get(44);
-		private final RuleCall cDeleteMethodJavaMethodParserRuleCall_44_0 = (RuleCall)cDeleteMethodAssignment_44.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_45 = (Keyword)cGroup.eContents().get(45);
+		private final Keyword cRightCurlyBracketKeyword_37 = (Keyword)cGroup.eContents().get(37);
 		
 		//DataAccessObject:
-		//	"DAO" name=ID "create" "(" createDataModel=[DataModel] ")" "throws" exception1=RestException "{"
-		//	createMethod=JavaMethod "return" createdDataModel=[DataModel] "}" "find" "(" findby=INTEGER ")" "throws"
-		//	exception2=RestException "{" findMethod=JavaMethod "return" foundDataModel=[DataModel] "}" "update" "("
-		//	updateby=INTEGER "," updateDataModel=[DataModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-		//	"return" updatedDataModel=[DataModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-		//	deleteMethod=JavaMethod "}";
+		//	"DAO" name=ID "{" "create" "(" createDataModel=[DataModel] ")" "{" createMethod=Block
+		//	createConclusion=DataModelMethodConclusion "}" "find" "(" findby=INTEGER ")" "{" findMethod=Block
+		//	findConclusion=DataModelMethodConclusion "}" "update" "(" updateby=INTEGER "," updateDataModel=[DataModel] ")" "{"
+		//	updateMethod=Block updateConclusion=DataModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{"
+		//	deleteMethod=Block ("throw" exceptions=RestExceptionList)? "}" "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"DAO" name=ID "create" "(" createDataModel=[DataModel] ")" "throws" exception1=RestException "{" createMethod=JavaMethod
-		//"return" createdDataModel=[DataModel] "}" "find" "(" findby=INTEGER ")" "throws" exception2=RestException "{"
-		//findMethod=JavaMethod "return" foundDataModel=[DataModel] "}" "update" "(" updateby=INTEGER ","
-		//updateDataModel=[DataModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod "return"
-		//updatedDataModel=[DataModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-		//deleteMethod=JavaMethod "}"
+		//"DAO" name=ID "{" "create" "(" createDataModel=[DataModel] ")" "{" createMethod=Block
+		//createConclusion=DataModelMethodConclusion "}" "find" "(" findby=INTEGER ")" "{" findMethod=Block
+		//findConclusion=DataModelMethodConclusion "}" "update" "(" updateby=INTEGER "," updateDataModel=[DataModel] ")" "{"
+		//updateMethod=Block updateConclusion=DataModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{"
+		//deleteMethod=Block ("throw" exceptions=RestExceptionList)? "}" "}"
 		public Group getGroup() { return cGroup; }
 
 		//"DAO"
@@ -1072,228 +1132,422 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
 		//"create"
-		public Keyword getCreateKeyword_2() { return cCreateKeyword_2; }
+		public Keyword getCreateKeyword_3() { return cCreateKeyword_3; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
+		public Keyword getLeftParenthesisKeyword_4() { return cLeftParenthesisKeyword_4; }
 
 		//createDataModel=[DataModel]
-		public Assignment getCreateDataModelAssignment_4() { return cCreateDataModelAssignment_4; }
+		public Assignment getCreateDataModelAssignment_5() { return cCreateDataModelAssignment_5; }
 
 		//[DataModel]
-		public CrossReference getCreateDataModelDataModelCrossReference_4_0() { return cCreateDataModelDataModelCrossReference_4_0; }
+		public CrossReference getCreateDataModelDataModelCrossReference_5_0() { return cCreateDataModelDataModelCrossReference_5_0; }
 
 		//ID
-		public RuleCall getCreateDataModelDataModelIDTerminalRuleCall_4_0_1() { return cCreateDataModelDataModelIDTerminalRuleCall_4_0_1; }
+		public RuleCall getCreateDataModelDataModelIDTerminalRuleCall_5_0_1() { return cCreateDataModelDataModelIDTerminalRuleCall_5_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_6() { return cThrowsKeyword_6; }
-
-		//exception1=RestException
-		public Assignment getException1Assignment_7() { return cException1Assignment_7; }
-
-		//RestException
-		public RuleCall getException1RestExceptionParserRuleCall_7_0() { return cException1RestExceptionParserRuleCall_7_0; }
+		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_8() { return cLeftCurlyBracketKeyword_8; }
+		public Keyword getLeftCurlyBracketKeyword_7() { return cLeftCurlyBracketKeyword_7; }
 
-		//createMethod=JavaMethod
-		public Assignment getCreateMethodAssignment_9() { return cCreateMethodAssignment_9; }
+		//createMethod=Block
+		public Assignment getCreateMethodAssignment_8() { return cCreateMethodAssignment_8; }
 
-		//JavaMethod
-		public RuleCall getCreateMethodJavaMethodParserRuleCall_9_0() { return cCreateMethodJavaMethodParserRuleCall_9_0; }
+		//Block
+		public RuleCall getCreateMethodBlockParserRuleCall_8_0() { return cCreateMethodBlockParserRuleCall_8_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_10() { return cReturnKeyword_10; }
+		//createConclusion=DataModelMethodConclusion
+		public Assignment getCreateConclusionAssignment_9() { return cCreateConclusionAssignment_9; }
 
-		//createdDataModel=[DataModel]
-		public Assignment getCreatedDataModelAssignment_11() { return cCreatedDataModelAssignment_11; }
-
-		//[DataModel]
-		public CrossReference getCreatedDataModelDataModelCrossReference_11_0() { return cCreatedDataModelDataModelCrossReference_11_0; }
-
-		//ID
-		public RuleCall getCreatedDataModelDataModelIDTerminalRuleCall_11_0_1() { return cCreatedDataModelDataModelIDTerminalRuleCall_11_0_1; }
+		//DataModelMethodConclusion
+		public RuleCall getCreateConclusionDataModelMethodConclusionParserRuleCall_9_0() { return cCreateConclusionDataModelMethodConclusionParserRuleCall_9_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 
 		//"find"
-		public Keyword getFindKeyword_13() { return cFindKeyword_13; }
+		public Keyword getFindKeyword_11() { return cFindKeyword_11; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_14() { return cLeftParenthesisKeyword_14; }
+		public Keyword getLeftParenthesisKeyword_12() { return cLeftParenthesisKeyword_12; }
 
 		//findby=INTEGER
-		public Assignment getFindbyAssignment_15() { return cFindbyAssignment_15; }
+		public Assignment getFindbyAssignment_13() { return cFindbyAssignment_13; }
 
 		//INTEGER
-		public RuleCall getFindbyINTEGERTerminalRuleCall_15_0() { return cFindbyINTEGERTerminalRuleCall_15_0; }
+		public RuleCall getFindbyINTEGERTerminalRuleCall_13_0() { return cFindbyINTEGERTerminalRuleCall_13_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_16() { return cRightParenthesisKeyword_16; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_17() { return cThrowsKeyword_17; }
-
-		//exception2=RestException
-		public Assignment getException2Assignment_18() { return cException2Assignment_18; }
-
-		//RestException
-		public RuleCall getException2RestExceptionParserRuleCall_18_0() { return cException2RestExceptionParserRuleCall_18_0; }
+		public Keyword getRightParenthesisKeyword_14() { return cRightParenthesisKeyword_14; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_19() { return cLeftCurlyBracketKeyword_19; }
+		public Keyword getLeftCurlyBracketKeyword_15() { return cLeftCurlyBracketKeyword_15; }
 
-		//findMethod=JavaMethod
-		public Assignment getFindMethodAssignment_20() { return cFindMethodAssignment_20; }
+		//findMethod=Block
+		public Assignment getFindMethodAssignment_16() { return cFindMethodAssignment_16; }
 
-		//JavaMethod
-		public RuleCall getFindMethodJavaMethodParserRuleCall_20_0() { return cFindMethodJavaMethodParserRuleCall_20_0; }
+		//Block
+		public RuleCall getFindMethodBlockParserRuleCall_16_0() { return cFindMethodBlockParserRuleCall_16_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_21() { return cReturnKeyword_21; }
+		//findConclusion=DataModelMethodConclusion
+		public Assignment getFindConclusionAssignment_17() { return cFindConclusionAssignment_17; }
 
-		//foundDataModel=[DataModel]
-		public Assignment getFoundDataModelAssignment_22() { return cFoundDataModelAssignment_22; }
-
-		//[DataModel]
-		public CrossReference getFoundDataModelDataModelCrossReference_22_0() { return cFoundDataModelDataModelCrossReference_22_0; }
-
-		//ID
-		public RuleCall getFoundDataModelDataModelIDTerminalRuleCall_22_0_1() { return cFoundDataModelDataModelIDTerminalRuleCall_22_0_1; }
+		//DataModelMethodConclusion
+		public RuleCall getFindConclusionDataModelMethodConclusionParserRuleCall_17_0() { return cFindConclusionDataModelMethodConclusionParserRuleCall_17_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_23() { return cRightCurlyBracketKeyword_23; }
+		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
 
 		//"update"
-		public Keyword getUpdateKeyword_24() { return cUpdateKeyword_24; }
+		public Keyword getUpdateKeyword_19() { return cUpdateKeyword_19; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_25() { return cLeftParenthesisKeyword_25; }
+		public Keyword getLeftParenthesisKeyword_20() { return cLeftParenthesisKeyword_20; }
 
 		//updateby=INTEGER
-		public Assignment getUpdatebyAssignment_26() { return cUpdatebyAssignment_26; }
+		public Assignment getUpdatebyAssignment_21() { return cUpdatebyAssignment_21; }
 
 		//INTEGER
-		public RuleCall getUpdatebyINTEGERTerminalRuleCall_26_0() { return cUpdatebyINTEGERTerminalRuleCall_26_0; }
+		public RuleCall getUpdatebyINTEGERTerminalRuleCall_21_0() { return cUpdatebyINTEGERTerminalRuleCall_21_0; }
 
 		//","
-		public Keyword getCommaKeyword_27() { return cCommaKeyword_27; }
+		public Keyword getCommaKeyword_22() { return cCommaKeyword_22; }
 
 		//updateDataModel=[DataModel]
-		public Assignment getUpdateDataModelAssignment_28() { return cUpdateDataModelAssignment_28; }
+		public Assignment getUpdateDataModelAssignment_23() { return cUpdateDataModelAssignment_23; }
 
 		//[DataModel]
-		public CrossReference getUpdateDataModelDataModelCrossReference_28_0() { return cUpdateDataModelDataModelCrossReference_28_0; }
+		public CrossReference getUpdateDataModelDataModelCrossReference_23_0() { return cUpdateDataModelDataModelCrossReference_23_0; }
 
 		//ID
-		public RuleCall getUpdateDataModelDataModelIDTerminalRuleCall_28_0_1() { return cUpdateDataModelDataModelIDTerminalRuleCall_28_0_1; }
+		public RuleCall getUpdateDataModelDataModelIDTerminalRuleCall_23_0_1() { return cUpdateDataModelDataModelIDTerminalRuleCall_23_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_29() { return cRightParenthesisKeyword_29; }
-
-		//"throws"
-		public Keyword getThrowsKeyword_30() { return cThrowsKeyword_30; }
-
-		//exception3=RestException
-		public Assignment getException3Assignment_31() { return cException3Assignment_31; }
-
-		//RestException
-		public RuleCall getException3RestExceptionParserRuleCall_31_0() { return cException3RestExceptionParserRuleCall_31_0; }
+		public Keyword getRightParenthesisKeyword_24() { return cRightParenthesisKeyword_24; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_32() { return cLeftCurlyBracketKeyword_32; }
+		public Keyword getLeftCurlyBracketKeyword_25() { return cLeftCurlyBracketKeyword_25; }
 
-		//updateMethod=JavaMethod
-		public Assignment getUpdateMethodAssignment_33() { return cUpdateMethodAssignment_33; }
+		//updateMethod=Block
+		public Assignment getUpdateMethodAssignment_26() { return cUpdateMethodAssignment_26; }
 
-		//JavaMethod
-		public RuleCall getUpdateMethodJavaMethodParserRuleCall_33_0() { return cUpdateMethodJavaMethodParserRuleCall_33_0; }
+		//Block
+		public RuleCall getUpdateMethodBlockParserRuleCall_26_0() { return cUpdateMethodBlockParserRuleCall_26_0; }
 
-		//"return"
-		public Keyword getReturnKeyword_34() { return cReturnKeyword_34; }
+		//updateConclusion=DataModelMethodConclusion
+		public Assignment getUpdateConclusionAssignment_27() { return cUpdateConclusionAssignment_27; }
 
-		//updatedDataModel=[DataModel]
-		public Assignment getUpdatedDataModelAssignment_35() { return cUpdatedDataModelAssignment_35; }
+		//DataModelMethodConclusion
+		public RuleCall getUpdateConclusionDataModelMethodConclusionParserRuleCall_27_0() { return cUpdateConclusionDataModelMethodConclusionParserRuleCall_27_0; }
 
-		//[DataModel]
-		public CrossReference getUpdatedDataModelDataModelCrossReference_35_0() { return cUpdatedDataModelDataModelCrossReference_35_0; }
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_28() { return cRightCurlyBracketKeyword_28; }
 
-		//ID
-		public RuleCall getUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1() { return cUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1; }
+		//"delete"
+		public Keyword getDeleteKeyword_29() { return cDeleteKeyword_29; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_30() { return cLeftParenthesisKeyword_30; }
+
+		//deleteby=INTEGER
+		public Assignment getDeletebyAssignment_31() { return cDeletebyAssignment_31; }
+
+		//INTEGER
+		public RuleCall getDeletebyINTEGERTerminalRuleCall_31_0() { return cDeletebyINTEGERTerminalRuleCall_31_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_32() { return cRightParenthesisKeyword_32; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_33() { return cLeftCurlyBracketKeyword_33; }
+
+		//deleteMethod=Block
+		public Assignment getDeleteMethodAssignment_34() { return cDeleteMethodAssignment_34; }
+
+		//Block
+		public RuleCall getDeleteMethodBlockParserRuleCall_34_0() { return cDeleteMethodBlockParserRuleCall_34_0; }
+
+		//("throw" exceptions=RestExceptionList)?
+		public Group getGroup_35() { return cGroup_35; }
+
+		//"throw"
+		public Keyword getThrowKeyword_35_0() { return cThrowKeyword_35_0; }
+
+		//exceptions=RestExceptionList
+		public Assignment getExceptionsAssignment_35_1() { return cExceptionsAssignment_35_1; }
+
+		//RestExceptionList
+		public RuleCall getExceptionsRestExceptionListParserRuleCall_35_1_0() { return cExceptionsRestExceptionListParserRuleCall_35_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_36() { return cRightCurlyBracketKeyword_36; }
 
-		//"delete"
-		public Keyword getDeleteKeyword_37() { return cDeleteKeyword_37; }
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_37() { return cRightCurlyBracketKeyword_37; }
+	}
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_38() { return cLeftParenthesisKeyword_38; }
+	public class DataModelMethodConclusionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataModelMethodConclusion");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cReturnKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cDataModelAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final CrossReference cDataModelDataModelCrossReference_0_1_0 = (CrossReference)cDataModelAssignment_0_1.eContents().get(0);
+		private final RuleCall cDataModelDataModelIDTerminalRuleCall_0_1_0_1 = (RuleCall)cDataModelDataModelCrossReference_0_1_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cThrowKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cExceptionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cExceptionsRestExceptionListParserRuleCall_1_1_0 = (RuleCall)cExceptionsAssignment_1_1.eContents().get(0);
+		
+		//DataModelMethodConclusion:
+		//	"return" dataModel=[DataModel] | "throw" exceptions+=RestExceptionList;
+		@Override public ParserRule getRule() { return rule; }
 
-		//deleteby=INTEGER
-		public Assignment getDeletebyAssignment_39() { return cDeletebyAssignment_39; }
+		//"return" dataModel=[DataModel] | "throw" exceptions+=RestExceptionList
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//INTEGER
-		public RuleCall getDeletebyINTEGERTerminalRuleCall_39_0() { return cDeletebyINTEGERTerminalRuleCall_39_0; }
+		//"return" dataModel=[DataModel]
+		public Group getGroup_0() { return cGroup_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_40() { return cRightParenthesisKeyword_40; }
+		//"return"
+		public Keyword getReturnKeyword_0_0() { return cReturnKeyword_0_0; }
 
-		//"throws"
-		public Keyword getThrowsKeyword_41() { return cThrowsKeyword_41; }
+		//dataModel=[DataModel]
+		public Assignment getDataModelAssignment_0_1() { return cDataModelAssignment_0_1; }
 
-		//exception4=RestException
-		public Assignment getException4Assignment_42() { return cException4Assignment_42; }
+		//[DataModel]
+		public CrossReference getDataModelDataModelCrossReference_0_1_0() { return cDataModelDataModelCrossReference_0_1_0; }
+
+		//ID
+		public RuleCall getDataModelDataModelIDTerminalRuleCall_0_1_0_1() { return cDataModelDataModelIDTerminalRuleCall_0_1_0_1; }
+
+		//"throw" exceptions+=RestExceptionList
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"throw"
+		public Keyword getThrowKeyword_1_0() { return cThrowKeyword_1_0; }
+
+		//exceptions+=RestExceptionList
+		public Assignment getExceptionsAssignment_1_1() { return cExceptionsAssignment_1_1; }
+
+		//RestExceptionList
+		public RuleCall getExceptionsRestExceptionListParserRuleCall_1_1_0() { return cExceptionsRestExceptionListParserRuleCall_1_1_0; }
+	}
+
+	public class RestModelMethodConclusionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RestModelMethodConclusion");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cReturnKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cRestModelAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final CrossReference cRestModelRestModelCrossReference_0_1_0 = (CrossReference)cRestModelAssignment_0_1.eContents().get(0);
+		private final RuleCall cRestModelRestModelIDTerminalRuleCall_0_1_0_1 = (RuleCall)cRestModelRestModelCrossReference_0_1_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cThrowKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cExceptionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cExceptionRestExceptionListParserRuleCall_1_1_0 = (RuleCall)cExceptionAssignment_1_1.eContents().get(0);
+		
+		//RestModelMethodConclusion:
+		//	"return" restModel=[RestModel] | "throw" exception+=RestExceptionList;
+		@Override public ParserRule getRule() { return rule; }
+
+		//"return" restModel=[RestModel] | "throw" exception+=RestExceptionList
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//"return" restModel=[RestModel]
+		public Group getGroup_0() { return cGroup_0; }
+
+		//"return"
+		public Keyword getReturnKeyword_0_0() { return cReturnKeyword_0_0; }
+
+		//restModel=[RestModel]
+		public Assignment getRestModelAssignment_0_1() { return cRestModelAssignment_0_1; }
+
+		//[RestModel]
+		public CrossReference getRestModelRestModelCrossReference_0_1_0() { return cRestModelRestModelCrossReference_0_1_0; }
+
+		//ID
+		public RuleCall getRestModelRestModelIDTerminalRuleCall_0_1_0_1() { return cRestModelRestModelIDTerminalRuleCall_0_1_0_1; }
+
+		//"throw" exception+=RestExceptionList
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"throw"
+		public Keyword getThrowKeyword_1_0() { return cThrowKeyword_1_0; }
+
+		//exception+=RestExceptionList
+		public Assignment getExceptionAssignment_1_1() { return cExceptionAssignment_1_1; }
+
+		//RestExceptionList
+		public RuleCall getExceptionRestExceptionListParserRuleCall_1_1_0() { return cExceptionRestExceptionListParserRuleCall_1_1_0; }
+	}
+
+	public class RestExceptionListElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RestExceptionList");
+		private final Assignment cExceptionAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cExceptionRestExceptionParserRuleCall_0 = (RuleCall)cExceptionAssignment.eContents().get(0);
+		
+		//RestExceptionList:
+		//	exception+=RestException+;
+		@Override public ParserRule getRule() { return rule; }
+
+		//exception+=RestException+
+		public Assignment getExceptionAssignment() { return cExceptionAssignment; }
 
 		//RestException
-		public RuleCall getException4RestExceptionParserRuleCall_42_0() { return cException4RestExceptionParserRuleCall_42_0; }
+		public RuleCall getExceptionRestExceptionParserRuleCall_0() { return cExceptionRestExceptionParserRuleCall_0; }
+	}
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_43() { return cLeftCurlyBracketKeyword_43; }
+	public class BaseExceptionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BaseException");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cErrorCodeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cErrorCodeSTRINGTerminalRuleCall_1_0 = (RuleCall)cErrorCodeAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cMessageAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMessageSTRINGTerminalRuleCall_3_0 = (RuleCall)cMessageAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//BaseException:
+		//	"[" errorCode=STRING "," message=STRING "]";
+		@Override public ParserRule getRule() { return rule; }
 
-		//deleteMethod=JavaMethod
-		public Assignment getDeleteMethodAssignment_44() { return cDeleteMethodAssignment_44; }
+		//"[" errorCode=STRING "," message=STRING "]"
+		public Group getGroup() { return cGroup; }
 
-		//JavaMethod
-		public RuleCall getDeleteMethodJavaMethodParserRuleCall_44_0() { return cDeleteMethodJavaMethodParserRuleCall_44_0; }
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_45() { return cRightCurlyBracketKeyword_45; }
+		//errorCode=STRING
+		public Assignment getErrorCodeAssignment_1() { return cErrorCodeAssignment_1; }
+
+		//STRING
+		public RuleCall getErrorCodeSTRINGTerminalRuleCall_1_0() { return cErrorCodeSTRINGTerminalRuleCall_1_0; }
+
+		//","
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+
+		//message=STRING
+		public Assignment getMessageAssignment_3() { return cMessageAssignment_3; }
+
+		//STRING
+		public RuleCall getMessageSTRINGTerminalRuleCall_3_0() { return cMessageSTRINGTerminalRuleCall_3_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+
+	public class ExceptionMapperElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExceptionMapper");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cExceptionMapperKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRestExceptionAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRestExceptionRestExceptionParserRuleCall_3_0 = (RuleCall)cRestExceptionAssignment_3.eContents().get(0);
+		private final Keyword cLessThanSignEqualsSignGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cBaseExceptionAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cBaseExceptionBaseExceptionParserRuleCall_5_0 = (RuleCall)cBaseExceptionAssignment_5.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//ExceptionMapper:
+		//	"ExceptionMapper" name=ID "(" restException=RestException "<=>" baseException=BaseException ")";
+		@Override public ParserRule getRule() { return rule; }
+
+		//"ExceptionMapper" name=ID "(" restException=RestException "<=>" baseException=BaseException ")"
+		public Group getGroup() { return cGroup; }
+
+		//"ExceptionMapper"
+		public Keyword getExceptionMapperKeyword_0() { return cExceptionMapperKeyword_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+
+		//restException=RestException
+		public Assignment getRestExceptionAssignment_3() { return cRestExceptionAssignment_3; }
+
+		//RestException
+		public RuleCall getRestExceptionRestExceptionParserRuleCall_3_0() { return cRestExceptionRestExceptionParserRuleCall_3_0; }
+
+		//"<=>"
+		public Keyword getLessThanSignEqualsSignGreaterThanSignKeyword_4() { return cLessThanSignEqualsSignGreaterThanSignKeyword_4; }
+
+		//baseException=BaseException
+		public Assignment getBaseExceptionAssignment_5() { return cBaseExceptionAssignment_5; }
+
+		//BaseException
+		public RuleCall getBaseExceptionBaseExceptionParserRuleCall_5_0() { return cBaseExceptionBaseExceptionParserRuleCall_5_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 	}
 
 	public class RestExceptionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RestException");
-		private final Assignment cStatusCodeAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cStatusCodeRestStatusCodeEnumRuleCall_0 = (RuleCall)cStatusCodeAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cStatusCodeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cStatusCodeRestStatusCodeEnumRuleCall_1_0 = (RuleCall)cStatusCodeAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cMessageAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMessageSTRINGTerminalRuleCall_3_0 = (RuleCall)cMessageAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//RestException:
-		//	statusCode=RestStatusCode;
+		//	"[" statusCode=RestStatusCode "," message=STRING "]";
 		@Override public ParserRule getRule() { return rule; }
 
+		//"[" statusCode=RestStatusCode "," message=STRING "]"
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
 		//statusCode=RestStatusCode
-		public Assignment getStatusCodeAssignment() { return cStatusCodeAssignment; }
+		public Assignment getStatusCodeAssignment_1() { return cStatusCodeAssignment_1; }
 
 		//RestStatusCode
-		public RuleCall getStatusCodeRestStatusCodeEnumRuleCall_0() { return cStatusCodeRestStatusCodeEnumRuleCall_0; }
+		public RuleCall getStatusCodeRestStatusCodeEnumRuleCall_1_0() { return cStatusCodeRestStatusCodeEnumRuleCall_1_0; }
+
+		//","
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+
+		//message=STRING
+		public Assignment getMessageAssignment_3() { return cMessageAssignment_3; }
+
+		//STRING
+		public RuleCall getMessageSTRINGTerminalRuleCall_3_0() { return cMessageSTRINGTerminalRuleCall_3_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
 
-	public class JavaMethodElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "JavaMethod");
+	public class BlockElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Block");
 		private final Assignment cCodeAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cCodeSTRINGTerminalRuleCall_0 = (RuleCall)cCodeAssignment.eContents().get(0);
 		
-		//JavaMethod: //will be expanded later to include actual Java syntax
+		//Block: //will be expanded later to include actual Java syntax for a block of statements
+		////<block> ::= { <block-statements>? }
 		//	code=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		////will be expanded later to include actual Java syntax
+		////will be expanded later to include actual Java syntax for a block of statements
+		////<block> ::= { <block-statements>? }
 		//code=STRING
 		public Assignment getCodeAssignment() { return cCodeAssignment; }
 
@@ -1315,12 +1569,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCLIENT_ERRORCLIENT_ERRORKeyword_3_0 = (Keyword)cCLIENT_ERROREnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cSERVER_ERROREnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cSERVER_ERRORSERVER_ERRORKeyword_4_0 = (Keyword)cSERVER_ERROREnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cNETWORK_ERROREnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cNETWORK_ERRORNETWORK_ERRORKeyword_5_0 = (Keyword)cNETWORK_ERROREnumLiteralDeclaration_5.eContents().get(0);
 		
 		//enum RestStatusCode:
-		//	INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR;
+		//	INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR | NETWORK_ERROR;
 		public EnumRule getRule() { return rule; }
 
-		//INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR
+		//INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR | NETWORK_ERROR
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//INFORMATIONAL
@@ -1352,6 +1608,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"SERVER_ERROR"
 		public Keyword getSERVER_ERRORSERVER_ERRORKeyword_4_0() { return cSERVER_ERRORSERVER_ERRORKeyword_4_0; }
+
+		//NETWORK_ERROR
+		public EnumLiteralDeclaration getNETWORK_ERROREnumLiteralDeclaration_5() { return cNETWORK_ERROREnumLiteralDeclaration_5; }
+
+		//"NETWORK_ERROR"
+		public Keyword getNETWORK_ERRORNETWORK_ERRORKeyword_5_0() { return cNETWORK_ERRORNETWORK_ERRORKeyword_5_0; }
 	}
 	
 	private final DomainModelElements pDomainModel;
@@ -1360,16 +1622,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final PrimitiveTypeElements pPrimitiveType;
 	private final DataModelElements pDataModel;
 	private final RestModelElements pRestModel;
-	private final MappingModelElements pMappingModel;
+	private final ModelMapperElements pModelMapper;
 	private final TransformationElements pTransformation;
 	private final FeatureElements pFeature;
 	private final ResourceElements pResource;
 	private final ServiceElements pService;
+	private final ValidationServiceElements pValidationService;
 	private final DataAccessObjectElements pDataAccessObject;
+	private final DataModelMethodConclusionElements pDataModelMethodConclusion;
+	private final RestModelMethodConclusionElements pRestModelMethodConclusion;
+	private final RestExceptionListElements pRestExceptionList;
+	private final BaseExceptionElements pBaseException;
+	private final ExceptionMapperElements pExceptionMapper;
 	private final RestExceptionElements pRestException;
 	private final TerminalRule tINTEGER;
+	private final TerminalRule tSTRING;
 	private final RestStatusCodeElements unknownRuleRestStatusCode;
-	private final JavaMethodElements pJavaMethod;
+	private final BlockElements pBlock;
 	
 	private final Grammar grammar;
 
@@ -1386,16 +1655,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPrimitiveType = new PrimitiveTypeElements();
 		this.pDataModel = new DataModelElements();
 		this.pRestModel = new RestModelElements();
-		this.pMappingModel = new MappingModelElements();
+		this.pModelMapper = new ModelMapperElements();
 		this.pTransformation = new TransformationElements();
 		this.pFeature = new FeatureElements();
 		this.pResource = new ResourceElements();
 		this.pService = new ServiceElements();
+		this.pValidationService = new ValidationServiceElements();
 		this.pDataAccessObject = new DataAccessObjectElements();
+		this.pDataModelMethodConclusion = new DataModelMethodConclusionElements();
+		this.pRestModelMethodConclusion = new RestModelMethodConclusionElements();
+		this.pRestExceptionList = new RestExceptionListElements();
+		this.pBaseException = new BaseExceptionElements();
+		this.pExceptionMapper = new ExceptionMapperElements();
 		this.pRestException = new RestExceptionElements();
 		this.tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
 		this.unknownRuleRestStatusCode = new RestStatusCodeElements();
-		this.pJavaMethod = new JavaMethodElements();
+		this.pBlock = new BlockElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1436,7 +1712,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Type:
-	//	PrimitiveType | DataModel | RestModel | MappingModel;
+	//	PrimitiveType | DataModel | RestModel | ModelMapper;
 	public TypeElements getTypeAccess() {
 		return pType;
 	}
@@ -1446,7 +1722,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RestAPI:
-	//	resource=Resource service+=Service* dao+=DataAccessObject*;
+	//	"<BEGIN_REST_API>" resource=Resource service+=Service* dao+=DataAccessObject* exceptionMapper+=ExceptionMapper*
+	//	"<END_REST_API>";
 	public RestAPIElements getRestAPIAccess() {
 		return pRestAPI;
 	}
@@ -1466,7 +1743,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DataModel:
-	//	"dataModel" name=ID ("extends" superType=[DataModel])? "{" features+=Feature* "}";
+	//	"DataModel" name=ID ("extends" superType=[DataModel])? "{" "id" ":" id=INTEGER features+=Feature* "}";
 	public DataModelElements getDataModelAccess() {
 		return pDataModel;
 	}
@@ -1476,7 +1753,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RestModel:
-	//	"restModel" name=ID ("extends" superType=[RestModel])? "{" features+=Feature* "}";
+	//	"RestModel" name=ID ("extends" superType=[RestModel])? "{" "id" ":" id=INTEGER features+=Feature* "self" ":"
+	//	self=STRING "}";
 	public RestModelElements getRestModelAccess() {
 		return pRestModel;
 	}
@@ -1485,14 +1763,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getRestModelAccess().getRule();
 	}
 
-	//MappingModel:
-	//	"mappingModel" name=ID "{" transformation+=Transformation* "}";
-	public MappingModelElements getMappingModelAccess() {
-		return pMappingModel;
+	//ModelMapper:
+	//	"ModelMapper" name=ID "{" transformation+=Transformation* "}";
+	public ModelMapperElements getModelMapperAccess() {
+		return pModelMapper;
 	}
 	
-	public ParserRule getMappingModelRule() {
-		return getMappingModelAccess().getRule();
+	public ParserRule getModelMapperRule() {
+		return getModelMapperAccess().getRule();
 	}
 
 	//Transformation:
@@ -1516,12 +1794,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Resource:
-	//	"Resource" name=ID "create" "(" createRestModel=[RestModel] ")" "throws" exception1=RestException "{"
-	//	createMethod=JavaMethod "return" createdRestModel=[RestModel] "}" "find" "(" findby=INTEGER ")" "throws"
-	//	exception2=RestException "{" findMethod=JavaMethod "return" foundRestModel=[RestModel] "}" "update" "("
-	//	updateby=INTEGER "," updateRestModel=[RestModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-	//	"return" updatedRestModel=[RestModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-	//	deleteMethod=JavaMethod "}";
+	//	"Resource" name=ID "{" service+=[Service]+ exceptionMapper=[ExceptionMapper] "create" "(" createRestModel=[RestModel]
+	//	")" "{" createValService=ValidationService createMethod=Block createConclusion=RestModelMethodConclusion "}" "find"
+	//	"(" findby=INTEGER ")" "{" findMethod=Block findConclusion=RestModelMethodConclusion "}" "update" "(" updateby=INTEGER
+	//	"," updateRestModel=[RestModel] ")" "{" updateValService=ValidationService updateMethod=Block
+	//	updateConclusion=RestModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{" deleteMethod=Block ("throw"
+	//	exception4=RestExceptionList)? "}" "}";
 	public ResourceElements getResourceAccess() {
 		return pResource;
 	}
@@ -1531,12 +1809,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Service:
-	//	"Service" name=ID "create" "(" createDataModel=[DataModel] ")" "throws" exception1=RestException "{"
-	//	createMethod=JavaMethod "return" createdDataModel=[DataModel] "}" "find" "(" findby=INTEGER ")" "throws"
-	//	exception2=RestException "{" findMethod=JavaMethod "return" foundDataModel=[DataModel] "}" "update" "("
-	//	updateby=INTEGER "," updateDataModel=[DataModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-	//	"return" updatedDataModel=[DataModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-	//	deleteMethod=JavaMethod "}";
+	//	"Service" name=ID "{" dao+=[DataAccessObject]+ "create" "(" createDataModel=[DataModel] ")" "{" createMethod=Block
+	//	createConclusion=DataModelMethodConclusion "}" "find" "(" findby=INTEGER ")" "{" findMethod=Block
+	//	findConclusion=DataModelMethodConclusion "}" "update" "(" updateby=INTEGER "," updateDataModel=[DataModel] ")" "{"
+	//	updateMethod=Block updateConclusion=DataModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{"
+	//	deleteMethod=Block ("throw" exception4=RestExceptionList)? "}" "}";
 	public ServiceElements getServiceAccess() {
 		return pService;
 	}
@@ -1545,13 +1822,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getServiceAccess().getRule();
 	}
 
+	//ValidationService:
+	//	"validate" "(" restModel=[RestModel] ")" "{" block=Block "}";
+	public ValidationServiceElements getValidationServiceAccess() {
+		return pValidationService;
+	}
+	
+	public ParserRule getValidationServiceRule() {
+		return getValidationServiceAccess().getRule();
+	}
+
 	//DataAccessObject:
-	//	"DAO" name=ID "create" "(" createDataModel=[DataModel] ")" "throws" exception1=RestException "{"
-	//	createMethod=JavaMethod "return" createdDataModel=[DataModel] "}" "find" "(" findby=INTEGER ")" "throws"
-	//	exception2=RestException "{" findMethod=JavaMethod "return" foundDataModel=[DataModel] "}" "update" "("
-	//	updateby=INTEGER "," updateDataModel=[DataModel] ")" "throws" exception3=RestException "{" updateMethod=JavaMethod
-	//	"return" updatedDataModel=[DataModel] "}" "delete" "(" deleteby=INTEGER ")" "throws" exception4=RestException "{"
-	//	deleteMethod=JavaMethod "}";
+	//	"DAO" name=ID "{" "create" "(" createDataModel=[DataModel] ")" "{" createMethod=Block
+	//	createConclusion=DataModelMethodConclusion "}" "find" "(" findby=INTEGER ")" "{" findMethod=Block
+	//	findConclusion=DataModelMethodConclusion "}" "update" "(" updateby=INTEGER "," updateDataModel=[DataModel] ")" "{"
+	//	updateMethod=Block updateConclusion=DataModelMethodConclusion "}" "delete" "(" deleteby=INTEGER ")" "{"
+	//	deleteMethod=Block ("throw" exceptions=RestExceptionList)? "}" "}";
 	public DataAccessObjectElements getDataAccessObjectAccess() {
 		return pDataAccessObject;
 	}
@@ -1560,8 +1846,58 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getDataAccessObjectAccess().getRule();
 	}
 
+	//DataModelMethodConclusion:
+	//	"return" dataModel=[DataModel] | "throw" exceptions+=RestExceptionList;
+	public DataModelMethodConclusionElements getDataModelMethodConclusionAccess() {
+		return pDataModelMethodConclusion;
+	}
+	
+	public ParserRule getDataModelMethodConclusionRule() {
+		return getDataModelMethodConclusionAccess().getRule();
+	}
+
+	//RestModelMethodConclusion:
+	//	"return" restModel=[RestModel] | "throw" exception+=RestExceptionList;
+	public RestModelMethodConclusionElements getRestModelMethodConclusionAccess() {
+		return pRestModelMethodConclusion;
+	}
+	
+	public ParserRule getRestModelMethodConclusionRule() {
+		return getRestModelMethodConclusionAccess().getRule();
+	}
+
+	//RestExceptionList:
+	//	exception+=RestException+;
+	public RestExceptionListElements getRestExceptionListAccess() {
+		return pRestExceptionList;
+	}
+	
+	public ParserRule getRestExceptionListRule() {
+		return getRestExceptionListAccess().getRule();
+	}
+
+	//BaseException:
+	//	"[" errorCode=STRING "," message=STRING "]";
+	public BaseExceptionElements getBaseExceptionAccess() {
+		return pBaseException;
+	}
+	
+	public ParserRule getBaseExceptionRule() {
+		return getBaseExceptionAccess().getRule();
+	}
+
+	//ExceptionMapper:
+	//	"ExceptionMapper" name=ID "(" restException=RestException "<=>" baseException=BaseException ")";
+	public ExceptionMapperElements getExceptionMapperAccess() {
+		return pExceptionMapper;
+	}
+	
+	public ParserRule getExceptionMapperRule() {
+		return getExceptionMapperAccess().getRule();
+	}
+
 	//RestException:
-	//	statusCode=RestStatusCode;
+	//	"[" statusCode=RestStatusCode "," message=STRING "]";
 	public RestExceptionElements getRestExceptionAccess() {
 		return pRestException;
 	}
@@ -1576,8 +1912,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return tINTEGER;
 	} 
 
+	//terminal STRING:
+	//	"\"" ("0".."9" | "A".."Z" | "a".."z" | "_" | ":" | "/" | "." | " ")* "\"";
+	public TerminalRule getSTRINGRule() {
+		return tSTRING;
+	} 
+
 	//enum RestStatusCode:
-	//	INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR;
+	//	INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR | NETWORK_ERROR;
 	public RestStatusCodeElements getRestStatusCodeAccess() {
 		return unknownRuleRestStatusCode;
 	}
@@ -1586,14 +1928,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getRestStatusCodeAccess().getRule();
 	}
 
-	//JavaMethod: //will be expanded later to include actual Java syntax
+	//Block: //will be expanded later to include actual Java syntax for a block of statements
+	////<block> ::= { <block-statements>? }
 	//	code=STRING;
-	public JavaMethodElements getJavaMethodAccess() {
-		return pJavaMethod;
+	public BlockElements getBlockAccess() {
+		return pBlock;
 	}
 	
-	public ParserRule getJavaMethodRule() {
-		return getJavaMethodAccess().getRule();
+	public ParserRule getBlockRule() {
+		return getBlockAccess().getRule();
 	}
 
 	//terminal ID:
@@ -1606,13 +1949,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
-	} 
-
-	//terminal STRING:
-	//	"\"" ("\\" . / * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\""))* "\"" | "\'" ("\\" .
-	//	/ * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\'"))* "\'";
-	public TerminalRule getSTRINGRule() {
-		return gaTerminals.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:

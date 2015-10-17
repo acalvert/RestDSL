@@ -16,20 +16,26 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEOb
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.xtext.example.mydsl.myDsl.BaseException;
+import org.xtext.example.mydsl.myDsl.Block;
 import org.xtext.example.mydsl.myDsl.DataAccessObject;
 import org.xtext.example.mydsl.myDsl.DataModel;
+import org.xtext.example.mydsl.myDsl.DataModelMethodConclusion;
 import org.xtext.example.mydsl.myDsl.DomainModel;
+import org.xtext.example.mydsl.myDsl.ExceptionMapper;
 import org.xtext.example.mydsl.myDsl.Feature;
-import org.xtext.example.mydsl.myDsl.JavaMethod;
-import org.xtext.example.mydsl.myDsl.MappingModel;
+import org.xtext.example.mydsl.myDsl.ModelMapper;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.PrimitiveType;
 import org.xtext.example.mydsl.myDsl.Resource;
 import org.xtext.example.mydsl.myDsl.RestAPI;
 import org.xtext.example.mydsl.myDsl.RestException;
+import org.xtext.example.mydsl.myDsl.RestExceptionList;
 import org.xtext.example.mydsl.myDsl.RestModel;
+import org.xtext.example.mydsl.myDsl.RestModelMethodConclusion;
 import org.xtext.example.mydsl.myDsl.Service;
 import org.xtext.example.mydsl.myDsl.Transformation;
+import org.xtext.example.mydsl.myDsl.ValidationService;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -41,23 +47,32 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == MyDslPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case MyDslPackage.BASE_EXCEPTION:
+				sequence_BaseException(context, (BaseException) semanticObject); 
+				return; 
+			case MyDslPackage.BLOCK:
+				sequence_Block(context, (Block) semanticObject); 
+				return; 
 			case MyDslPackage.DATA_ACCESS_OBJECT:
 				sequence_DataAccessObject(context, (DataAccessObject) semanticObject); 
 				return; 
 			case MyDslPackage.DATA_MODEL:
 				sequence_DataModel(context, (DataModel) semanticObject); 
 				return; 
+			case MyDslPackage.DATA_MODEL_METHOD_CONCLUSION:
+				sequence_DataModelMethodConclusion(context, (DataModelMethodConclusion) semanticObject); 
+				return; 
 			case MyDslPackage.DOMAIN_MODEL:
 				sequence_DomainModel(context, (DomainModel) semanticObject); 
+				return; 
+			case MyDslPackage.EXCEPTION_MAPPER:
+				sequence_ExceptionMapper(context, (ExceptionMapper) semanticObject); 
 				return; 
 			case MyDslPackage.FEATURE:
 				sequence_Feature(context, (Feature) semanticObject); 
 				return; 
-			case MyDslPackage.JAVA_METHOD:
-				sequence_JavaMethod(context, (JavaMethod) semanticObject); 
-				return; 
-			case MyDslPackage.MAPPING_MODEL:
-				sequence_MappingModel(context, (MappingModel) semanticObject); 
+			case MyDslPackage.MODEL_MAPPER:
+				sequence_ModelMapper(context, (ModelMapper) semanticObject); 
 				return; 
 			case MyDslPackage.PRIMITIVE_TYPE:
 				sequence_PrimitiveType(context, (PrimitiveType) semanticObject); 
@@ -71,8 +86,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.REST_EXCEPTION:
 				sequence_RestException(context, (RestException) semanticObject); 
 				return; 
+			case MyDslPackage.REST_EXCEPTION_LIST:
+				sequence_RestExceptionList(context, (RestExceptionList) semanticObject); 
+				return; 
 			case MyDslPackage.REST_MODEL:
 				sequence_RestModel(context, (RestModel) semanticObject); 
+				return; 
+			case MyDslPackage.REST_MODEL_METHOD_CONCLUSION:
+				sequence_RestModelMethodConclusion(context, (RestModelMethodConclusion) semanticObject); 
 				return; 
 			case MyDslPackage.SERVICE:
 				sequence_Service(context, (Service) semanticObject); 
@@ -80,95 +101,84 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.TRANSFORMATION:
 				sequence_Transformation(context, (Transformation) semanticObject); 
 				return; 
+			case MyDslPackage.VALIDATION_SERVICE:
+				sequence_ValidationService(context, (ValidationService) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         createDataModel=[DataModel|ID] 
-	 *         exception1=RestException 
-	 *         createMethod=JavaMethod 
-	 *         createdDataModel=[DataModel|ID] 
-	 *         findby=INTEGER 
-	 *         exception2=RestException 
-	 *         findMethod=JavaMethod 
-	 *         foundDataModel=[DataModel|ID] 
-	 *         updateby=INTEGER 
-	 *         updateDataModel=[DataModel|ID] 
-	 *         exception3=RestException 
-	 *         updateMethod=JavaMethod 
-	 *         updatedDataModel=[DataModel|ID] 
-	 *         deleteby=INTEGER 
-	 *         exception4=RestException 
-	 *         deleteMethod=JavaMethod
-	 *     )
+	 *     (errorCode=STRING message=STRING)
 	 */
-	protected void sequence_DataAccessObject(EObject context, DataAccessObject semanticObject) {
+	protected void sequence_BaseException(EObject context, BaseException semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__NAME));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__CREATE_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__CREATE_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION1));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__CREATE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__CREATE_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__CREATED_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__CREATED_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__FINDBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__FINDBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION2));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__FIND_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__FIND_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__FOUND_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__FOUND_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATEBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATEBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATE_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATE_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION3) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION3));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATE_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATED_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__UPDATED_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__DELETEBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__DELETEBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION4) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__EXCEPTION4));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__DELETE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATA_ACCESS_OBJECT__DELETE_METHOD));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.BASE_EXCEPTION__ERROR_CODE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.BASE_EXCEPTION__ERROR_CODE));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.BASE_EXCEPTION__MESSAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.BASE_EXCEPTION__MESSAGE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getCreateDataModelDataModelIDTerminalRuleCall_4_0_1(), semanticObject.getCreateDataModel());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getException1RestExceptionParserRuleCall_7_0(), semanticObject.getException1());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getCreateMethodJavaMethodParserRuleCall_9_0(), semanticObject.getCreateMethod());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getCreatedDataModelDataModelIDTerminalRuleCall_11_0_1(), semanticObject.getCreatedDataModel());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getFindbyINTEGERTerminalRuleCall_15_0(), semanticObject.getFindby());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getException2RestExceptionParserRuleCall_18_0(), semanticObject.getException2());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getFindMethodJavaMethodParserRuleCall_20_0(), semanticObject.getFindMethod());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getFoundDataModelDataModelIDTerminalRuleCall_22_0_1(), semanticObject.getFoundDataModel());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getUpdatebyINTEGERTerminalRuleCall_26_0(), semanticObject.getUpdateby());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getUpdateDataModelDataModelIDTerminalRuleCall_28_0_1(), semanticObject.getUpdateDataModel());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getException3RestExceptionParserRuleCall_31_0(), semanticObject.getException3());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getUpdateMethodJavaMethodParserRuleCall_33_0(), semanticObject.getUpdateMethod());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1(), semanticObject.getUpdatedDataModel());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getDeletebyINTEGERTerminalRuleCall_39_0(), semanticObject.getDeleteby());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getException4RestExceptionParserRuleCall_42_0(), semanticObject.getException4());
-		feeder.accept(grammarAccess.getDataAccessObjectAccess().getDeleteMethodJavaMethodParserRuleCall_44_0(), semanticObject.getDeleteMethod());
+		feeder.accept(grammarAccess.getBaseExceptionAccess().getErrorCodeSTRINGTerminalRuleCall_1_0(), semanticObject.getErrorCode());
+		feeder.accept(grammarAccess.getBaseExceptionAccess().getMessageSTRINGTerminalRuleCall_3_0(), semanticObject.getMessage());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=ID superType=[DataModel|ID]? features+=Feature*)
+	 *     code=STRING
+	 */
+	protected void sequence_Block(EObject context, Block semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.BLOCK__CODE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.BLOCK__CODE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getBlockAccess().getCodeSTRINGTerminalRuleCall_0(), semanticObject.getCode());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         name=ID 
+	 *         createDataModel=[DataModel|ID] 
+	 *         createMethod=Block 
+	 *         createConclusion=DataModelMethodConclusion 
+	 *         findby=INTEGER 
+	 *         findMethod=Block 
+	 *         findConclusion=DataModelMethodConclusion 
+	 *         updateby=INTEGER 
+	 *         updateDataModel=[DataModel|ID] 
+	 *         updateMethod=Block 
+	 *         updateConclusion=DataModelMethodConclusion 
+	 *         deleteby=INTEGER 
+	 *         deleteMethod=Block 
+	 *         exceptions=RestExceptionList?
+	 *     )
+	 */
+	protected void sequence_DataAccessObject(EObject context, DataAccessObject semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (dataModel=[DataModel|ID] | exceptions+=RestExceptionList)
+	 */
+	protected void sequence_DataModelMethodConclusion(EObject context, DataModelMethodConclusion semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ID superType=[DataModel|ID]? id=INTEGER features+=Feature*)
 	 */
 	protected void sequence_DataModel(EObject context, DataModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -186,6 +196,28 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Constraint:
+	 *     (name=ID restException=RestException baseException=BaseException)
+	 */
+	protected void sequence_ExceptionMapper(EObject context, ExceptionMapper semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EXCEPTION_MAPPER__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EXCEPTION_MAPPER__NAME));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EXCEPTION_MAPPER__REST_EXCEPTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EXCEPTION_MAPPER__REST_EXCEPTION));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EXCEPTION_MAPPER__BASE_EXCEPTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EXCEPTION_MAPPER__BASE_EXCEPTION));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExceptionMapperAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getExceptionMapperAccess().getRestExceptionRestExceptionParserRuleCall_3_0(), semanticObject.getRestException());
+		feeder.accept(grammarAccess.getExceptionMapperAccess().getBaseExceptionBaseExceptionParserRuleCall_5_0(), semanticObject.getBaseException());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (many?='many'? name=ID type=[Type|ID])
 	 */
 	protected void sequence_Feature(EObject context, Feature semanticObject) {
@@ -195,25 +227,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     code=STRING
-	 */
-	protected void sequence_JavaMethod(EObject context, JavaMethod semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.JAVA_METHOD__CODE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.JAVA_METHOD__CODE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getJavaMethodAccess().getCodeSTRINGTerminalRuleCall_0(), semanticObject.getCode());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (name=ID transformation+=Transformation*)
 	 */
-	protected void sequence_MappingModel(EObject context, MappingModel semanticObject) {
+	protected void sequence_ModelMapper(EObject context, ModelMapper semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -238,87 +254,33 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         name=ID 
+	 *         service+=[Service|ID]+ 
+	 *         exceptionMapper=[ExceptionMapper|ID] 
 	 *         createRestModel=[RestModel|ID] 
-	 *         exception1=RestException 
-	 *         createMethod=JavaMethod 
-	 *         createdRestModel=[RestModel|ID] 
+	 *         createValService=ValidationService 
+	 *         createMethod=Block 
+	 *         createConclusion=RestModelMethodConclusion 
 	 *         findby=INTEGER 
-	 *         exception2=RestException 
-	 *         findMethod=JavaMethod 
-	 *         foundRestModel=[RestModel|ID] 
+	 *         findMethod=Block 
+	 *         findConclusion=RestModelMethodConclusion 
 	 *         updateby=INTEGER 
 	 *         updateRestModel=[RestModel|ID] 
-	 *         exception3=RestException 
-	 *         updateMethod=JavaMethod 
-	 *         updatedRestModel=[RestModel|ID] 
+	 *         updateValService=ValidationService 
+	 *         updateMethod=Block 
+	 *         updateConclusion=RestModelMethodConclusion 
 	 *         deleteby=INTEGER 
-	 *         exception4=RestException 
-	 *         deleteMethod=JavaMethod
+	 *         deleteMethod=Block 
+	 *         exception4=RestExceptionList?
 	 *     )
 	 */
 	protected void sequence_Resource(EObject context, Resource semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__NAME));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__CREATE_REST_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__CREATE_REST_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION1));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__CREATE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__CREATE_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__CREATED_REST_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__CREATED_REST_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__FINDBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__FINDBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION2));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__FIND_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__FIND_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__FOUND_REST_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__FOUND_REST_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATEBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATEBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATE_REST_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATE_REST_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION3) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION3));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATE_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATED_REST_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__UPDATED_REST_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__DELETEBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__DELETEBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION4) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__EXCEPTION4));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESOURCE__DELETE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESOURCE__DELETE_METHOD));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getResourceAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getResourceAccess().getCreateRestModelRestModelIDTerminalRuleCall_4_0_1(), semanticObject.getCreateRestModel());
-		feeder.accept(grammarAccess.getResourceAccess().getException1RestExceptionParserRuleCall_7_0(), semanticObject.getException1());
-		feeder.accept(grammarAccess.getResourceAccess().getCreateMethodJavaMethodParserRuleCall_9_0(), semanticObject.getCreateMethod());
-		feeder.accept(grammarAccess.getResourceAccess().getCreatedRestModelRestModelIDTerminalRuleCall_11_0_1(), semanticObject.getCreatedRestModel());
-		feeder.accept(grammarAccess.getResourceAccess().getFindbyINTEGERTerminalRuleCall_15_0(), semanticObject.getFindby());
-		feeder.accept(grammarAccess.getResourceAccess().getException2RestExceptionParserRuleCall_18_0(), semanticObject.getException2());
-		feeder.accept(grammarAccess.getResourceAccess().getFindMethodJavaMethodParserRuleCall_20_0(), semanticObject.getFindMethod());
-		feeder.accept(grammarAccess.getResourceAccess().getFoundRestModelRestModelIDTerminalRuleCall_22_0_1(), semanticObject.getFoundRestModel());
-		feeder.accept(grammarAccess.getResourceAccess().getUpdatebyINTEGERTerminalRuleCall_26_0(), semanticObject.getUpdateby());
-		feeder.accept(grammarAccess.getResourceAccess().getUpdateRestModelRestModelIDTerminalRuleCall_28_0_1(), semanticObject.getUpdateRestModel());
-		feeder.accept(grammarAccess.getResourceAccess().getException3RestExceptionParserRuleCall_31_0(), semanticObject.getException3());
-		feeder.accept(grammarAccess.getResourceAccess().getUpdateMethodJavaMethodParserRuleCall_33_0(), semanticObject.getUpdateMethod());
-		feeder.accept(grammarAccess.getResourceAccess().getUpdatedRestModelRestModelIDTerminalRuleCall_35_0_1(), semanticObject.getUpdatedRestModel());
-		feeder.accept(grammarAccess.getResourceAccess().getDeletebyINTEGERTerminalRuleCall_39_0(), semanticObject.getDeleteby());
-		feeder.accept(grammarAccess.getResourceAccess().getException4RestExceptionParserRuleCall_42_0(), semanticObject.getException4());
-		feeder.accept(grammarAccess.getResourceAccess().getDeleteMethodJavaMethodParserRuleCall_44_0(), semanticObject.getDeleteMethod());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (resource=Resource service+=Service* dao+=DataAccessObject*)
+	 *     (resource=Resource service+=Service* dao+=DataAccessObject* exceptionMapper+=ExceptionMapper*)
 	 */
 	protected void sequence_RestAPI(EObject context, RestAPI semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -327,23 +289,44 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     statusCode=RestStatusCode
+	 *     exception+=RestException+
+	 */
+	protected void sequence_RestExceptionList(EObject context, RestExceptionList semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (statusCode=RestStatusCode message=STRING)
 	 */
 	protected void sequence_RestException(EObject context, RestException semanticObject) {
 		if(errorAcceptor != null) {
 			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.REST_EXCEPTION__STATUS_CODE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.REST_EXCEPTION__STATUS_CODE));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.REST_EXCEPTION__MESSAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.REST_EXCEPTION__MESSAGE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRestExceptionAccess().getStatusCodeRestStatusCodeEnumRuleCall_0(), semanticObject.getStatusCode());
+		feeder.accept(grammarAccess.getRestExceptionAccess().getStatusCodeRestStatusCodeEnumRuleCall_1_0(), semanticObject.getStatusCode());
+		feeder.accept(grammarAccess.getRestExceptionAccess().getMessageSTRINGTerminalRuleCall_3_0(), semanticObject.getMessage());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=ID superType=[RestModel|ID]? features+=Feature*)
+	 *     (restModel=[RestModel|ID] | exception+=RestExceptionList)
+	 */
+	protected void sequence_RestModelMethodConclusion(EObject context, RestModelMethodConclusion semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=ID superType=[RestModel|ID]? id=INTEGER features+=Feature* self=STRING)
 	 */
 	protected void sequence_RestModel(EObject context, RestModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -354,81 +337,24 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         name=ID 
+	 *         dao+=[DataAccessObject|ID]+ 
 	 *         createDataModel=[DataModel|ID] 
-	 *         exception1=RestException 
-	 *         createMethod=JavaMethod 
-	 *         createdDataModel=[DataModel|ID] 
+	 *         createMethod=Block 
+	 *         createConclusion=DataModelMethodConclusion 
 	 *         findby=INTEGER 
-	 *         exception2=RestException 
-	 *         findMethod=JavaMethod 
-	 *         foundDataModel=[DataModel|ID] 
+	 *         findMethod=Block 
+	 *         findConclusion=DataModelMethodConclusion 
 	 *         updateby=INTEGER 
 	 *         updateDataModel=[DataModel|ID] 
-	 *         exception3=RestException 
-	 *         updateMethod=JavaMethod 
-	 *         updatedDataModel=[DataModel|ID] 
+	 *         updateMethod=Block 
+	 *         updateConclusion=DataModelMethodConclusion 
 	 *         deleteby=INTEGER 
-	 *         exception4=RestException 
-	 *         deleteMethod=JavaMethod
+	 *         deleteMethod=Block 
+	 *         exception4=RestExceptionList?
 	 *     )
 	 */
 	protected void sequence_Service(EObject context, Service semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__NAME));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__CREATE_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__CREATE_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION1));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__CREATE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__CREATE_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__CREATED_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__CREATED_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__FINDBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__FINDBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION2));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__FIND_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__FIND_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__FOUND_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__FOUND_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__UPDATEBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__UPDATEBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__UPDATE_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__UPDATE_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION3) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION3));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__UPDATE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__UPDATE_METHOD));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__UPDATED_DATA_MODEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__UPDATED_DATA_MODEL));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__DELETEBY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__DELETEBY));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION4) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__EXCEPTION4));
-			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.SERVICE__DELETE_METHOD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.SERVICE__DELETE_METHOD));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getServiceAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getServiceAccess().getCreateDataModelDataModelIDTerminalRuleCall_4_0_1(), semanticObject.getCreateDataModel());
-		feeder.accept(grammarAccess.getServiceAccess().getException1RestExceptionParserRuleCall_7_0(), semanticObject.getException1());
-		feeder.accept(grammarAccess.getServiceAccess().getCreateMethodJavaMethodParserRuleCall_9_0(), semanticObject.getCreateMethod());
-		feeder.accept(grammarAccess.getServiceAccess().getCreatedDataModelDataModelIDTerminalRuleCall_11_0_1(), semanticObject.getCreatedDataModel());
-		feeder.accept(grammarAccess.getServiceAccess().getFindbyINTEGERTerminalRuleCall_15_0(), semanticObject.getFindby());
-		feeder.accept(grammarAccess.getServiceAccess().getException2RestExceptionParserRuleCall_18_0(), semanticObject.getException2());
-		feeder.accept(grammarAccess.getServiceAccess().getFindMethodJavaMethodParserRuleCall_20_0(), semanticObject.getFindMethod());
-		feeder.accept(grammarAccess.getServiceAccess().getFoundDataModelDataModelIDTerminalRuleCall_22_0_1(), semanticObject.getFoundDataModel());
-		feeder.accept(grammarAccess.getServiceAccess().getUpdatebyINTEGERTerminalRuleCall_26_0(), semanticObject.getUpdateby());
-		feeder.accept(grammarAccess.getServiceAccess().getUpdateDataModelDataModelIDTerminalRuleCall_28_0_1(), semanticObject.getUpdateDataModel());
-		feeder.accept(grammarAccess.getServiceAccess().getException3RestExceptionParserRuleCall_31_0(), semanticObject.getException3());
-		feeder.accept(grammarAccess.getServiceAccess().getUpdateMethodJavaMethodParserRuleCall_33_0(), semanticObject.getUpdateMethod());
-		feeder.accept(grammarAccess.getServiceAccess().getUpdatedDataModelDataModelIDTerminalRuleCall_35_0_1(), semanticObject.getUpdatedDataModel());
-		feeder.accept(grammarAccess.getServiceAccess().getDeletebyINTEGERTerminalRuleCall_39_0(), semanticObject.getDeleteby());
-		feeder.accept(grammarAccess.getServiceAccess().getException4RestExceptionParserRuleCall_42_0(), semanticObject.getException4());
-		feeder.accept(grammarAccess.getServiceAccess().getDeleteMethodJavaMethodParserRuleCall_44_0(), semanticObject.getDeleteMethod());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -447,6 +373,25 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getTransformationAccess().getDataModelDataModelIDTerminalRuleCall_1_0_1(), semanticObject.getDataModel());
 		feeder.accept(grammarAccess.getTransformationAccess().getRestModelRestModelIDTerminalRuleCall_3_0_1(), semanticObject.getRestModel());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (restModel=[RestModel|ID] block=Block)
+	 */
+	protected void sequence_ValidationService(EObject context, ValidationService semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.VALIDATION_SERVICE__REST_MODEL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.VALIDATION_SERVICE__REST_MODEL));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.VALIDATION_SERVICE__BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.VALIDATION_SERVICE__BLOCK));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getValidationServiceAccess().getRestModelRestModelIDTerminalRuleCall_2_0_1(), semanticObject.getRestModel());
+		feeder.accept(grammarAccess.getValidationServiceAccess().getBlockBlockParserRuleCall_5_0(), semanticObject.getBlock());
 		feeder.finish();
 	}
 }
