@@ -1,0 +1,91 @@
+<domain-model> ::= <type>* <rest-api>*
+<type> ::= <primitive-type> | <data-model> | <rest-model> | <mapping-model>
+<rest-api> ::= '<BEGIN_REST_API>' <resource> <service>* <dao>* <exception-mapper>* '<END_REST_API>'
+<primitive-type> ::= primitiveType <id>
+<data-model> ::= DataModel <id> [extends <data-model>] { id : <id> <feature>* self : <string-literal> }
+<rest-model> ::= RestModel <id> [extends <rest-model>] { id : <INTEGER> <feature>* self : <string-literal> }
+<model-mapper> ::= ModelMapper <id> { <transformation>* }
+<transformation> ::= ( <id> <=> <id> ) //ids of a rest model and a data model
+<feature> ::= [many] <id> : <id> //id of this transformation, id of a type
+<resource> ::= Resource <id> {
+        <id>+ //id of a service
+        <id>  //id of a exception mapper
+        create ( <id> ) { 
+            <validation-service>
+            <block> 
+            <rest-model-method-conclusion>
+        }
+        find ( <INTEGER> ) {
+            <block>
+            <rest-model-method-conclusion>
+        }
+        update ( <INTEGER> , <id> ) { 
+            <validation-service>
+            <block>
+            <rest-model-method-conclusion>
+        }
+        delete ( <INTEGER> ) { 
+            <block>
+            [throw <rest-exception-list>]
+        }
+    }
+
+<service> ::= Service <id> {
+        <id>+ //id of a dao
+        create ( <id> ) { 
+            <validation-service>
+            <block> 
+            <data-model-method-conclusion>
+        }
+        find ( <INTEGER> ) {
+            <block> 
+            <data-model-method-conclusion>
+        }
+        update ( <INTEGER> , <id> ) { 
+            <validation-service>
+            <block> 
+            <data-model-method-conclusion>
+        }
+        delete ( <INTEGER> ) { 
+            <block>
+            [throw <rest-exception-list>]
+        }
+    }
+
+<validation-service> ::= validate ( <id> ) { <block> }
+
+<dao> ::= DAO <id> {
+        create ( <id> ) { 
+            <validation-service>
+            <block> 
+            <data-model-method-conclusion>
+        }
+        find ( <INTEGER> ) {
+            <block> 
+            <data-model-method-conclusion>
+        }
+        update ( <INTEGER> , <id> ) { 
+            <validation-service>
+            <block> 
+            <data-model-method-conclusion>
+        }
+        delete ( <INTEGER> ) { 
+            <block>
+            [throw <rest-exception-list>]
+        }
+    }
+<data-model-method-conclusion> ::= return <id> | throw <rest-exception-list> //id of a data model
+<rest-model-method-conclusion> ::= return <id> | throw <rest-exception-list> //id of a rest model
+<rest-exception-list> ::= <rest-exception>+
+<base-exception> ::= '[' <string-literal> , <string-literal> ']'
+<exception-mapper> ::= ExceptionMapper <id> ( <rest-exception> <=> <base-exception> )
+<rest-exception> ::= '[' <rest-status-code> , <string-literal> ']'
+<rest-status-code> ::= INFORMATIONAL | SUCCESS | REDIRECTION | CLIENT_ERROR | SERVER_ERROR | NETWORK_ERROR
+<block> ::= { <block-statements>? }
+<id> = <STRING>
+<string-literal> ::= "<STRING>"
+
+(<block> could be expanded later to include actual Java syntax for a block of statements - <block> ::= { <block-statements>? })
+(<STRING> is the usual sequence of ASCII characters, left undefined to save space; <INTEGER> is similarly intuitive)
+
+
