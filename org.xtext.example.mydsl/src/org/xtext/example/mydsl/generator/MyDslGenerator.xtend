@@ -3,9 +3,12 @@
  */
 package org.xtext.example.mydsl.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
+import org.xtext.example.mydsl.myDsl.DataAccessObject
+import org.xtext.example.mydsl.myDsl.Resource
+import org.xtext.example.mydsl.myDsl.RestAPI
+import org.xtext.example.mydsl.myDsl.Service
 
 /**
  * Generates code from your model files on save.
@@ -13,12 +16,112 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyDslGenerator implements IGenerator {
-	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+
+	override void doGenerate(org.eclipse.emf.ecore.resource.Resource resource, IFileSystemAccess fsa) {
+
+		for (api : resource.allContents.toIterable.filter(RestAPI)) {
+			fsa.generateFile(
+				"RestAPI.java",
+				api.compile
+			)
+		}
+
 	}
+	
+	def compile(RestAPI api) '''
+		import java.util.Map;
+		import java.util.HashMap;
+	
+		public class RestAPI {
+			
+			static Map<Integer, Integer> exceptionMap = new HashMap<Integer, Integer>();
+			
+			static {
+				«FOR m : api.exceptionMapper»
+					exceptionMap.add(«m.baseException.errorCode», "«m.restException.statusCode»");
+			    «ENDFOR»
+			}
+			
+			«api.resource.compile»
+			
+			«FOR s : api.service»
+				«s.compile»
+			«ENDFOR»
+			
+			«FOR d : api.dao»
+				«d.compile»
+			«ENDFOR»
+						
+		}
+	'''
+
+	def compile(Resource res) '''  
+		««« ctrl + shift + u, 00AB, enter
+		public class «res.name» {
+			
+			public void create() {
+				«res.createMethod.code»
+			}
+			
+			public void find() {
+				«res.findMethod.code»
+			}
+			
+			public void update() {
+				«res.updateMethod.code»
+			}
+			
+			public void delete() {
+				«res.deleteMethod.code»
+			}
+		}
+		
+	'''
+
+	def compile(Service service) '''  
+		««« ctrl + shift + u, 00AB, enter
+		public class «service.name» {
+			
+			public void create() {
+				«service.createMethod.code»
+			}
+			
+			public void find() {
+				«service.findMethod.code»
+			}
+			
+			public void update() {
+				«service.updateMethod.code»
+			}
+			
+			public void delete() {
+				«service.deleteMethod.code»
+			}
+		}
+		
+	'''
+
+	def compile(DataAccessObject dao) '''  
+		««« ctrl + shift + u, 00AB, enter
+		public class «dao.name» {
+			
+			public void create() {
+				«dao.createMethod.code»
+			}
+			
+			public void find() {
+				«dao.findMethod.code»
+			}
+			
+			public void update() {
+				«dao.updateMethod.code»
+			}
+			
+			public void delete() {
+				«dao.deleteMethod.code»
+			}
+		}
+		
+	'''
+
 }

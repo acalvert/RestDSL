@@ -1541,12 +1541,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCodeAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cCodeSTRINGTerminalRuleCall_0 = (RuleCall)cCodeAssignment.eContents().get(0);
 		
-		//Block: //will be expanded later to include actual Java syntax for a block of statements
+		//Block: //could be expanded later to include actual Java syntax for a block of statements
 		////<block> ::= { <block-statements>? }
 		//	code=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		////will be expanded later to include actual Java syntax for a block of statements
+		////could be expanded later to include actual Java syntax for a block of statements
 		////<block> ::= { <block-statements>? }
 		//code=STRING
 		public Assignment getCodeAssignment() { return cCodeAssignment; }
@@ -1928,7 +1928,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getRestStatusCodeAccess().getRule();
 	}
 
-	//Block: //will be expanded later to include actual Java syntax for a block of statements
+	//Block: //could be expanded later to include actual Java syntax for a block of statements
 	////<block> ::= { <block-statements>? }
 	//	code=STRING;
 	public BlockElements getBlockAccess() {

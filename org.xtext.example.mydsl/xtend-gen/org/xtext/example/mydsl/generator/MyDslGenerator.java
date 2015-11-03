@@ -3,9 +3,23 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.mydsl.myDsl.BaseException;
+import org.xtext.example.mydsl.myDsl.Block;
+import org.xtext.example.mydsl.myDsl.DataAccessObject;
+import org.xtext.example.mydsl.myDsl.ExceptionMapper;
+import org.xtext.example.mydsl.myDsl.RestAPI;
+import org.xtext.example.mydsl.myDsl.RestException;
+import org.xtext.example.mydsl.myDsl.RestStatusCode;
+import org.xtext.example.mydsl.myDsl.Service;
 
 /**
  * Generates code from your model files on save.
@@ -16,5 +30,289 @@ import org.eclipse.xtext.generator.IGenerator;
 public class MyDslGenerator implements IGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<RestAPI> _filter = Iterables.<RestAPI>filter(_iterable, RestAPI.class);
+    for (final RestAPI api : _filter) {
+      CharSequence _compile = this.compile(api);
+      fsa.generateFile(
+        "RestAPI.java", _compile);
+    }
+  }
+  
+  public CharSequence compile(final RestAPI api) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.append("import java.util.Map;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("import java.util.HashMap;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public class RestAPI {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("static Map<Integer, Integer> exceptionMap = new HashMap<Integer, Integer>();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("static {");
+    _builder.newLine();
+    {
+      EList<ExceptionMapper> _exceptionMapper = api.getExceptionMapper();
+      for(final ExceptionMapper m : _exceptionMapper) {
+        _builder.append("\t\t\t");
+        _builder.append("exceptionMap.add(");
+        BaseException _baseException = m.getBaseException();
+        String _errorCode = _baseException.getErrorCode();
+        _builder.append(_errorCode, "\t\t\t");
+        _builder.append(", \"");
+        RestException _restException = m.getRestException();
+        RestStatusCode _statusCode = _restException.getStatusCode();
+        _builder.append(_statusCode, "\t\t\t");
+        _builder.append("\");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    org.xtext.example.mydsl.myDsl.Resource _resource = api.getResource();
+    CharSequence _compile = this.compile(_resource);
+    _builder.append(_compile, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      EList<Service> _service = api.getService();
+      for(final Service s : _service) {
+        _builder.append("\t\t");
+        CharSequence _compile_1 = this.compile(s);
+        _builder.append(_compile_1, "\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      EList<DataAccessObject> _dao = api.getDao();
+      for(final DataAccessObject d : _dao) {
+        _builder.append("\t\t");
+        CharSequence _compile_2 = this.compile(d);
+        _builder.append(_compile_2, "\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final org.xtext.example.mydsl.myDsl.Resource res) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t\t");
+    _builder.append("public class ");
+    String _name = res.getName();
+    _builder.append(_name, "\t\t");
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void create() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _createMethod = res.getCreateMethod();
+    String _code = _createMethod.getCode();
+    _builder.append(_code, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void find() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _findMethod = res.getFindMethod();
+    String _code_1 = _findMethod.getCode();
+    _builder.append(_code_1, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void update() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _updateMethod = res.getUpdateMethod();
+    String _code_2 = _updateMethod.getCode();
+    _builder.append(_code_2, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void delete() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _deleteMethod = res.getDeleteMethod();
+    String _code_3 = _deleteMethod.getCode();
+    _builder.append(_code_3, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final Service service) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t\t");
+    _builder.append("public class ");
+    String _name = service.getName();
+    _builder.append(_name, "\t\t");
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void create() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _createMethod = service.getCreateMethod();
+    String _code = _createMethod.getCode();
+    _builder.append(_code, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void find() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _findMethod = service.getFindMethod();
+    String _code_1 = _findMethod.getCode();
+    _builder.append(_code_1, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void update() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _updateMethod = service.getUpdateMethod();
+    String _code_2 = _updateMethod.getCode();
+    _builder.append(_code_2, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void delete() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _deleteMethod = service.getDeleteMethod();
+    String _code_3 = _deleteMethod.getCode();
+    _builder.append(_code_3, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final DataAccessObject dao) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t\t");
+    _builder.append("public class ");
+    String _name = dao.getName();
+    _builder.append(_name, "\t\t");
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void create() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _createMethod = dao.getCreateMethod();
+    String _code = _createMethod.getCode();
+    _builder.append(_code, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void find() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _findMethod = dao.getFindMethod();
+    String _code_1 = _findMethod.getCode();
+    _builder.append(_code_1, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void update() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _updateMethod = dao.getUpdateMethod();
+    String _code_2 = _updateMethod.getCode();
+    _builder.append(_code_2, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void delete() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Block _deleteMethod = dao.getDeleteMethod();
+    String _code_3 = _deleteMethod.getCode();
+    _builder.append(_code_3, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
   }
 }
