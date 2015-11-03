@@ -1,3 +1,4 @@
-COMP7300Lab
-.metadata
-.recommenders
+COMP7300Lab/*
+.gitignore
+.metadata/*
+.recommenders/*
